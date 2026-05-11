@@ -1,0 +1,41 @@
+name: Issueflow work item
+description: Create an implementation-ready issue for the issueflow workflow
+title: "[area] "
+labels:
+  - needs-triage
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is wrong or what should improve?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Reproduction, logs, screenshots, user report, or measurements
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: List testable outcomes
+    validations:
+      required: true
+  - type: textarea
+    id: test_plan
+    attributes:
+      label: Test Plan
+      description: Commands, suites, specs, or goldens that must prove this work
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and Out of Scope
+      description: What this issue will and will not touch
+    validations:
+      required: true

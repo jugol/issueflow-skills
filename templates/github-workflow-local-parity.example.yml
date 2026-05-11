@@ -1,0 +1,16 @@
+name: local-parity-checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run repo-local checks
+        run: ./scripts/check-local.sh

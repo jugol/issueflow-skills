@@ -1,0 +1,34 @@
+name: Bug report
+description: Report incorrect or confusing issueflow behavior.
+title: "Fix: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What went wrong, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include the prompt, skill, repo state, or command that exposes the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Explain how this affects issueflow usage or installability.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-proof
+    attributes:
+      label: Proposed proof
+      description: What validation, example, or workflow should prove the fix?
+    validations:
+      required: true

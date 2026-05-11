@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest a new issueflow skill, workflow rule, template, or reference.
+title: "Add: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should an agent be able to do after this change?
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger examples
+      description: What user prompts or repo situations should activate this behavior?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and non-goals
+      description: What should this change include, and what should it avoid?
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Proof plan
+      description: How should maintainers validate that the workflow works?
+    validations:
+      required: true

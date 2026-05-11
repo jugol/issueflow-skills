@@ -1,0 +1,20 @@
+{
+  "name": "issueflow-skills",
+  "interface": {
+    "displayName": "Issueflow Skills"
+  },
+  "plugins": [
+    {
+      "name": "issueflow",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

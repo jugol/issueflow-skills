@@ -1,0 +1,38 @@
+{
+  "name": "issueflow",
+  "version": "0.1.0",
+  "description": "Issue-driven Git Flow-lite workflow skills for Codex.",
+  "author": {
+    "name": "Issueflow Skills Contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "codex-plugin",
+    "agent-skills",
+    "issueflow",
+    "git-flow-lite",
+    "issue-driven-development",
+    "qa",
+    "playwright",
+    "flutter"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Issueflow",
+    "shortDescription": "Issue-driven Git Flow-lite workflows for Codex",
+    "longDescription": "A bundled skill pack for raising, validating, dispatching, implementing, proving, merging, and releasing issue-scoped work with durable QA evidence.",
+    "developerName": "Issueflow Skills Contributors",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use issueflow to turn this feature idea into ready issues.",
+      "Use issueflow to dispatch and prove this issue branch.",
+      "Use issueflow to decide whether this branch can merge."
+    ],
+    "brandColor": "#2563EB"
+  }
+}
