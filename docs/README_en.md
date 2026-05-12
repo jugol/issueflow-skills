@@ -1,6 +1,6 @@
 # Issueflow Skills
 
-Issueflow is a Codex skill pack and plugin for issue-driven software development. It gives AI agents a repeatable operating model for turning ideas, bugs, and product feedback into scoped issues, isolated branches, durable proof, and controlled releases.
+Issueflow is a Codex skill pack and plugin for issue-driven software development. It gives AI agents a repeatable operating model for discovering or clarifying work, shaping issues or waves, dispatching isolated branches, proving changes, merging safely, and capturing reusable learning.
 
 The core idea is simple: do not let implementation outrun intent, evidence, or integration discipline.
 
@@ -18,7 +18,17 @@ Issueflow treats software work as a chain of accountable decisions:
 
 This is especially important when AI agents are doing substantial implementation work. Agents are fast, but speed can blur boundaries. Issueflow gives agents a shared project memory and a set of gates so they do not silently widen scope, keep working on stale branches, or ship proof that only exists in a chat transcript.
 
-Issueflow is not meant to add paperwork for its own sake. The goal is to keep the smallest durable trail that lets future humans and agents understand what happened, why it happened, and how it was proven.
+Issueflow is not meant to add paperwork for its own sake. The goal is to keep the smallest durable trail that lets future humans and agents understand what happened, why it happened, how it was proven, and what the next cycle should know.
+
+## Two-Track Planning
+
+Issueflow uses two planning tracks.
+
+The Autonomous Cycle Track is for automation, repeated iterations, post-merge follow-up, failing tests, review findings, and batches of playtest or user feedback. The agent scans durable signals instead of waiting for the user to name every next issue. When two or more independent findings exist, it creates a wave instead of one oversized issue.
+
+The Interactive Feature Intake Track is for user-described features, product behavior changes, UI changes, and broad improvements. The agent inspects repo context first, asks focused questions, proposes approaches when tradeoffs matter, and then turns the approved direction into one issue or a wave.
+
+After merge or PR handoff, the compound loop captures reusable learning in `docs/solutions/` when a fix reveals a recurring pattern, failed approach, prevention rule, or follow-up trigger.
 
 ## Project Management Model
 
@@ -32,17 +42,19 @@ Issueflow uses a Git Flow-lite model:
 
 The default lifecycle is:
 
-1. Capture the work as an issue.
-2. Validate readiness with `issue-intake`.
-3. Dispatch from `develop` with `issue-dispatch`.
-4. Implement only the approved scope.
-5. Add or update durable test coverage.
-6. Produce QA proof.
-7. Pass `merge-gate`.
-8. Merge into `develop`, resolving conflicts on the integration path.
-9. Rerun integrated proof on `develop`.
-10. Leave the checkout on `develop`.
-11. Promote through `release-gate` when ready.
+1. Discover or clarify the work through autonomous scan or interactive brainstorming.
+2. Capture the work as one issue or a planned wave.
+3. Validate readiness with `issue-intake`.
+4. Dispatch from `develop` with `issue-dispatch`.
+5. Implement only the approved scope.
+6. Add or update durable test coverage.
+7. Produce QA proof.
+8. Pass `merge-gate`.
+9. Merge into `develop`, resolving conflicts on the integration path.
+10. Rerun integrated proof on `develop`.
+11. Leave the checkout on `develop`.
+12. Capture reusable learning with `issue-compound` when useful.
+13. Promote through `release-gate` when ready.
 
 This model makes integration explicit. A completed issue branch is not the same thing as a release. `develop` absorbs proven work first; `main` changes only through an intentional release decision.
 
@@ -92,6 +104,8 @@ Issueflow is a good fit when:
 
 - AI agents are implementing nontrivial product work.
 - A project has multiple issues moving in parallel.
+- Automated runs should keep finding the next useful issue.
+- User-requested features need clarification before implementation.
 - You want stable branch hygiene around `develop` and `main`.
 - You need durable proof before merge.
 - Bugs, features, and UX feedback should become trackable issues.
@@ -115,6 +129,7 @@ Even then, parts of the model can still be useful. For example, `issue-raise` ca
 ## How The Skills Fit Together
 
 - `issueflow`: routes broad requests into the right workflow skill.
+- `issue-brainstorm`: clarifies feature requests before issue creation.
 - `repo-bootstrap`: adapts the workflow to a concrete repository.
 - `issue-raise`: turns rough ideas or feedback into implementation-ready issues.
 - `issue-intake`: decides whether an issue is ready to start.
@@ -124,6 +139,7 @@ Even then, parts of the model can still be useful. For example, `issue-raise` ca
 - `qa-web-proof`: verifies web changes with Playwright and local checks.
 - `qa-flutter-proof`: verifies Flutter changes with widget, integration, and golden tests.
 - `merge-gate`: decides whether an issue branch can merge into `develop`.
+- `issue-compound`: captures reusable learning and follow-up triggers.
 - `release-gate`: decides whether integrated work can promote to `main`.
 
 ## Practical Outcome
@@ -136,5 +152,6 @@ Using issueflow should make a repository feel calmer:
 - Test coverage grows with product scope.
 - Releases are deliberate.
 - Project direction stays visible.
+- Reusable learning compounds across issues.
 
 The workflow is intentionally lightweight, but it insists on the few boundaries that keep fast implementation from becoming chaotic implementation.

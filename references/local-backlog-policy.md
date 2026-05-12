@@ -5,6 +5,8 @@ Use a local backlog when GitHub issues are not attached yet.
 ## Recommended files
 
 - `backlog/BOARD.md`
+- `backlog/BRAINSTORMS.md` or `backlog/brainstorms/`
+- `backlog/WAVES.md`
 - `backlog/issues/active/0001-...md`
 - `backlog/issues/done/0001-...md`
 - `backlog/issues/archive/0001-...md`
@@ -13,6 +15,7 @@ Use a local backlog when GitHub issues are not attached yet.
 
 - preserves issue-driven structure before hosted tooling exists
 - keeps numbering and handoff discipline
+- gives autonomous cycles somewhere durable to place next-issue and wave candidates
 - lets AI agents work against durable local issue files
 
 ## Rule
@@ -29,6 +32,7 @@ Local issues should still carry:
 - docs plan
 - handoff notes
 - branch, base snapshot, and merge/return-to-develop status
+- origin: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`
 
 Keep the active issue set intentionally small enough to scan.
 

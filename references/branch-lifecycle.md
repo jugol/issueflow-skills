@@ -59,10 +59,16 @@ Use this sequence when implementation is complete:
 8. Resolve merge conflicts on the integration path, preserving the approved issue scope.
 9. Rerun the required integrated proof on `develop` after the merge or after any conflict resolution.
 10. Update the issue, backlog board, and harness registry with proof and closure notes.
-11. Leave the working checkout on `develop`.
-12. Delete or archive the issue branch only according to repo policy.
+11. Update the wave board, latest proof pointer, current-state note, or equivalent backlog pointer so the completed issue is no longer described as the active issue.
+12. If automation/run memory exists, prepend or update the durable current-state entry so a later automation cannot resume the completed issue from stale memory.
+13. Create or update follow-up issues for unresolved work, next vertical slices, or newly discovered defects; if there is no follow-up, record the concrete no-follow-up rationale.
+14. Run `issue-compound` when the work produced reusable learning, failed approaches, prevention rules, or future issue triggers.
+15. Leave the working checkout on `develop`.
+16. Delete or archive the issue branch only according to repo policy.
 
 Do not begin the next issue from the completed issue branch.
+
+Do not call an issue complete if branch state, backlog pointers, or automation memory can still make the next run continue that same issue. Completion includes a forward handoff to the next issue, follow-up issue, defer note, or explicit no-next-issue state.
 
 If repo policy requires PR-only integration, the agent should still return the local checkout to `develop` after opening or updating the PR. The final handoff must state that integration is pending review instead of claiming the issue is fully merged.
 

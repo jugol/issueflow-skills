@@ -16,7 +16,9 @@ This skill decides whether an issue is ready to branch from `develop`.
 - Spec or harness targets are named when the issue changes user-visible behavior.
 - Scope and out-of-scope are explicit.
 - The likely affected area is named.
+- The issue origin is named: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`.
 - The vertical slice shape is clear, or a support-only reason and downstream core slice are named.
+- If the issue belongs to a wave, ownership lane, dependency order, proof command, and worktree or serialization decision are named.
 - UI issues include audience, primary action, first-viewport priority, and desired visual direction.
 - UI issues include the expected aesthetic bar and copy tone or target-language naturalness criteria.
 - The issue can be linked to a durable harness update.
@@ -37,10 +39,12 @@ For greenfield projects, allow the baseline proof to be scaffold-level validatio
 - User-facing copy changes with no natural-language review target, especially for localized, narrative, onboarding, or choice-heavy surfaces
 - No clear link back to the active product plan
 - Internal tooling work that does not justify why it should come before missing core product work
+- Single oversized issue that contains independent defects, packages, or user-visible outcomes that should be a corrective wave
+- Feature request that skipped `issue-brainstorm` even though success criteria, UX, data behavior, or proof are still ambiguous
 
 ## Package resources
 
-Use `../../references/plan-alignment.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` when readiness depends on product direction, slice shape, or UI quality.
+Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/plan-alignment.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` when readiness depends on track, wave shape, product direction, slice shape, or UI quality.
 
 ## Decision states
 
@@ -56,6 +60,7 @@ Use `../../references/plan-alignment.md`, `../../references/vertical-slice-archi
 - Suggested split, if any
 - Suggested labels and branch slug
 - Required harness update category
+- Origin and wave membership, if any
 - Plan alignment note or realignment warning
 - Vertical slice readiness or support-only justification
 - Experience-first readiness for UI work

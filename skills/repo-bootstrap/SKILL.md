@@ -27,7 +27,10 @@ This skill takes the shared pack and adapts it to a real repository.
 - Local backlog board when GitHub is not attached yet
 - Local check entrypoints for the current stack
 - Test harness registry
+- Brainstorm and wave note locations for durable planning
+- `docs/solutions/` or equivalent solution-note directory for compound learning
 - Branch lifecycle notes or checklist for `develop`, `issue/*`, merge, and return-to-`develop`
+- Worktree ignore policy such as `.worktrees/` when the repo will use local parallelism
 - Optional GitHub Actions that call the same local commands
 - Stack and repo-topology decision record when the project is still greenfield
 
@@ -40,6 +43,10 @@ Use these package resources when the repo needs more than the core checklist:
 - `../../references/github-adoption.md` for hosted issue and PR setup
 - `../../references/local-backlog-policy.md` for repos without GitHub
 - `../../references/local-checks-policy.md` for local proof entrypoints
+- `../../references/two-track-routing.md` for autonomous cycle vs interactive intake routing
+- `../../references/interactive-brainstorming.md` for feature-request clarification
+- `../../references/autonomous-wave-generation.md` for issue fan-out and waves
+- `../../references/compound-learning.md` for `docs/solutions/` notes
 - `../../references/pr-template-policy.md` for PR proof sections
 - `../../references/stack-selection.md` for early stack decisions
 - `../../references/harness-governance.md` for durable test registry policy
@@ -80,6 +87,7 @@ If the project begins with only a plan document:
 - choose and record the first stack decision
 - choose and record repo topology
 - create the first issue wave from the plan
+- create a durable brainstorm or strategy note when the plan leaves major product choices open
 - create a local proof entrypoint before starting product code
 - record the branch lifecycle rule before the first issue branch is created
 - make the first product issue a thin vertical slice whenever possible
@@ -123,7 +131,9 @@ Project-specific sections may be appended below the core. Do not let custom sect
 - New local wrapper commands, if needed
 - Optional GitHub files to add
 - Initial issue wave, if starting from a project plan
+- Brainstorm, wave, and solution-note locations
 - Branch lifecycle expectations for dispatch, merge, and return-to-`develop`
+- Worktree policy and default local worktree path, if parallel issue delivery is expected
 - Vertical slice recommendation or support-first rationale for the first wave
 - Experience-first recommendation for the first user-facing UI slice
 - Aesthetic and native-language copy review expectations for UI-heavy work

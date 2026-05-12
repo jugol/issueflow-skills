@@ -29,28 +29,44 @@ Re-check it:
 - QA can verify a realistic integrated state on `develop`.
 - Promotion to `main` becomes an explicit release decision instead of an accidental side effect of finishing one issue.
 
+## Two-track planning loop
+
+Issueflow is not only a single-issue executor. It is an issue discovery, planning, proof, merge, and learning loop.
+
+Use the Autonomous Cycle Track when automation, a user, or a completed merge asks the agent to continue. Scan the plan anchor, backlog, failing tests, review findings, playtest feedback, recent proof, and `docs/solutions/`. Create follow-up issues or waves when concrete next work is visible; record a no-follow-up rationale when it is not.
+
+Use the Interactive Feature Intake Track when a user describes a feature, product behavior, UI change, or ambiguous improvement. Ground in the repo first, ask focused questions, present two or three approaches when tradeoffs matter, and turn the approved direction into one issue or a wave before implementation.
+
+After merge or PR handoff, run the compound loop when reusable learning exists. Update or create `docs/solutions/` notes for recurring failures, reusable patterns, failed approaches, prevention rules, and follow-up triggers.
+
 ## Lifecycle
 
-1. Capture the problem as an issue.
-2. Refine it until it is implementation-ready.
-3. Confirm the checkout is on `develop` or an explicitly separate worktree from `develop`.
-4. Branch from `develop`.
-5. Implement only the approved issue scope.
-6. Update the durable test harness with the change.
-7. Produce QA evidence.
-8. Pass `merge-gate`.
-9. Merge the branch into `develop`, resolving conflicts on the integration path.
-10. Rerun the required integrated proof on `develop`.
-11. Return the working checkout to `develop`.
-12. If repo policy requires PR-only integration, open or update the PR and make the pending merge explicit.
-13. Bundle approved issues into a release candidate.
-14. Promote to `main`.
+1. Discover the next work through autonomous scan or interactive brainstorming.
+2. Capture the work as one issue or a planned wave.
+3. Refine issues until they are implementation-ready.
+4. Confirm the checkout is on `develop` or an explicitly separate worktree from `develop`.
+5. Branch from `develop`.
+6. Implement only the approved issue scope.
+7. Update the durable test harness with the change.
+8. Produce QA evidence.
+9. Pass `merge-gate`.
+10. Merge the branch into `develop`, resolving conflicts on the integration path.
+11. Rerun the required integrated proof on `develop`.
+12. Return the working checkout to `develop`.
+13. If repo policy requires PR-only integration, open or update the PR and make the pending merge explicit.
+14. Run compound learning when reusable knowledge or follow-up triggers exist.
+15. Bundle approved issues into a release candidate.
+16. Promote to `main`.
 
 ## Session guardrail
 
 When a user gives a direct implementation request, first check whether the repo uses issueflow artifacts such as `backlog/BOARD.md`, numbered local issues, `TEST-HARNESS-REGISTRY.md`, or this skill pack.
 
 If it does, do not treat the request as "just code". Route it through `issue-raise`, `issue-intake`, `issue-dispatch`, the relevant implementation skill, and the matching QA proof skill. For small fixes, this can be compact, but it should still produce or reference a durable issue and proof trail.
+
+If the direct request is a feature, product behavior, UI change, or ambiguous improvement, route through `issue-brainstorm` before `issue-raise` unless the direction is already concrete and low-risk.
+
+If the request is to continue, iterate, process feedback, handle test failures, or choose the next cycle, scan for follow-up issues or a wave instead of waiting for the user to name the next task.
 
 Before routing a new concrete change, check the current branch. If the checkout is already on `issue/*`, continue only when the new request belongs to that same issue. Otherwise stop and finish, merge, or explicitly park that branch before dispatching a new issue from `develop`.
 
@@ -192,6 +208,8 @@ When a feature turns resolved events into a history, ledger, or review surface, 
 - Issue form with acceptance criteria and test plan
 - PR template with proof section
 - Test harness registry
+- Brainstorm and wave note location
+- `docs/solutions/` or equivalent solution-note location
 - Stable local entrypoint for fast checks and full checks
 - Package-local proof entrypoints for each app or service in a multi-package repo
 - Optional GitHub Actions that mirror the same local commands instead of inventing different CI-only logic
@@ -252,8 +270,23 @@ For multi-issue waves, capture:
 - wave id or name
 - issue ids
 - owned paths or owned areas
+- worktree lane or serialization decision
 - shared contracts that may force restacking
 - proof commands per lane
 - queue or restack note for merge
+- follow-up scan expectations
 
 Use [PARALLEL-WAVE.template.md](./templates/PARALLEL-WAVE.template.md) when the repo benefits from an explicit wave ledger.
+
+## Compound learning record
+
+For reusable learning, capture a concise `docs/solutions/` note:
+
+- symptom or trigger
+- root cause
+- durable solution
+- failed approaches
+- prevention checks
+- follow-up issue triggers
+
+Use [compound-learning.md](./references/compound-learning.md) and [SOLUTION.template.md](./templates/SOLUTION.template.md) when the same lesson should help future agents.

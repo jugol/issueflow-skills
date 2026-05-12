@@ -1,16 +1,18 @@
 # issueflow-skills
 
-Issueflow is a Codex plugin and Agent Skills pack for issue-driven development with Git Flow-lite.
+Issueflow is a Codex plugin and Agent Skills pack for issue-driven development with Git Flow-lite, two-track planning, and compound learning.
 
 It helps an agent follow a durable loop:
 
-1. Raise or refine an issue from natural language.
-2. Validate that the issue is implementation-ready.
-3. Dispatch work from `develop` into isolated `issue/<n>-<slug>` branches.
-4. Implement inside issue scope only.
-5. Prove the result with durable QA evidence.
-6. Merge into `develop` only after `merge-gate`.
-7. Promote from `develop` to `main` through `release-gate`.
+1. Discover or clarify the next issue through autonomous scan or interactive brainstorming.
+2. Shape one issue or a multi-issue wave.
+3. Validate that the issue is implementation-ready.
+4. Dispatch work from `develop` into isolated `issue/<n>-<slug>` branches or worktrees.
+5. Implement inside issue scope only.
+6. Prove the result with durable QA evidence.
+7. Merge into `develop` only after `merge-gate`.
+8. Capture reusable learning with `issue-compound`.
+9. Promote from `develop` to `main` through `release-gate`.
 
 ## Package Layout
 
@@ -75,6 +77,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 ## Skills
 
 - `issueflow`: umbrella router for the pack
+- `issue-brainstorm`: clarify user-requested features before issue creation
 - `issue-raise`: turn rough work into implementation-ready issues
 - `issue-intake`: decide whether an issue can start
 - `issue-dispatch`: create issue-scoped branches or worktrees
@@ -84,6 +87,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - `qa-web-proof`: produce Playwright-backed web QA evidence
 - `qa-flutter-proof`: produce Flutter widget, integration, and golden evidence
 - `merge-gate`: decide whether `issue/*` can merge into `develop`
+- `issue-compound`: capture reusable learning and follow-up triggers after merge or PR handoff
 - `release-gate`: decide whether `develop` can promote to `main`
 
 ## Core Rules
@@ -92,39 +96,49 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - Work branches start from `develop` and use `issue/<n>-<slug>`.
 - One issue branch owns one issue scope.
 - Product work should prefer vertical slices with user-visible outcomes.
+- Feature requests go through interactive brainstorming when the direction is ambiguous.
+- Automation and continuation cycles actively scan for follow-up issues and waves.
+- Independent wave lanes should prefer worktrees when ownership and proof are separable.
 - User-facing UI should be experience-first, not proof-dashboard-first.
 - Every completed branch needs durable local proof before merge.
 - Nothing merges into `develop` without `merge-gate`.
 - A proven issue is only merge-ready until it enters `develop`.
 - Resolved issues must leave the checkout on `develop`, not on `issue/*`.
 - Nothing promotes to `main` without `release-gate`.
+- Reusable lessons should be captured in `docs/solutions/` when they can help future agents.
 
 ## Shared References
 
 - [OPERATING-MODEL.md](./OPERATING-MODEL.md)
 - [branch-lifecycle.md](./references/branch-lifecycle.md)
+- [autonomous-wave-generation.md](./references/autonomous-wave-generation.md)
+- [compound-learning.md](./references/compound-learning.md)
 - [contract-naming.md](./references/contract-naming.md)
 - [experience-first-ui.md](./references/experience-first-ui.md)
 - [github-adoption.md](./references/github-adoption.md)
 - [greenfield-bootstrap.md](./references/greenfield-bootstrap.md)
 - [harness-governance.md](./references/harness-governance.md)
+- [interactive-brainstorming.md](./references/interactive-brainstorming.md)
 - [local-backlog-policy.md](./references/local-backlog-policy.md)
 - [local-checks-policy.md](./references/local-checks-policy.md)
 - [parallel-delivery.md](./references/parallel-delivery.md)
 - [plan-alignment.md](./references/plan-alignment.md)
 - [pr-template-policy.md](./references/pr-template-policy.md)
 - [stack-selection.md](./references/stack-selection.md)
+- [two-track-routing.md](./references/two-track-routing.md)
 - [vertical-slice-architecture.md](./references/vertical-slice-architecture.md)
 
 ## Templates
 
 - [BACKLOG-BOARD.template.md](./templates/BACKLOG-BOARD.template.md)
+- [BRAINSTORM.template.md](./templates/BRAINSTORM.template.md)
 - [GITHUB-ISSUE-FORM.example.yml](./templates/GITHUB-ISSUE-FORM.example.yml)
 - [ISSUE.template.md](./templates/ISSUE.template.md)
 - [PARALLEL-WAVE.template.md](./templates/PARALLEL-WAVE.template.md)
 - [PLAN-ANCHOR.template.md](./templates/PLAN-ANCHOR.template.md)
 - [PULL_REQUEST.template.md](./templates/PULL_REQUEST.template.md)
 - [PULL_REQUEST.core-and-extension.example.md](./templates/PULL_REQUEST.core-and-extension.example.md)
+- [SOLUTION.template.md](./templates/SOLUTION.template.md)
 - [TEST-HARNESS-REGISTRY.template.md](./templates/TEST-HARNESS-REGISTRY.template.md)
 - [check-local.example.ps1](./templates/check-local.example.ps1)
 - [check-local.example.sh](./templates/check-local.example.sh)
@@ -149,5 +163,5 @@ When releasing a new version:
 Suggested GitHub topics for discoverability:
 
 ```text
-codex, codex-plugin, agent-skills, issueflow, git-flow-lite, issue-driven-development, qa, playwright, flutter
+codex, codex-plugin, agent-skills, issueflow, git-flow-lite, issue-driven-development, brainstorming, compound-engineering, worktrees, qa, playwright, flutter
 ```

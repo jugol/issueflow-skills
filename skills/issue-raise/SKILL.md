@@ -11,30 +11,41 @@ Turn rough problem statements into durable issues. This skill is conversational 
 
 1. Start from the user's natural language description.
 2. Extract the likely problem, impact, desired outcome, and missing information.
-3. Ask only the smallest number of focused questions needed to make the issue implementation-ready.
-4. Draft the issue using the shared template.
-5. If a project plan exists, map the issue to the relevant plan promise, requirement, or constraint.
-6. Shape product work as a vertical slice by default: name the user-visible result, the needed domain or contract path, and the proof path.
-7. For UI work, capture the experience direction: audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone or target language, and anti-dashboard or no-debug-copy constraints.
-8. If the issue is support-only or contract-first, name the nearby core slice it enables.
-9. Suggest labels, branch slug, and the likely owning implementation or QA skill.
-10. If the repo and auth context are available, prepare the issue for GitHub creation or create it directly after user confirmation.
-11. If GitHub is not available, write the issue draft into the repo's chosen backlog location without changing the structure of the issue.
+3. Run a fan-out check before drafting a single issue.
+4. Ask only the smallest number of focused questions needed to make the issue or wave implementation-ready.
+5. Draft the issue using the shared template.
+6. If a project plan exists, map the issue to the relevant plan promise, requirement, or constraint.
+7. Shape product work as a vertical slice by default: name the user-visible result, the needed domain or contract path, and the proof path.
+8. For UI work, capture the experience direction: audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone or target language, and anti-dashboard or no-debug-copy constraints.
+9. If the issue is support-only or contract-first, name the nearby core slice it enables.
+10. Suggest labels, branch slug, and the likely owning implementation or QA skill.
+11. If the repo and auth context are available, prepare the issue for GitHub creation or create it directly after user confirmation.
+12. If GitHub is not available, write the issue draft into the repo's chosen backlog location without changing the structure of the issue.
 
 If the user report clearly contains multiple distinct failures, split them into separate issues that can be verified independently.
 
+If the work came from `issue-brainstorm`, preserve the approved approach and rejected alternatives. If it came from an autonomous scan, record the origin signal such as failing test, review finding, playtest feedback, or compound-learning trigger.
+
 If a direct coding session already changed files before this step was applied, backfill the issue draft honestly. Mark what was already done, list the proof that now exists, and add a handoff note that future similar work must be raised before implementation.
+
+## Fan-out check
+
+Create multiple issues instead of one when findings differ by user-visible behavior, ownership lane, proof command, dependency order, or rollout risk. Use `../../references/autonomous-wave-generation.md` and `../../templates/PARALLEL-WAVE.template.md` when two or more issues should move together.
 
 ## Package resources
 
 - Use `../../templates/ISSUE.template.md` when drafting local issue files.
+- Use `../../templates/BRAINSTORM.template.md` when preserving approved approaches and rejected alternatives.
 - Use `../../references/plan-alignment.md` when the repo has a project plan or product brief.
+- Use `../../references/two-track-routing.md` when deciding whether this came from interactive intake or autonomous cycle work.
+- Use `../../references/autonomous-wave-generation.md` when a report should split into a wave.
 - Use `../../references/vertical-slice-architecture.md` when deciding whether the issue is `core`, `support`, `internal`, or `deviation`.
 - Use `../../references/experience-first-ui.md` when UI, visuals, copy tone, or first-viewport behavior matters.
 
 ## Required output
 
 - A concise issue title
+- Origin: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`
 - Problem statement with evidence
 - Plan alignment note, if a plan exists
 - Slice shape or support reason
@@ -55,6 +66,7 @@ For greenfield repos, default to a local numbered issue file until hosted issue 
 
 - Prefer one or two sharp questions over a large questionnaire.
 - If the user's intent is already concrete, skip questions and draft immediately.
+- If the user requested a broad feature or product behavior and no approved approach exists yet, route to `issue-brainstorm`.
 - If evidence is weak, explicitly mark the issue as needing validation before dispatch.
 - If the issue does not clearly advance the plan, mark it as a deviation instead of pretending it is aligned.
 

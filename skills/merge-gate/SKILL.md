@@ -20,6 +20,9 @@ This skill is the approval and integration stop for `issue/* -> develop`.
 - User-facing UI changes have been judged for human aesthetic quality and native-language copy naturalness, not only functionality
 - Risk and rollback notes exist
 - The proof was produced against a current or revalidated `develop` base
+- Completion handoff is recorded before the issue is called complete: issue note, backlog or wave board, latest proof pointer, and any automation/run memory no longer identify the completed issue as active work
+- Follow-up work discovered during implementation or QA has a durable decision: new issue(s) created or updated, explicit defer note, or explicit `no follow-up issue` rationale
+- Compound learning decision is recorded: `issue-compound` note created or updated, or explicit no-compound rationale
 
 ## Reject merge when
 
@@ -34,6 +37,9 @@ This skill is the approval and integration stop for `issue/* -> develop`.
 - User-facing copy sounds stiff, translated, uncommon, or unnatural to a fluent native speaker
 - `develop` moved in a way that invalidates the branch's proof and the branch was not revalidated
 - Another in-flight branch changed a shared root proof contract and this branch was not revalidated against it
+- Post-merge notes, backlog pointers, wave notes, or automation memory can still cause the completed issue to be selected again as current work
+- Known follow-up work exists but no next issue, updated existing issue, defer note, or no-follow-up rationale is recorded
+- Reusable learning or recurring prevention knowledge exists but no `docs/solutions/` update or no-compound rationale is recorded
 
 ## Parallel merge rule
 
@@ -62,10 +68,17 @@ Use `../../references/branch-lifecycle.md` and `../../references/parallel-delive
 - Conflict resolution performed or still required
 - Integrated proof result on `develop`, unless a PR-only policy blocks local integration
 - Post-merge branch action: return checkout to `develop`, and delete/archive the issue branch only according to repo policy
+- Completion handoff updates made: issue note, backlog or wave board, latest proof pointer, and automation/run memory if present
+- Follow-up issue decision: issue ids created or updated, explicit defer note, or explicit no-follow-up rationale
+- Compound decision: solution note created or updated, or explicit no-compound rationale
+- Next dispatch recommendation, or a clear statement that no next issue should start yet
 
 ## Hand-off
 
 - If `merge-approved` and repo policy allows local integration, check out `develop`, update or verify it, merge the issue branch, resolve conflicts, rerun integrated proof, and leave the checkout on `develop`.
 - If repo policy requires PR or merge queue, open or update that path and still return the local checkout to `develop`.
 - Do not call the issue complete while the active checkout remains on `issue/*`.
+- Do not call the issue complete until the forward handoff is durable: update the issue note, backlog or wave board, latest proof/current-state pointer, and any automation/run memory so the next run cannot continue the completed issue by mistake.
+- If the completed issue reveals future work, raise or update follow-up issues before final handoff; if it does not, state the explicit no-follow-up rationale.
+- Run `issue-compound` when the work produced reusable implementation knowledge, a failed approach worth remembering, a prevention rule, or follow-up triggers.
 - Batched, approved work moves toward `release-gate`

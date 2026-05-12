@@ -21,7 +21,7 @@ The major speed advantage of the workflow is parallel issue execution, not unsaf
 
 - one issue branch per issue
 - one vertical slice per product issue when possible
-- isolated worktrees for local parallelism
+- worktree-first local parallelism when two or more lanes are independent
 - disjoint ownership when possible
 - merge queue or auto-merge with revalidation into `develop`
 - optional wave record that lists issue ids, owned paths, proof commands, and merge notes
@@ -32,7 +32,10 @@ The major speed advantage of the workflow is parallel issue execution, not unsaf
 - split work by package or service lane when the ownership is naturally disjoint
 - keep a package-local proof command for each lane
 - let the root wrapper compose those checks
+- assign each independent lane to a worktree unless the repo policy says otherwise
 - treat edits to the root wrapper, shared schemas, or shared registries as cross-lane coordination points
+
+Before creating worktrees, verify the repo's worktree root, commonly `.worktrees/`, is ignored or otherwise approved. If it is not, serialize or ask for the repo policy instead of scattering local directories.
 
 If one lane exists mainly to define a shared contract, make that lane explicit:
 

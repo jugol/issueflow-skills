@@ -6,6 +6,7 @@ What is wrong, who is affected, and what concrete evidence exists.
 
 ## Context
 
+- Origin: `brainstorm` / `autonomous-scan` / `review-finding` / `compound-learning` / `user-request`
 - Source:
 - Environment:
 - Current behavior:

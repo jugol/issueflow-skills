@@ -17,12 +17,14 @@ Dispatch work only when the baseline is green and the issue is ready.
 - The repo's local proof commands are known.
 - If a plan anchor exists, the issue's relationship to that plan is explicit.
 - The issue has a vertical slice shape, or a support-only/contract-first reason with a named downstream core slice.
+- For wave dispatch, each lane has an owner, proof command, dependency note, and worktree or serialization decision.
 
 ## Branching rules
 
 - Branch format: `issue/<n>-<slug>`
 - Branch from `develop`
 - Use isolated worktrees when multiple issues run in parallel
+- Use worktree-first dispatch when two or more lanes have disjoint ownership and separable proof commands
 - If two issues touch the same files or same feature slice, serialize them
 - Prefer one branch per vertical slice for product work
 - Never dispatch a new issue from an existing `issue/*` branch
@@ -78,6 +80,8 @@ When the repo has multiple packages or services, prefer package-lane dispatch:
 
 Use `../../references/parallel-delivery.md` and `../../templates/PARALLEL-WAVE.template.md` when dispatching a multi-issue wave.
 
+For wave dispatch, prefer `.worktrees/` or the repo's established worktree location. Confirm it is ignored or otherwise safe before creating local worktrees. If worktrees are not safe, serialize or use the repo-approved parallelism policy.
+
 Serialize instead of parallelizing when issues change shared contracts such as:
 
 - root wrapper scripts
@@ -112,6 +116,7 @@ When a live playtest or user report produces multiple product-facing failures:
 - UI aesthetic and native-copy review owner when the issue changes screens or visible text
 - Current branch before dispatch
 - Base `develop` snapshot
+- Worktree-first decision and lane paths when this is a wave
 - Post-merge return-to-`develop` note
 
 ## Hand-off routing
