@@ -15,6 +15,8 @@ If the repo has a file such as:
 
 pick one primary plan anchor and keep checking work against it.
 
+Use [plan-governance.md](./plan-governance.md) when the plan should be created, split, updated, or treated as the product source of truth for user requests and autonomous plan-gap discovery.
+
 ## What to extract
 
 Capture these four things in a compact summary:
@@ -47,6 +49,8 @@ Classify each issue as:
 - `support`: enables a nearby core slice
 - `internal`: tooling, QA, admin, or review support
 - `deviation`: intentional exploration outside the current plan
+
+Also classify the request's relationship to the plan as `aligned`, `extension`, `conflict`, or `deviation` before dispatch. Extensions and conflicts need a visible plan update or plan-change decision; they should not silently become implementation scope.
 
 This is not bureaucracy. It is a drift detector.
 

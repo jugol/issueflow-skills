@@ -4,7 +4,10 @@ Use a local backlog when GitHub issues are not attached yet.
 
 ## Recommended files
 
+- `docs/plan/PLAN.md` or another primary plan when the project is plan-driven
+- `docs/plan/PLAN_ANCHOR.md` or an equivalent compact plan summary
 - `backlog/BOARD.md`
+- `backlog/CURRENT_STATE.md`
 - `backlog/BRAINSTORMS.md` or `backlog/brainstorms/`
 - `backlog/WAVES.md`
 - `backlog/issues/active/0001-...md`
@@ -16,6 +19,7 @@ Use a local backlog when GitHub issues are not attached yet.
 - preserves issue-driven structure before hosted tooling exists
 - keeps numbering and handoff discipline
 - gives autonomous cycles somewhere durable to place next-issue and wave candidates
+- lets agents start from current pointers instead of reading every old issue
 - lets AI agents work against durable local issue files
 
 ## Rule
@@ -33,6 +37,8 @@ Local issues should still carry:
 - handoff notes
 - branch, base snapshot, and merge/return-to-develop status
 - origin: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`
+
+The current-state file should name only the active issue or wave, plan anchor summary, current plan gaps, recent proof pointer, and relevant solution index entries. It should not duplicate the whole backlog or full plan.
 
 Keep the active issue set intentionally small enough to scan.
 
@@ -54,4 +60,4 @@ Good practice:
 - avoid filling the whole active lane with internal-only work while the core slice is still weak
 - prefer active `core` issues that can be implemented as vertical slices instead of disconnected layers
 - keep branch status visible so stale `issue/*` branches do not become the default workspace
-- note plan alignment or deviation in issue bodies when that context matters
+- note plan relationship and plan update status in issue bodies when that context matters

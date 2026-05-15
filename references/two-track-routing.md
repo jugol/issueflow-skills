@@ -9,6 +9,7 @@ Use this when the user or automation asks to continue, iterate, resume, clean up
 Default behavior:
 
 - scan durable signals before asking the user what to do next
+- scan plan gaps when a plan anchor or `docs/plan/` exists
 - create or update follow-up issues when the next work is visible
 - make a wave when two or more independent issues can move separately
 - include at least one `core` issue unless the wave is explicitly stabilization-only
@@ -21,10 +22,11 @@ Use this when the user describes a feature, product behavior, UI change, or broa
 Default behavior:
 
 - inspect local context before asking questions
+- compare the request with the active plan as `aligned`, `extension`, `conflict`, or `deviation`
 - clarify success criteria, UX, scope, data needs, and proof
 - propose two or three approaches with tradeoffs when there are meaningful options
 - turn the approved direction into one issue or a wave
-- avoid implementation dispatch until the direction is intake-ready
+- avoid implementation dispatch until the direction is intake-ready and any required plan update or decision note exists
 
 ## Tie-breakers
 

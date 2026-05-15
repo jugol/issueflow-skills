@@ -16,6 +16,7 @@ Dispatch work only when the baseline is green and the issue is ready.
 - No unrelated `issue/*` branch is being reused as the workspace.
 - The repo's local proof commands are known.
 - If a plan anchor exists, the issue's relationship to that plan is explicit.
+- If the issue extends or conflicts with the plan, the plan update, decision-log entry, or plan-change note is already recorded.
 - The issue has a vertical slice shape, or a support-only/contract-first reason with a named downstream core slice.
 - For wave dispatch, each lane has an owner, proof command, dependency note, and worktree or serialization decision.
 
@@ -112,6 +113,7 @@ When a live playtest or user report produces multiple product-facing failures:
 - Base snapshot for later merge validation
 - Wave id if the issue belongs to a planned parallel batch
 - Plan classification and any drift warning
+- Plan-change status when the issue is an extension, conflict, or deviation
 - Vertical slice boundary or support-only justification
 - UI aesthetic and native-copy review owner when the issue changes screens or visible text
 - Current branch before dispatch

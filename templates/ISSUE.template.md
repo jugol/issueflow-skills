@@ -15,9 +15,12 @@ What is wrong, who is affected, and what concrete evidence exists.
 ## Plan Alignment
 
 - Plan anchor:
+- Plan relationship: `aligned` / `extension` / `conflict` / `deviation`
 - Promise or requirement advanced:
 - Classification: `core` / `support` / `internal` / `deviation`
 - If deviation, why now:
+- Plan update required:
+- Plan-change note or decision:
 
 ## Slice Shape
 

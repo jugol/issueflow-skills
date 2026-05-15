@@ -2,6 +2,10 @@
 
 - Primary plan file:
 - Last reviewed on:
+- Plan structure: `single-file` / `split`
+- Detail files:
+- Roadmap file:
+- Decision log:
 
 ## Core Promise
 
@@ -34,6 +38,10 @@
 
 - 
 
+## Current Plan Gaps
+
+- 
+
 ## Next Wave Must Advance
 
 - 
@@ -43,3 +51,8 @@
 - User-visible behavior:
 - Domain / contract path:
 - Proof path:
+
+## Plan Change Watchlist
+
+- User requests that would require plan updates:
+- Existing plan claims that need implementation proof:

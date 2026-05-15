@@ -1,6 +1,6 @@
 # Issueflow Skills
 
-Issueflow is a Codex skill pack and plugin for issue-driven software development. It gives AI agents a repeatable operating model for discovering or clarifying work, shaping issues or waves, dispatching isolated branches, proving changes, merging safely, and capturing reusable learning.
+Issueflow is a Codex skill pack and plugin for issue-driven software development. It gives AI agents a repeatable operating model for discovering or clarifying work, keeping product plans synchronized, shaping issues or waves, dispatching isolated branches, proving changes, merging safely, and capturing reusable learning.
 
 The core idea is simple: do not let implementation outrun intent, evidence, or integration discipline.
 
@@ -29,6 +29,21 @@ The Autonomous Cycle Track is for automation, repeated iterations, post-merge fo
 The Interactive Feature Intake Track is for user-described features, product behavior changes, UI changes, and broad improvements. The agent inspects repo context first, asks focused questions, proposes approaches when tradeoffs matter, and then turns the approved direction into one issue or a wave.
 
 After merge or PR handoff, the compound loop captures reusable learning in `docs/solutions/` when a fix reveals a recurring pattern, failed approach, prevention rule, or follow-up trigger.
+
+Context governance keeps this from becoming a memory pile. Agents should read current-state pointers and indexes first, then search archived issues, old waves, proof logs, and solution notes only when they are relevant. Autonomous cycles preserve macro direction, such as the product promise and current wave goal, separately from micro direction, such as the active issue, proof pointer, branch or worktree, and next action.
+
+## Plan Governance
+
+Issueflow can start from a single detailed product plan. In a plan-first repo, the plan is not a one-time prompt; it is the product source of truth.
+
+The recommended starting point is:
+
+- `docs/plan/PLAN.md`: the detailed plan
+- `docs/plan/PLAN_ANCHOR.md`: the compact summary agents read first
+
+As the project grows, split the plan into `ROADMAP.md`, `DECISIONS.md`, and `areas/<area>.md` only when the single plan becomes too expensive to scan or contains independent domains.
+
+When a user asks for a feature, the agent should classify the request against the plan as `aligned`, `extension`, `conflict`, or `deviation`. Aligned work can become an issue. Extensions and conflicts need a plan update or decision note before dispatch. Planned behavior that is still missing from the product becomes a plan gap, and autonomous cycles can turn plan gaps into issues or waves.
 
 ## Project Management Model
 
@@ -111,6 +126,7 @@ Issueflow is a good fit when:
 - Bugs, features, and UX feedback should become trackable issues.
 - A project plan or product brief needs to stay connected to day-to-day work.
 - You want future agents to understand prior decisions without reading old chats.
+- You need long-running automation without forcing every agent to read the whole project history.
 - Web or Flutter UI work must include real browser/rendered evidence.
 
 It is especially useful for small teams or solo builders who use AI heavily and need lightweight structure without heavyweight ceremony.
@@ -153,5 +169,6 @@ Using issueflow should make a repository feel calmer:
 - Releases are deliberate.
 - Project direction stays visible.
 - Reusable learning compounds across issues.
+- Current context stays small even as history grows.
 
 The workflow is intentionally lightweight, but it insists on the few boundaries that keep fast implementation from becoming chaotic implementation.

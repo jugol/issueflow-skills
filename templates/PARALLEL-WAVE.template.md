@@ -4,6 +4,13 @@
 
 Short description of why these issues can move together.
 
+## Plan Context
+
+- Plan anchor:
+- Plan gaps addressed:
+- Plan relationship: `aligned` / `extension` / `conflict` / `deviation`
+- Plan update or decision note:
+
 ## Status
 
 planned

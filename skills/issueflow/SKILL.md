@@ -1,6 +1,6 @@
 ---
 name: issueflow
-description: Umbrella entrypoint for the issueflow pack. Use when the user wants to adopt or follow the Git Flow-lite issue-driven workflow, including vertical-slice-oriented issue delivery, but has not named the exact sub-skill yet.
+description: Umbrella entrypoint for the issueflow pack. Use when the user wants to adopt or follow the Git Flow-lite issue-driven workflow, including plan-first starts, plan governance, vertical-slice issue delivery, two-track planning, and compound learning, but has not named the exact sub-skill yet.
 ---
 
 # issueflow
@@ -28,15 +28,17 @@ Load package-level references only when the task needs deeper guidance. Paths ar
 
 - `../../OPERATING-MODEL.md` for the full Git Flow-lite operating model
 - `../../references/plan-alignment.md` when work must be checked against a product plan
+- `../../references/plan-governance.md` when a plan should be updated, split, or used as the source of truth for next work
 - `../../references/two-track-routing.md` when choosing autonomous cycle vs interactive feature intake
 - `../../references/interactive-brainstorming.md` when feature requests need clarification
 - `../../references/autonomous-wave-generation.md` when a cycle should create follow-up issues or waves
 - `../../references/compound-learning.md` when completed work should leave reusable memory
+- `../../references/context-governance.md` when deciding what not to load or when active context feels noisy
 - `../../references/vertical-slice-architecture.md` when shaping product issues
 - `../../references/experience-first-ui.md` when UI work drifts toward proof dashboards
 - `../../references/branch-lifecycle.md` when stale issue branches or worktrees are involved
 - `../../references/parallel-delivery.md` when multiple issue branches can move together
-- `../../templates/BRAINSTORM.template.md`, `../../templates/ISSUE.template.md`, `../../templates/PARALLEL-WAVE.template.md`, and `../../templates/SOLUTION.template.md` when scaffolding durable local artifacts
+- `../../templates/BRAINSTORM.template.md`, `../../templates/CURRENT-STATE.template.md`, `../../templates/CYCLE-COMPACTION.template.md`, `../../templates/ISSUE.template.md`, `../../templates/PARALLEL-WAVE.template.md`, `../../templates/PLAN-ANCHOR.template.md`, `../../templates/PLAN-CHANGE.template.md`, and `../../templates/SOLUTION.template.md` when scaffolding durable local artifacts
 
 ## Default behavior
 
@@ -47,9 +49,15 @@ Use a two-track router:
 - Autonomous Cycle Track: use when a user or automation says to continue, iterate, resume, process failures, process review or playtest feedback, or choose the next useful issue. Scan durable signals and create or update follow-up issues or waves instead of waiting for the user to name every task.
 - Interactive Feature Intake Track: use when the user describes a feature, product behavior, UI change, or ambiguous improvement. Route through `issue-brainstorm` before `issue-raise` unless the request is already concrete and low-risk.
 
-If the user arrives with only a project plan or product plan, still start with `repo-bootstrap` and generate the first issue wave from that plan.
+Before loading history, apply context governance: read current pointers first, keep the active set small, search archives before opening them, and do not bulk-load completed issues, old waves, superseded brainstorms, old proof logs, or all solution notes.
 
-If a plan already exists, treat it as an active constraint, not just bootstrap context. Keep checking new issues and waves against that plan as work progresses.
+At the start of an autonomous cycle, read macro direction and micro direction in order: current-state pointer, plan anchor summary, current wave goal, active issue, recent proof pointer, active branch or worktree, next recommended action, then relevant solution index entries. Include current plan gaps when the repo has `docs/plan/` or another primary plan. If these pointers are missing, stale, contradictory, or too broad, perform cycle compaction before selecting or creating the next issue.
+
+If the user arrives with only a project plan or product plan, still start with `repo-bootstrap`, establish `docs/plan/PLAN.md` or the repo's chosen primary plan, create a compact plan anchor, and generate the first issue wave from unimplemented plan gaps.
+
+If a plan already exists, treat it as an active source of truth, not just bootstrap context. Keep checking new issues and waves against that plan as work progresses.
+
+When a user request differs from the plan, classify it before issue creation: `aligned`, `extension`, `conflict`, or `deviation`. For `extension` or `conflict`, update the plan or record a plan-change decision before dispatch. Do not let implementation silently change product truth.
 
 For product work, recommend vertical slice architecture as the default shape: one core issue should carry a thin user-visible behavior through the needed domain, contract, UI, and proof surfaces. If a support or contract-first issue is needed, name the downstream core slice it enables.
 

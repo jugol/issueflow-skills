@@ -15,12 +15,22 @@ Before bootstrapping or dispatching work:
 
 Do not treat the plan as a one-time bootstrap input.
 
+When the repo is plan-driven, prefer a small plan governance structure:
+
+- `docs/plan/PLAN.md` for the detailed product plan or index
+- `docs/plan/PLAN_ANCHOR.md` for the compact summary agents read first
+- `docs/plan/ROADMAP.md` for sequencing when needed
+- `docs/plan/DECISIONS.md` for approved plan changes when needed
+- `docs/plan/areas/` only after the plan has independent areas or becomes expensive to scan
+
 Re-check it:
 
 - before the first issue wave
 - before each new wave
 - before a major refactor or architecture push
 - whenever internal tooling starts growing faster than user-visible product value
+
+When a user request differs from the active plan, classify it as `aligned`, `extension`, `conflict`, or `deviation`. Extensions and conflicts must update the plan or record a decision before implementation dispatch. If the plan promises behavior that is still missing from the live product, treat that as a plan gap and turn it into an issue or wave during autonomous cycles.
 
 ## Why this model
 
@@ -33,11 +43,18 @@ Re-check it:
 
 Issueflow is not only a single-issue executor. It is an issue discovery, planning, proof, merge, and learning loop.
 
-Use the Autonomous Cycle Track when automation, a user, or a completed merge asks the agent to continue. Scan the plan anchor, backlog, failing tests, review findings, playtest feedback, recent proof, and `docs/solutions/`. Create follow-up issues or waves when concrete next work is visible; record a no-follow-up rationale when it is not.
+Use the Autonomous Cycle Track when automation, a user, or a completed merge asks the agent to continue. Scan the plan anchor, current plan gaps, backlog, failing tests, review findings, playtest feedback, recent proof, and `docs/solutions/`. Create follow-up issues or waves when concrete next work is visible; record a no-follow-up rationale when it is not.
 
 Use the Interactive Feature Intake Track when a user describes a feature, product behavior, UI change, or ambiguous improvement. Ground in the repo first, ask focused questions, present two or three approaches when tradeoffs matter, and turn the approved direction into one issue or a wave before implementation.
 
 After merge or PR handoff, run the compound loop when reusable learning exists. Update or create `docs/solutions/` notes for recurring failures, reusable patterns, failed approaches, prevention rules, and follow-up triggers.
+
+Govern context continuously. Start from current-state pointers, search indexes before archives, and keep completed issues, old waves, superseded brainstorms, old proof logs, and unrelated solution notes out of the default context.
+
+For autonomous cycles, always preserve two levels of context:
+
+- macro direction: plan anchor summary, product promise, current wave goal, and drift warning
+- micro direction: active issue, recent proof pointer, active branch or worktree, next recommended action, and relevant solution index entries
 
 ## Lifecycle
 
@@ -206,10 +223,13 @@ When a feature turns resolved events into a history, ledger, or review surface, 
 ## Minimal repo expectations
 
 - Issue form with acceptance criteria and test plan
+- Plan governance files when a durable project plan exists
 - PR template with proof section
 - Test harness registry
 - Brainstorm and wave note location
 - `docs/solutions/` or equivalent solution-note location
+- Current-state pointer and solution index
+- Cycle compaction artifact or location for long-running automation
 - Stable local entrypoint for fast checks and full checks
 - Package-local proof entrypoints for each app or service in a multi-package repo
 - Optional GitHub Actions that mirror the same local commands instead of inventing different CI-only logic
@@ -290,3 +310,16 @@ For reusable learning, capture a concise `docs/solutions/` note:
 - follow-up issue triggers
 
 Use [compound-learning.md](./references/compound-learning.md) and [SOLUTION.template.md](./templates/SOLUTION.template.md) when the same lesson should help future agents.
+
+## Context compaction rule
+
+Every few autonomous cycles, or whenever the active set feels noisy:
+
+- archive completed issues and superseded brainstorms
+- update the backlog board and current-state pointer
+- update wave status and next-lane pointer
+- update `docs/solutions/INDEX.md`
+- record the next issue, next wave, or concrete no-next-work rationale
+- preserve macro direction and micro direction separately
+
+Use [context-governance.md](./references/context-governance.md) when deciding what should be loaded, archived, indexed, or summarized.

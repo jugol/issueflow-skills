@@ -5,6 +5,7 @@ Use this when issueflow is continuing an automated cycle, processing feedback, o
 ## Signals to scan
 
 - plan anchor drift or missing core promise
+- unimplemented plan gaps from the compact plan anchor or relevant area plan
 - active backlog and stale issues
 - failing tests or flaky proof
 - review comments and QA findings
@@ -15,6 +16,8 @@ Use this when issueflow is continuing an automated cycle, processing feedback, o
 ## Candidate rules
 
 Create candidate issues when the signal names a concrete behavior, defect, prevention rule, product gap, or proof gap.
+
+If a plan gap is promised in `PLAN.md` or an area plan but absent from the live product or harness, treat it as a first-class autonomous candidate.
 
 Do not create an issue for vague discomfort unless it can be turned into:
 

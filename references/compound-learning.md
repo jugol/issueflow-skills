@@ -17,7 +17,9 @@ Skip the note when the work was straightforward and left no reusable lesson. Sta
 
 ## Update before creating
 
-Before creating a new note, search existing `docs/solutions/` notes. Update an existing note when the symptom, root cause, and prevention rule substantially overlap.
+Before creating a new note, search the solution index first. Read full solution notes only when the index points to a relevant symptom, affected area, or prevention rule.
+
+Update an existing note when the symptom, root cause, and prevention rule substantially overlap.
 
 ## Note shape
 
@@ -34,3 +36,7 @@ Keep notes short and searchable:
 ## Follow-up rule
 
 If the solution note names concrete future work, create or update a follow-up issue. Do not leave issue-worthy work only in the solution note.
+
+## Context rule
+
+Do not make future agents read every solution note. Keep `docs/solutions/INDEX.md` current enough that agents can search the index first, then open only relevant notes.

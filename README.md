@@ -1,10 +1,10 @@
 # issueflow-skills
 
-Issueflow is a Codex plugin and Agent Skills pack for issue-driven development with Git Flow-lite, two-track planning, and compound learning.
+Issueflow is a Codex plugin and Agent Skills pack for issue-driven development with Git Flow-lite, plan governance, two-track planning, and compound learning.
 
 It helps an agent follow a durable loop:
 
-1. Discover or clarify the next issue through autonomous scan or interactive brainstorming.
+1. Discover or clarify the next issue through autonomous scan, plan-gap scan, or interactive brainstorming.
 2. Shape one issue or a multi-issue wave.
 3. Validate that the issue is implementation-ready.
 4. Dispatch work from `develop` into isolated `issue/<n>-<slug>` branches or worktrees.
@@ -13,6 +13,11 @@ It helps an agent follow a durable loop:
 7. Merge into `develop` only after `merge-gate`.
 8. Capture reusable learning with `issue-compound`.
 9. Promote from `develop` to `main` through `release-gate`.
+
+Issueflow can start from a single detailed product plan. As the project grows, it keeps a compact plan anchor and optional `docs/plan/` structure so agents can compare new work against product truth without loading every planning document.
+
+Issueflow keeps long-running projects manageable by reading current pointers first and searching archives only when needed.
+Autonomous cycles preserve both macro direction, such as product promise and wave goal, and micro direction, such as the active issue, proof pointer, branch/worktree, and next action.
 
 ## Package Layout
 
@@ -96,10 +101,12 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - Work branches start from `develop` and use `issue/<n>-<slug>`.
 - One issue branch owns one issue scope.
 - Product work should prefer vertical slices with user-visible outcomes.
+- A durable product plan should act as source of truth: aligned work cites it, extensions update it, conflicts need a plan-change decision, and missing planned behavior becomes plan-gap issue candidates.
 - Feature requests go through interactive brainstorming when the direction is ambiguous.
 - Automation and continuation cycles actively scan for follow-up issues and waves.
 - Independent wave lanes should prefer worktrees when ownership and proof are separable.
 - User-facing UI should be experience-first, not proof-dashboard-first.
+- Active context stays small: read current-state pointers first, then search archived issues, old waves, and solution notes only when relevant.
 - Every completed branch needs durable local proof before merge.
 - Nothing merges into `develop` without `merge-gate`.
 - A proven issue is only merge-ready until it enters `develop`.
@@ -113,6 +120,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - [branch-lifecycle.md](./references/branch-lifecycle.md)
 - [autonomous-wave-generation.md](./references/autonomous-wave-generation.md)
 - [compound-learning.md](./references/compound-learning.md)
+- [context-governance.md](./references/context-governance.md)
 - [contract-naming.md](./references/contract-naming.md)
 - [experience-first-ui.md](./references/experience-first-ui.md)
 - [github-adoption.md](./references/github-adoption.md)
@@ -123,6 +131,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - [local-checks-policy.md](./references/local-checks-policy.md)
 - [parallel-delivery.md](./references/parallel-delivery.md)
 - [plan-alignment.md](./references/plan-alignment.md)
+- [plan-governance.md](./references/plan-governance.md)
 - [pr-template-policy.md](./references/pr-template-policy.md)
 - [stack-selection.md](./references/stack-selection.md)
 - [two-track-routing.md](./references/two-track-routing.md)
@@ -132,13 +141,17 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 
 - [BACKLOG-BOARD.template.md](./templates/BACKLOG-BOARD.template.md)
 - [BRAINSTORM.template.md](./templates/BRAINSTORM.template.md)
+- [CURRENT-STATE.template.md](./templates/CURRENT-STATE.template.md)
+- [CYCLE-COMPACTION.template.md](./templates/CYCLE-COMPACTION.template.md)
 - [GITHUB-ISSUE-FORM.example.yml](./templates/GITHUB-ISSUE-FORM.example.yml)
 - [ISSUE.template.md](./templates/ISSUE.template.md)
 - [PARALLEL-WAVE.template.md](./templates/PARALLEL-WAVE.template.md)
 - [PLAN-ANCHOR.template.md](./templates/PLAN-ANCHOR.template.md)
+- [PLAN-CHANGE.template.md](./templates/PLAN-CHANGE.template.md)
 - [PULL_REQUEST.template.md](./templates/PULL_REQUEST.template.md)
 - [PULL_REQUEST.core-and-extension.example.md](./templates/PULL_REQUEST.core-and-extension.example.md)
 - [SOLUTION.template.md](./templates/SOLUTION.template.md)
+- [SOLUTION-INDEX.template.md](./templates/SOLUTION-INDEX.template.md)
 - [TEST-HARNESS-REGISTRY.template.md](./templates/TEST-HARNESS-REGISTRY.template.md)
 - [check-local.example.ps1](./templates/check-local.example.ps1)
 - [check-local.example.sh](./templates/check-local.example.sh)

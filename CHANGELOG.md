@@ -2,10 +2,17 @@
 
 ## Unreleased
 
+- No changes yet.
+
+## 0.2.0 - 2026-05-15
+
 - Add two-track planning with autonomous cycle routing and interactive feature intake.
 - Add `issue-brainstorm` and `issue-compound` skills.
 - Add autonomous wave generation, interactive brainstorming, compound learning, and routing references.
 - Add brainstorm and solution templates, and expand wave/issue templates for origins, worktrees, and follow-up scans.
+- Add context governance, current-state, and solution-index guidance to prevent context bloat in long-running projects.
+- Add autonomous cycle entry and cycle compaction guidance for macro direction and micro direction.
+- Add plan governance for plan-first starts, plan updates, plan gaps, and request-vs-plan conflict handling.
 
 ## 0.1.0 - 2026-05-12
 
