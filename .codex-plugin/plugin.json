@@ -1,6 +1,6 @@
 {
   "name": "issueflow",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Issue-driven Git Flow-lite workflow skills for Codex.",
   "author": {
     "name": "Issueflow Skills Contributors"

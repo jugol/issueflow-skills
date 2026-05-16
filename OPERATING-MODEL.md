@@ -45,7 +45,9 @@ Issueflow is not only a single-issue executor. It is an issue discovery, plannin
 
 Use the Autonomous Cycle Track when automation, a user, or a completed merge asks the agent to continue. Scan the plan anchor, current plan gaps, backlog, failing tests, review findings, playtest feedback, recent proof, and `docs/solutions/`. Create follow-up issues or waves when concrete next work is visible; record a no-follow-up rationale when it is not.
 
-Use the Interactive Feature Intake Track when a user describes a feature, product behavior, UI change, or ambiguous improvement. Ground in the repo first, ask focused questions, present two or three approaches when tradeoffs matter, and turn the approved direction into one issue or a wave before implementation.
+When an automation cannot continue without user input, approval, credentials, or a product/policy decision, pause the existing automation instead of deleting it. Record the blocker, question, current issue or wave, branch/worktree, proof pointer, resume condition, and next step in the current-state or cycle compaction artifact.
+
+Use the Interactive Feature Intake Track when a user describes a feature, product behavior, UI change, or ambiguous improvement. Ground in the repo first, ask focused questions, resolve imprecise or contradictory wording before it becomes issue scope, present two or three approaches when tradeoffs matter, and turn the approved direction into one issue or a wave before implementation.
 
 After merge or PR handoff, run the compound loop when reusable learning exists. Update or create `docs/solutions/` notes for recurring failures, reusable patterns, failed approaches, prevention rules, and follow-up triggers.
 
@@ -82,6 +84,8 @@ When a user gives a direct implementation request, first check whether the repo 
 If it does, do not treat the request as "just code". Route it through `issue-raise`, `issue-intake`, `issue-dispatch`, the relevant implementation skill, and the matching QA proof skill. For small fixes, this can be compact, but it should still produce or reference a durable issue and proof trail.
 
 If the direct request is a feature, product behavior, UI change, or ambiguous improvement, route through `issue-brainstorm` before `issue-raise` unless the direction is already concrete and low-risk.
+
+If the request contains vague referents, undefined product terms, contradictory statements, missing success criteria, hidden multi-issue scope, or unclear proof, ask targeted clarification questions before marking an issue ready. Infer only low-risk details from repo context and write down the assumption.
 
 If the request is to continue, iterate, process feedback, handle test failures, or choose the next cycle, scan for follow-up issues or a wave instead of waiting for the user to name the next task.
 
@@ -230,6 +234,7 @@ When a feature turns resolved events into a history, ledger, or review surface, 
 - `docs/solutions/` or equivalent solution-note location
 - Current-state pointer and solution index
 - Cycle compaction artifact or location for long-running automation
+- Automation pause policy for user-blocked runs
 - Stable local entrypoint for fast checks and full checks
 - Package-local proof entrypoints for each app or service in a multi-package repo
 - Optional GitHub Actions that mirror the same local commands instead of inventing different CI-only logic

@@ -12,6 +12,7 @@ This skill decides whether an issue is ready to branch from `develop`.
 - The problem is concrete.
 - Evidence exists or the missing evidence is explicitly acknowledged.
 - Acceptance criteria are testable.
+- Ambiguous wording has been resolved or explicitly marked as an assumption.
 - A test plan exists.
 - Spec or harness targets are named when the issue changes user-visible behavior.
 - Scope and out-of-scope are explicit.
@@ -32,6 +33,9 @@ For greenfield projects, allow the baseline proof to be scaffold-level validatio
 
 - "Clean this up" with no target
 - "Fix the UI" with no expected result
+- Vague referents like "this", "that thing", or "the flow" with no target surface
+- Undefined product terms that do not appear in the plan, issue, domain model, or UI copy
+- Hidden assumption that changes user-visible behavior, data ownership, proof, rollout, or plan truth
 - No reproduction steps for a bug
 - No proof idea for a user-visible change
 - Scope that spans unrelated systems without being split

@@ -4,6 +4,8 @@ Issueflow is a Codex skill pack and plugin for issue-driven software development
 
 The core idea is simple: do not let implementation outrun intent, evidence, or integration discipline.
 
+The same `skills/` package is distributed for Codex and Claude Code. Claude Code users install it as a plugin marketplace and invoke namespaced skills such as `/issueflow:issueflow`.
+
 ## Philosophy
 
 Issueflow treats software work as a chain of accountable decisions:
@@ -26,7 +28,9 @@ Issueflow uses two planning tracks.
 
 The Autonomous Cycle Track is for automation, repeated iterations, post-merge follow-up, failing tests, review findings, and batches of playtest or user feedback. The agent scans durable signals instead of waiting for the user to name every next issue. When two or more independent findings exist, it creates a wave instead of one oversized issue.
 
-The Interactive Feature Intake Track is for user-described features, product behavior changes, UI changes, and broad improvements. The agent inspects repo context first, asks focused questions, proposes approaches when tradeoffs matter, and then turns the approved direction into one issue or a wave.
+When an automation needs user input, approval, credentials, or a product decision, it should pause the existing automation and record the resume condition instead of deleting it.
+
+The Interactive Feature Intake Track is for user-described features, product behavior changes, UI changes, and broad improvements. The agent inspects repo context first, asks focused questions, resolves imprecise or contradictory wording before implementation-critical assumptions become scope, proposes approaches when tradeoffs matter, and then turns the approved direction into one issue or a wave.
 
 After merge or PR handoff, the compound loop captures reusable learning in `docs/solutions/` when a fix reveals a recurring pattern, failed approach, prevention rule, or follow-up trigger.
 
@@ -121,6 +125,7 @@ Issueflow is a good fit when:
 - A project has multiple issues moving in parallel.
 - Automated runs should keep finding the next useful issue.
 - User-requested features need clarification before implementation.
+- User wording is often approximate and agents must actively ask about details that change scope, UX, data, proof, rollout, or plan truth.
 - You want stable branch hygiene around `develop` and `main`.
 - You need durable proof before merge.
 - Bugs, features, and UX feedback should become trackable issues.

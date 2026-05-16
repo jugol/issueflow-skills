@@ -17,6 +17,7 @@ For normal work, load only:
 - relevant test harness registry rows
 - solution index matches for the current symptom, not every solution note
 - recent proof pointer for the active issue
+- paused automation blocker and resume condition, when a run is waiting for the user
 
 ## Autonomous cycle entry
 
@@ -75,6 +76,7 @@ Every few autonomous cycles, at automation resume, after merge handoff, or whene
 - update wave status and next-lane pointer
 - update `docs/solutions/INDEX.md`
 - record which active issue or wave should be picked next
+- preserve paused automation identity and resume conditions when the next cycle is waiting for user input
 
 If no next issue should start, record a concrete no-next-work rationale.
 

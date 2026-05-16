@@ -7,6 +7,14 @@
 - Current branch or worktree:
 - Next recommended action:
 
+## Automation State
+
+- Automation status: `active` / `paused` / `none`
+- If paused, blocker:
+- User question or requested action:
+- Resume condition:
+- Next step after resume:
+
 ## Active Context Set
 
 - Macro direction:

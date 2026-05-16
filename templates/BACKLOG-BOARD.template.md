@@ -20,6 +20,8 @@
 - Current plan gaps:
 - Current-state note:
 - Solution index:
+- Paused automation:
+- Resume condition:
 
 ## Rules
 
@@ -28,6 +30,7 @@
 - Every UI issue names its experience direction before implementation
 - Every implementation issue names harness impact
 - Plan extensions or conflicts are reflected in the plan or decision log before dispatch
+- User-blocked automations are paused and resume conditions are recorded; they are not deleted unless explicitly retired
 - Every merge request cites local proof
 - Every completed issue records integration status, conflict notes, integrated proof, and return-to-develop status
 - Active context stays small: read current pointers first, search archives only when needed

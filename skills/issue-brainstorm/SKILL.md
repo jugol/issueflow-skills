@@ -12,18 +12,21 @@ Use this before implementation when the user describes a feature, product behavi
 1. Ground in the repo first: inspect the plan anchor, backlog, current product surface, related tests, and nearby code or docs.
 2. Classify the request against the active plan as `aligned`, `extension`, `conflict`, or `deviation`.
 3. Restate the likely goal, audience, success signal, plan relationship, and major constraints.
-4. Ask one or two focused questions only when the answer materially changes scope, UX, data shape, proof, rollout, or plan direction.
-5. Present two or three viable approaches with tradeoffs and a recommendation.
-6. If the approved direction extends or conflicts with the plan, update the plan or record a plan-change note before implementation dispatch.
-7. Decide whether the approved direction is one issue or a wave:
+4. Run a precision check: identify wording that is vague, contradictory, undefined, or missing an actor, screen, state, success criterion, data rule, proof path, or plan relationship.
+5. Ask focused questions when the answer materially changes scope, UX, data shape, proof, rollout, or plan direction. Ask one or two at a time by default, but ask enough to remove implementation-blocking ambiguity.
+6. Present two or three viable approaches with tradeoffs and a recommendation.
+7. If the approved direction extends or conflicts with the plan, update the plan or record a plan-change note before implementation dispatch.
+8. Decide whether the approved direction is one issue or a wave:
    - one issue when the work has one vertical slice and one ownership lane
    - a wave when independent slices, packages, UI/backend lanes, or corrective findings can move separately
-8. Hand off the approved direction to `issue-raise`; if a wave is needed, use `../../templates/PARALLEL-WAVE.template.md`.
+9. Hand off the approved direction to `issue-raise`; if a wave is needed, use `../../templates/PARALLEL-WAVE.template.md`.
 
 ## Rules
 
 - Do not dispatch implementation before the direction is clear enough for `issue-intake`.
 - Keep questions small and high leverage. Avoid generic questionnaires.
+- Do not under-ask when a vague phrase would change files, data ownership, user-visible behavior, proof, or plan truth.
+- Tie every question to the decision it unlocks. Prefer option-shaped questions over open-ended requests to "clarify everything."
 - If the request is already concrete and low-risk, run a compact brainstorm: restate the direction, name the proof, and proceed to `issue-raise`.
 - Do not implement a plan conflict first and update docs later. Resolve or record the plan change before dispatch.
 - Include UX direction, copy tone, first user-visible action, and anti-goals for UI work.
@@ -41,6 +44,7 @@ Use this before implementation when the user describes a feature, product behavi
 ## Output
 
 - Clarified goal and success criteria
+- Blocking ambiguities resolved or explicitly deferred
 - Key answers or assumptions
 - Plan relationship and plan update decision
 - Recommended approach and rejected alternatives

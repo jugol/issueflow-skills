@@ -1,0 +1,33 @@
+{
+  "name": "issueflow-skills",
+  "owner": {
+    "name": "Issueflow Skills Contributors"
+  },
+  "description": "Issueflow skills and workflow plugins for Claude Code.",
+  "version": "0.3.0",
+  "plugins": [
+    {
+      "name": "issueflow",
+      "source": {
+        "source": "github",
+        "repo": "jugol/issueflow-skills",
+        "ref": "main"
+      },
+      "description": "Issue-driven Git Flow-lite workflow skills for Claude Code.",
+      "author": {
+        "name": "Issueflow Skills Contributors"
+      },
+      "repository": "https://github.com/jugol/issueflow-skills",
+      "license": "MIT",
+      "category": "Productivity",
+      "tags": [
+        "agent-skills",
+        "issueflow",
+        "git-flow-lite",
+        "issue-driven-development",
+        "worktrees",
+        "qa"
+      ]
+    }
+  ]
+}

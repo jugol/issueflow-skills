@@ -12,17 +12,18 @@ Turn rough problem statements into durable issues. This skill is conversational 
 1. Start from the user's natural language description.
 2. Extract the likely problem, impact, desired outcome, and missing information.
 3. Run a fan-out check before drafting a single issue.
-4. Ask only the smallest number of focused questions needed to make the issue or wave implementation-ready.
-5. Draft the issue using the shared template.
-6. If a project plan exists, map the issue to the relevant plan promise, requirement, or constraint.
-7. Classify the plan relationship as `aligned`, `extension`, `conflict`, or `deviation`.
-8. If the issue extends or conflicts with the plan, require a plan update, decision-log entry, or plan-change note before dispatch.
-9. Shape product work as a vertical slice by default: name the user-visible result, the needed domain or contract path, and the proof path.
-10. For UI work, capture the experience direction: audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone or target language, and anti-dashboard or no-debug-copy constraints.
-11. If the issue is support-only or contract-first, name the nearby core slice it enables.
-12. Suggest labels, branch slug, and the likely owning implementation or QA skill.
-13. If the repo and auth context are available, prepare the issue for GitHub creation or create it directly after user confirmation.
-14. If GitHub is not available, write the issue draft into the repo's chosen backlog location without changing the structure of the issue.
+4. Run a precision check for vague referents, undefined product terms, missing actors or states, contradictory requirements, hidden multi-issue scope, and unclear proof.
+5. Ask the smallest number of focused questions needed to make the issue or wave implementation-ready. Ask enough to remove implementation-blocking ambiguity; do not stop at one question when more than one answer can materially change the issue.
+6. Draft the issue using the shared template.
+7. If a project plan exists, map the issue to the relevant plan promise, requirement, or constraint.
+8. Classify the plan relationship as `aligned`, `extension`, `conflict`, or `deviation`.
+9. If the issue extends or conflicts with the plan, require a plan update, decision-log entry, or plan-change note before dispatch.
+10. Shape product work as a vertical slice by default: name the user-visible result, the needed domain or contract path, and the proof path.
+11. For UI work, capture the experience direction: audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone or target language, and anti-dashboard or no-debug-copy constraints.
+12. If the issue is support-only or contract-first, name the nearby core slice it enables.
+13. Suggest labels, branch slug, and the likely owning implementation or QA skill.
+14. If the repo and auth context are available, prepare the issue for GitHub creation or create it directly after user confirmation.
+15. If GitHub is not available, write the issue draft into the repo's chosen backlog location without changing the structure of the issue.
 
 If the user report clearly contains multiple distinct failures, split them into separate issues that can be verified independently.
 
@@ -70,8 +71,10 @@ For greenfield repos, default to a local numbered issue file until hosted issue 
 
 ## Questioning rules
 
-- Prefer one or two sharp questions over a large questionnaire.
-- If the user's intent is already concrete, skip questions and draft immediately.
+- Prefer one or two sharp questions at a time over a large questionnaire.
+- Ask actively when the user's wording is imprecise, self-contradictory, missing success criteria, or uses repo-undefined product terms.
+- If a detail is low-risk and safely inferable, state the assumption and continue. If it changes implementation scope, proof, UX, data, or plan truth, ask before drafting a ready issue.
+- If the user's intent is already concrete and low-risk, skip questions and draft immediately.
 - If the user requested a broad feature or product behavior and no approved approach exists yet, route to `issue-brainstorm`.
 - If evidence is weak, explicitly mark the issue as needing validation before dispatch.
 - If the issue does not clearly advance the plan, classify whether it is an extension, conflict, or deviation instead of pretending it is aligned.

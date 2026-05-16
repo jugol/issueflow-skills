@@ -28,6 +28,7 @@ This skill takes the shared pack and adapts it to a real repository.
 - Local backlog board when GitHub is not attached yet
 - Current-state pointer so agents do not scan the entire backlog by default
 - Cycle compaction note template or location for long-running automation
+- Automation pause policy for user-blocked runs
 - Local check entrypoints for the current stack
 - Test harness registry
 - Brainstorm and wave note locations for durable planning
@@ -53,6 +54,7 @@ Use these package resources when the repo needs more than the core checklist:
 - `../../references/two-track-routing.md` for autonomous cycle vs interactive intake routing
 - `../../references/interactive-brainstorming.md` for feature-request clarification
 - `../../references/autonomous-wave-generation.md` for issue fan-out and waves
+- `../../references/automation-governance.md` for pause-vs-delete behavior in long-running automations
 - `../../references/compound-learning.md` for `docs/solutions/` notes
 - `../../references/context-governance.md` for active-set, archive, and compaction rules
 - `../../references/pr-template-policy.md` for PR proof sections
@@ -149,6 +151,7 @@ Project-specific sections may be appended below the core. Do not let custom sect
 - Brainstorm, wave, and solution-note locations
 - Current-state pointer and context-governance expectations
 - Cycle compaction trigger and artifact location
+- Automation pause policy and resume handoff location
 - Branch lifecycle expectations for dispatch, merge, and return-to-`develop`
 - Worktree policy and default local worktree path, if parallel issue delivery is expected
 - Vertical slice recommendation or support-first rationale for the first wave

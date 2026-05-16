@@ -32,6 +32,7 @@ Load package-level references only when the task needs deeper guidance. Paths ar
 - `../../references/two-track-routing.md` when choosing autonomous cycle vs interactive feature intake
 - `../../references/interactive-brainstorming.md` when feature requests need clarification
 - `../../references/autonomous-wave-generation.md` when a cycle should create follow-up issues or waves
+- `../../references/automation-governance.md` when an automation must stop for user input, approval, credentials, or policy choice
 - `../../references/compound-learning.md` when completed work should leave reusable memory
 - `../../references/context-governance.md` when deciding what not to load or when active context feels noisy
 - `../../references/vertical-slice-architecture.md` when shaping product issues
@@ -47,17 +48,21 @@ If the user asks broadly how to use the workflow in a repo, start with `repo-boo
 Use a two-track router:
 
 - Autonomous Cycle Track: use when a user or automation says to continue, iterate, resume, process failures, process review or playtest feedback, or choose the next useful issue. Scan durable signals and create or update follow-up issues or waves instead of waiting for the user to name every task.
-- Interactive Feature Intake Track: use when the user describes a feature, product behavior, UI change, or ambiguous improvement. Route through `issue-brainstorm` before `issue-raise` unless the request is already concrete and low-risk.
+- Interactive Feature Intake Track: use when the user describes a feature, product behavior, UI change, or ambiguous improvement. Route through `issue-brainstorm` before `issue-raise` unless the request is already concrete and low-risk. Actively ask when the user's wording is vague, contradictory, missing success criteria, or using undefined product terms that could change implementation.
 
 Before loading history, apply context governance: read current pointers first, keep the active set small, search archives before opening them, and do not bulk-load completed issues, old waves, superseded brainstorms, old proof logs, or all solution notes.
 
 At the start of an autonomous cycle, read macro direction and micro direction in order: current-state pointer, plan anchor summary, current wave goal, active issue, recent proof pointer, active branch or worktree, next recommended action, then relevant solution index entries. Include current plan gaps when the repo has `docs/plan/` or another primary plan. If these pointers are missing, stale, contradictory, or too broad, perform cycle compaction before selecting or creating the next issue.
+
+If an automation cannot continue because it needs user input, approval, credentials, or a product/policy choice, pause the existing automation instead of deleting it. Record the blocker, question, active issue or wave, branch/worktree, proof pointer, resume condition, and next step in current-state or cycle compaction before asking the user.
 
 If the user arrives with only a project plan or product plan, still start with `repo-bootstrap`, establish `docs/plan/PLAN.md` or the repo's chosen primary plan, create a compact plan anchor, and generate the first issue wave from unimplemented plan gaps.
 
 If a plan already exists, treat it as an active source of truth, not just bootstrap context. Keep checking new issues and waves against that plan as work progresses.
 
 When a user request differs from the plan, classify it before issue creation: `aligned`, `extension`, `conflict`, or `deviation`. For `extension` or `conflict`, update the plan or record a plan-change decision before dispatch. Do not let implementation silently change product truth.
+
+When a user request is imprecise, do not silently fill in implementation-critical details. Ask focused questions tied to decisions such as actor, target screen, state, data ownership, proof, rollout, and plan relationship. Infer only low-risk details from repo context and record the assumption.
 
 For product work, recommend vertical slice architecture as the default shape: one core issue should carry a thin user-visible behavior through the needed domain, contract, UI, and proof surfaces. If a support or contract-first issue is needed, name the downstream core slice it enables.
 

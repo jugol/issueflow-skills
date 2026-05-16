@@ -14,6 +14,7 @@ Default behavior:
 - make a wave when two or more independent issues can move separately
 - include at least one `core` issue unless the wave is explicitly stabilization-only
 - record a concrete no-follow-up rationale when there is no useful next issue
+- pause, not delete, the existing automation when user input or approval blocks the next step
 
 ## Interactive Feature Intake Track
 

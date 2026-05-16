@@ -26,6 +26,8 @@ This repository is also the plugin root.
 ```text
 issueflow-skills/
 ├── .codex-plugin/plugin.json
+├── .claude-plugin/plugin.json
+├── .claude-plugin/marketplace.json
 ├── .agents/plugins/marketplace.json
 ├── skills/
 ├── references/
@@ -41,7 +43,7 @@ Codex loads the skills from `./skills/`. The shared references and templates are
 - [English guide](./docs/README_en.md)
 - [Korean guide](./docs/README_ko.md)
 
-## Install
+## Install For Codex
 
 After publishing this repo to GitHub, add it as a Codex plugin marketplace:
 
@@ -60,6 +62,27 @@ codex plugin marketplace add .
 
 Direct skill installation with `$skill-installer` is possible, but the plugin install is preferred because it keeps all related skills, references, and templates together.
 
+## Install For Claude Code
+
+Issueflow is also packaged as a Claude Code plugin marketplace. In Claude Code, add the marketplace and install the plugin:
+
+```text
+/plugin marketplace add jugol/issueflow-skills
+/plugin install issueflow@issueflow-skills
+```
+
+Claude plugin skills are namespaced. Invoke the umbrella skill directly with:
+
+```text
+/issueflow:issueflow
+```
+
+For local testing before publishing, start Claude Code with the plugin directory:
+
+```bash
+claude --plugin-dir .
+```
+
 ## Update Across Computers
 
 Use `main` as the marketplace ref when your computers should track the latest maintained version:
@@ -70,6 +93,13 @@ codex plugin marketplace upgrade issueflow-skills
 ```
 
 Run `upgrade` on each computer whenever you want to refresh the installed plugin cache. For unattended refresh, schedule that command with Task Scheduler, cron, or another local automation on each computer.
+
+For Claude Code, refresh the marketplace and update the plugin:
+
+```bash
+claude plugin marketplace update issueflow-skills
+claude plugin update issueflow@issueflow-skills
+```
 
 Use a release tag when a computer should stay pinned until you intentionally move it:
 
@@ -103,7 +133,9 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - Product work should prefer vertical slices with user-visible outcomes.
 - A durable product plan should act as source of truth: aligned work cites it, extensions update it, conflicts need a plan-change decision, and missing planned behavior becomes plan-gap issue candidates.
 - Feature requests go through interactive brainstorming when the direction is ambiguous.
+- Imprecise user requests should trigger focused clarification before implementation-critical assumptions become issue scope.
 - Automation and continuation cycles actively scan for follow-up issues and waves.
+- User-blocked automations should be paused with a resume condition, not deleted.
 - Independent wave lanes should prefer worktrees when ownership and proof are separable.
 - User-facing UI should be experience-first, not proof-dashboard-first.
 - Active context stays small: read current-state pointers first, then search archived issues, old waves, and solution notes only when relevant.
@@ -119,6 +151,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - [OPERATING-MODEL.md](./OPERATING-MODEL.md)
 - [branch-lifecycle.md](./references/branch-lifecycle.md)
 - [autonomous-wave-generation.md](./references/autonomous-wave-generation.md)
+- [automation-governance.md](./references/automation-governance.md)
 - [compound-learning.md](./references/compound-learning.md)
 - [context-governance.md](./references/context-governance.md)
 - [contract-naming.md](./references/contract-naming.md)

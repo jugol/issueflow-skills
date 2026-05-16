@@ -4,6 +4,12 @@
 
 - No changes yet.
 
+## 0.3.0 - 2026-05-17
+
+- Strengthen active clarification rules for imprecise, contradictory, or underspecified user requests.
+- Add automation governance so user-blocked automations pause instead of being deleted.
+- Add Claude Code plugin and marketplace metadata for dual Codex/Claude distribution.
+
 ## 0.2.0 - 2026-05-15
 
 - Add two-track planning with autonomous cycle routing and interactive feature intake.

@@ -1,6 +1,6 @@
 # Update Model
 
-Issueflow updates through the Codex plugin marketplace mechanism.
+Issueflow updates through the Codex plugin marketplace mechanism and the Claude Code plugin marketplace mechanism.
 
 ## Publisher Flow
 
@@ -17,19 +17,21 @@ python scripts/validate.py
 4. Bump the plugin version:
 
 ```bash
-python scripts/release.py 0.2.0
+python scripts/release.py 0.3.0
 ```
+
+The release script updates both Codex and Claude plugin manifests.
 
 5. Commit and tag:
 
 ```bash
 git add .
-git commit -m "Release issueflow 0.2.0"
-git tag v0.2.0
+git commit -m "Release issueflow 0.3.0"
+git tag v0.3.0
 git push origin main --tags
 ```
 
-## Consumer Flow
+## Codex Consumer Flow
 
 On each computer that should receive updates, add the marketplace once:
 
@@ -64,7 +66,34 @@ macOS or Linux cron example:
 Use a pinned ref such as a release tag when stability matters more than immediate updates:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v0.2.0
+codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.0
 ```
 
 Use `main` when every computer should track the latest maintained version.
+
+## Claude Code Consumer Flow
+
+In Claude Code, add the marketplace once:
+
+```text
+/plugin marketplace add jugol/issueflow-skills
+```
+
+Install the plugin:
+
+```text
+/plugin install issueflow@issueflow-skills
+```
+
+Refresh when a new release is published:
+
+```bash
+claude plugin marketplace update issueflow-skills
+claude plugin update issueflow@issueflow-skills
+```
+
+To pin to a release tag, add the marketplace with a ref:
+
+```bash
+claude plugin marketplace add jugol/issueflow-skills@v0.3.0
+```

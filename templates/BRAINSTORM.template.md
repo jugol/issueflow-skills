@@ -15,8 +15,11 @@
 
 ## Questions and Answers
 
+- Blocking ambiguities:
 - Q:
 - A:
+- Assumptions recorded:
+- Deferred non-blocking details:
 
 ## Approaches
 

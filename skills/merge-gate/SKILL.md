@@ -26,6 +26,7 @@ This skill is the approval and integration stop for `issue/* -> develop`.
 - Compound learning decision is recorded: `issue-compound` note created or updated, or explicit no-compound rationale
 - Context governance is preserved: active pointers are updated, completed artifacts are archived or summarized, and future agents are not required to bulk-load old issues or solution notes
 - If automation will continue, current-state records macro direction, micro direction, and next cycle decision
+- If automation is blocked on user input after merge or PR handoff, the existing automation is paused with a resume condition instead of deleted
 
 ## Reject merge when
 
@@ -46,6 +47,7 @@ This skill is the approval and integration stop for `issue/* -> develop`.
 - Known follow-up work exists but no next issue, updated existing issue, defer note, or no-follow-up rationale is recorded
 - Reusable learning or recurring prevention knowledge exists but no `docs/solutions/` update or no-compound rationale is recorded
 - Completed issue, wave, brainstorm, or proof artifacts still remain in the active context set without a reason
+- A user-blocked automation was deleted instead of paused without an explicit retirement reason
 
 ## Parallel merge rule
 
@@ -81,6 +83,7 @@ Use `../../references/branch-lifecycle.md` and `../../references/parallel-delive
 - Context governance updates: current-state pointer, archive move, summary, or solution index update
 - Cycle compaction performed or skipped with rationale
 - Next dispatch recommendation, or a clear statement that no next issue should start yet
+- Automation continuation decision: continue, pause existing automation with resume condition, or explicitly retire/delete with rationale
 
 ## Hand-off
 

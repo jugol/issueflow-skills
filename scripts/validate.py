@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the issueflow skill pack and Codex plugin metadata."""
+"""Validate the issueflow skill pack and plugin metadata."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ TEXT_EXTENSIONS = {
     ".yml",
 }
 LOCAL_PATTERNS = [
-    re.compile(r"[A-Za-z]:[\\/]"),
+    re.compile(r"(^|[^A-Za-z])[A-Za-z]:[\\/]"),
     re.compile(r"[/\\]Users[/\\]", re.IGNORECASE),
     re.compile(r"\bAppData\b", re.IGNORECASE),
     re.compile(r"\bHOME[/\\]", re.IGNORECASE),
@@ -129,6 +129,37 @@ def validate_plugin(errors: list[str]) -> None:
         fail(errors, ".codex-plugin/plugin.json must point to ./skills/")
 
 
+def validate_claude_plugin(errors: list[str]) -> None:
+    manifest_path = ROOT / ".claude-plugin" / "plugin.json"
+    if not manifest_path.is_file():
+        fail(errors, ".claude-plugin/plugin.json is missing")
+        return
+
+    manifest = load_json(manifest_path, errors)
+    if not manifest:
+        return
+
+    name = manifest.get("name")
+    if not name or not NAME_RE.match(name):
+        fail(errors, ".claude-plugin/plugin.json name must be kebab-case")
+
+    description = manifest.get("description")
+    if not description:
+        fail(errors, ".claude-plugin/plugin.json is missing description")
+
+    skills_path = manifest.get("skills")
+    if skills_path:
+        if not skills_path.startswith("./"):
+            fail(errors, ".claude-plugin/plugin.json skills path must start with ./")
+        resolved = (ROOT / skills_path).resolve()
+        try:
+            resolved.relative_to(ROOT.resolve())
+        except ValueError:
+            fail(errors, ".claude-plugin/plugin.json skills path must stay inside the repo")
+        if not resolved.is_dir():
+            fail(errors, ".claude-plugin/plugin.json skills path does not exist")
+
+
 def validate_marketplace(errors: list[str]) -> None:
     marketplace_path = ROOT / ".agents" / "plugins" / "marketplace.json"
     if not marketplace_path.is_file():
@@ -170,6 +201,50 @@ def validate_marketplace(errors: list[str]) -> None:
                 fail(errors, f"marketplace entry {name} does not point at a plugin root")
 
 
+def validate_claude_marketplace(errors: list[str]) -> None:
+    marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
+    if not marketplace_path.is_file():
+        fail(errors, ".claude-plugin/marketplace.json is missing")
+        return
+
+    marketplace = load_json(marketplace_path, errors)
+    plugins = marketplace.get("plugins")
+    if not marketplace.get("name") or not NAME_RE.match(marketplace.get("name", "")):
+        fail(errors, ".claude-plugin/marketplace.json name must be kebab-case")
+    if not isinstance(marketplace.get("owner"), dict) or not marketplace["owner"].get("name"):
+        fail(errors, ".claude-plugin/marketplace.json must contain owner.name")
+    if not isinstance(plugins, list) or not plugins:
+        fail(errors, ".claude-plugin/marketplace.json must contain plugins[]")
+        return
+
+    for entry in plugins:
+        name = entry.get("name")
+        if not name or not NAME_RE.match(name):
+            fail(errors, "Claude marketplace plugin entry name must be kebab-case")
+
+        source = entry.get("source")
+        if isinstance(source, str):
+            if not source.startswith("./"):
+                fail(errors, f"Claude marketplace entry {name} relative source must start with ./")
+                continue
+            resolved = (ROOT / source).resolve()
+            try:
+                resolved.relative_to(ROOT.resolve())
+            except ValueError:
+                fail(errors, f"Claude marketplace entry {name} relative source must stay inside the repo")
+                continue
+            if not (resolved / ".claude-plugin" / "plugin.json").is_file():
+                fail(errors, f"Claude marketplace entry {name} does not point at a Claude plugin root")
+        elif isinstance(source, dict):
+            source_type = source.get("source")
+            if source_type not in {"github", "url", "git-subdir", "npm"}:
+                fail(errors, f"Claude marketplace entry {name} has invalid source.source")
+            if source_type == "github" and not source.get("repo"):
+                fail(errors, f"Claude marketplace entry {name} github source is missing repo")
+        else:
+            fail(errors, f"Claude marketplace entry {name} source must be string or object")
+
+
 def validate_no_local_content(errors: list[str]) -> None:
     for path in ROOT.rglob("*"):
         if ".git" in path.parts or not path.is_file() or path.suffix not in TEXT_EXTENSIONS:
@@ -186,7 +261,9 @@ def main() -> int:
 
     validate_skills(errors)
     validate_plugin(errors)
+    validate_claude_plugin(errors)
     validate_marketplace(errors)
+    validate_claude_marketplace(errors)
     validate_no_local_content(errors)
 
     if errors:

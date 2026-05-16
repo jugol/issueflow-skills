@@ -40,4 +40,6 @@
 
 - Next issue or wave:
 - Worktree or serialization note:
+- Automation action: `continue` / `pause-existing` / `no-automation`
+- If paused, blocker and resume condition:
 - No-next-work rationale, if none:
