@@ -9,6 +9,7 @@
 ## Clarified Goal
 
 - Audience:
+- Target user goal experience:
 - Primary job or first visible action:
 - Success criteria:
 - Non-goals:

@@ -6,6 +6,8 @@ The core idea is simple: do not let implementation outrun intent, evidence, or i
 
 The same `skills/` package is distributed for Codex and Claude Code. Claude Code users install it as a plugin marketplace and invoke namespaced skills such as `/issueflow:issueflow`.
 
+When issueflow creates or updates `PLAN.md`, it should capture the target user goal experience: who the user is, what is difficult before, the primary product moment, what changes afterward, and what proof shows that experience exists.
+
 ## Philosophy
 
 Issueflow treats software work as a chain of accountable decisions:
@@ -35,6 +37,8 @@ The Interactive Feature Intake Track is for user-described features, product beh
 After merge or PR handoff, the compound loop captures reusable learning in `docs/solutions/` when a fix reveals a recurring pattern, failed approach, prevention rule, or follow-up trigger.
 
 Context governance keeps this from becoming a memory pile. Agents should read current-state pointers and indexes first, then search archived issues, old waves, proof logs, and solution notes only when they are relevant. Autonomous cycles preserve macro direction, such as the product promise and current wave goal, separately from micro direction, such as the active issue, proof pointer, branch or worktree, and next action.
+
+`PLAN_ANCHOR.md` and `CURRENT_STATE.md` should stay bounded. Completed issue, wave, and proof details should compact into `docs/history/` or the repo's equivalent archive, leaving only short summaries and archive pointers in active files.
 
 ## Plan Governance
 

@@ -40,3 +40,16 @@ If the solution note names concrete future work, create or update a follow-up is
 ## Context rule
 
 Do not make future agents read every solution note. Keep `docs/solutions/INDEX.md` current enough that agents can search the index first, then open only relevant notes.
+
+## Completion cleanup
+
+During `issue-compound`, check whether completion handoff left completed issue, wave, or proof details in active context files.
+
+If `PLAN_ANCHOR.md`, `CURRENT_STATE.md`, backlog boards, or wave notes are carrying historical detail, run history compaction:
+
+- move detailed history to `docs/history/` or equivalent
+- update the history index
+- keep only short summaries and archive pointers in active files
+- preserve the next issue, next wave, or no-next-work rationale
+
+Do this before recommending the next dispatch.

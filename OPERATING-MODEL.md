@@ -10,6 +10,7 @@ Before bootstrapping or dispatching work:
 
 - identify the primary plan anchor file
 - extract the core product promise
+- extract the target user goal experience
 - extract any non-negotiable UX, art, or platform constraints
 - keep a compact plan summary close to the backlog so active work can be checked against it quickly
 
@@ -32,6 +33,8 @@ Re-check it:
 
 When a user request differs from the active plan, classify it as `aligned`, `extension`, `conflict`, or `deviation`. Extensions and conflicts must update the plan or record a decision before implementation dispatch. If the plan promises behavior that is still missing from the live product, treat that as a plan gap and turn it into an issue or wave during autonomous cycles.
 
+A complete plan must describe the target user goal experience, not only a feature list. Capture who the user is, what is painful before, the primary product moment, what changes afterward, and what user-visible proof shows the experience exists.
+
 ## Why this model
 
 - Issue work stays isolated.
@@ -49,7 +52,7 @@ When an automation cannot continue without user input, approval, credentials, or
 
 Use the Interactive Feature Intake Track when a user describes a feature, product behavior, UI change, or ambiguous improvement. Ground in the repo first, ask focused questions, resolve imprecise or contradictory wording before it becomes issue scope, present two or three approaches when tradeoffs matter, and turn the approved direction into one issue or a wave before implementation.
 
-After merge or PR handoff, run the compound loop when reusable learning exists. Update or create `docs/solutions/` notes for recurring failures, reusable patterns, failed approaches, prevention rules, and follow-up triggers.
+After merge or PR handoff, run the compound loop when reusable learning exists, follow-up triggers are visible, or active context needs completion cleanup. Update or create `docs/solutions/` notes for recurring failures, reusable patterns, failed approaches, prevention rules, and follow-up triggers. When the completed work left historical detail in active files, the compound loop owns the history compaction handoff.
 
 Govern context continuously. Start from current-state pointers, search indexes before archives, and keep completed issues, old waves, superseded brainstorms, old proof logs, and unrelated solution notes out of the default context.
 
@@ -57,6 +60,8 @@ For autonomous cycles, always preserve two levels of context:
 
 - macro direction: plan anchor summary, product promise, current wave goal, and drift warning
 - micro direction: active issue, recent proof pointer, active branch or worktree, next recommended action, and relevant solution index entries
+
+Keep active context files bounded. `PLAN_ANCHOR.md` and `CURRENT_STATE.md` should not become append-only issue history. Archive completed issue, wave, and proof details to `docs/history/` or the repo's equivalent history folder, update a searchable history index, and keep only short completed summaries and pointers in active files.
 
 ## Lifecycle
 
@@ -73,7 +78,7 @@ For autonomous cycles, always preserve two levels of context:
 11. Rerun the required integrated proof on `develop`.
 12. Return the working checkout to `develop`.
 13. If repo policy requires PR-only integration, open or update the PR and make the pending merge explicit.
-14. Run compound learning when reusable knowledge or follow-up triggers exist.
+14. Run compound learning and completion cleanup when reusable knowledge, follow-up triggers, plan gaps, or active-context history drift exist.
 15. Bundle approved issues into a release candidate.
 16. Promote to `main`.
 
@@ -233,6 +238,7 @@ When a feature turns resolved events into a history, ledger, or review surface, 
 - Brainstorm and wave note location
 - `docs/solutions/` or equivalent solution-note location
 - Current-state pointer and solution index
+- History archive and history index
 - Cycle compaction artifact or location for long-running automation
 - Automation pause policy for user-blocked runs
 - Stable local entrypoint for fast checks and full checks
@@ -321,7 +327,9 @@ Use [compound-learning.md](./references/compound-learning.md) and [SOLUTION.temp
 Every few autonomous cycles, or whenever the active set feels noisy:
 
 - archive completed issues and superseded brainstorms
+- move completed issue, wave, and proof detail out of active files into history
 - update the backlog board and current-state pointer
+- update the history index
 - update wave status and next-lane pointer
 - update `docs/solutions/INDEX.md`
 - record the next issue, next wave, or concrete no-next-work rationale

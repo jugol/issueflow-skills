@@ -18,7 +18,7 @@ Turn rough problem statements into durable issues. This skill is conversational 
 7. If a project plan exists, map the issue to the relevant plan promise, requirement, or constraint.
 8. Classify the plan relationship as `aligned`, `extension`, `conflict`, or `deviation`.
 9. If the issue extends or conflicts with the plan, require a plan update, decision-log entry, or plan-change note before dispatch.
-10. Shape product work as a vertical slice by default: name the user-visible result, the needed domain or contract path, and the proof path.
+10. Shape product work as a vertical slice by default: name the target goal experience advanced, the user-visible result, the needed domain or contract path, and the proof path.
 11. For UI work, capture the experience direction: audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone or target language, and anti-dashboard or no-debug-copy constraints.
 12. If the issue is support-only or contract-first, name the nearby core slice it enables.
 13. Suggest labels, branch slug, and the likely owning implementation or QA skill.
@@ -41,6 +41,7 @@ Create multiple issues instead of one when findings differ by user-visible behav
 - Use `../../templates/BRAINSTORM.template.md` when preserving approved approaches and rejected alternatives.
 - Use `../../references/plan-alignment.md` when the repo has a project plan or product brief.
 - Use `../../references/plan-governance.md` when an issue should update, extend, split, or contradict the plan.
+- Use `../../references/goal-experience-planning.md` when product work lacks a clear target user goal experience.
 - Use `../../templates/PLAN-CHANGE.template.md` when a plan-changing decision needs a durable note.
 - Use `../../references/two-track-routing.md` when deciding whether this came from interactive intake or autonomous cycle work.
 - Use `../../references/autonomous-wave-generation.md` when a report should split into a wave.
@@ -56,6 +57,7 @@ Create multiple issues instead of one when findings differ by user-visible behav
 - Plan relationship: `aligned`, `extension`, `conflict`, or `deviation`
 - Required plan update or no-plan-update rationale
 - Slice shape or support reason
+- Target goal experience advanced
 - UX or visual direction, if UI is involved
 - Aesthetic and native-language copy expectations, if UI or user-facing text is involved
 - Acceptance criteria

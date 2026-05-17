@@ -20,6 +20,7 @@ This skill decides whether an issue is ready to branch from `develop`.
 - The issue origin is named: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`.
 - The plan relationship is named when a plan exists: `aligned`, `extension`, `conflict`, or `deviation`.
 - The vertical slice shape is clear, or a support-only reason and downstream core slice are named.
+- Product issues name the target user goal experience they advance.
 - If the issue belongs to a wave, ownership lane, dependency order, proof command, and worktree or serialization decision are named.
 - UI issues include audience, primary action, first-viewport priority, and desired visual direction.
 - UI issues include the expected aesthetic bar and copy tone or target-language naturalness criteria.
@@ -40,6 +41,7 @@ For greenfield projects, allow the baseline proof to be scaffold-level validatio
 - No proof idea for a user-visible change
 - Scope that spans unrelated systems without being split
 - Layer-only work with no named consumer slice
+- Product work that lists features but cannot name the user's before state, primary product moment, or after state
 - UI acceptance criteria that only describe proof panels, diagnostics, or admin shells when the product promise is user-facing
 - UI acceptance criteria that prove function but never require the screen to look good to a human viewer
 - User-facing copy changes with no natural-language review target, especially for localized, narrative, onboarding, or choice-heavy surfaces
@@ -52,7 +54,7 @@ For greenfield projects, allow the baseline proof to be scaffold-level validatio
 
 ## Package resources
 
-Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` when readiness depends on track, wave shape, product direction, plan truth, slice shape, or UI quality.
+Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` when readiness depends on track, wave shape, product direction, plan truth, target experience, slice shape, or UI quality.
 
 ## Decision states
 
@@ -72,6 +74,7 @@ Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-g
 - Plan alignment note or realignment warning
 - Plan relationship and plan-change readiness
 - Vertical slice readiness or support-only justification
+- Target goal experience readiness
 - Experience-first readiness for UI work
 
 ## Hand-off

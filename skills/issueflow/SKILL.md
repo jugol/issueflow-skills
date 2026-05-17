@@ -29,17 +29,19 @@ Load package-level references only when the task needs deeper guidance. Paths ar
 - `../../OPERATING-MODEL.md` for the full Git Flow-lite operating model
 - `../../references/plan-alignment.md` when work must be checked against a product plan
 - `../../references/plan-governance.md` when a plan should be updated, split, or used as the source of truth for next work
+- `../../references/goal-experience-planning.md` when creating or reviewing a plan should start from the user's target experience
 - `../../references/two-track-routing.md` when choosing autonomous cycle vs interactive feature intake
 - `../../references/interactive-brainstorming.md` when feature requests need clarification
 - `../../references/autonomous-wave-generation.md` when a cycle should create follow-up issues or waves
 - `../../references/automation-governance.md` when an automation must stop for user input, approval, credentials, or policy choice
 - `../../references/compound-learning.md` when completed work should leave reusable memory
 - `../../references/context-governance.md` when deciding what not to load or when active context feels noisy
+- `../../references/history-compaction.md` when `PLAN_ANCHOR.md`, `CURRENT_STATE.md`, backlog boards, or wave notes are growing with completed issue history
 - `../../references/vertical-slice-architecture.md` when shaping product issues
 - `../../references/experience-first-ui.md` when UI work drifts toward proof dashboards
 - `../../references/branch-lifecycle.md` when stale issue branches or worktrees are involved
 - `../../references/parallel-delivery.md` when multiple issue branches can move together
-- `../../templates/BRAINSTORM.template.md`, `../../templates/CURRENT-STATE.template.md`, `../../templates/CYCLE-COMPACTION.template.md`, `../../templates/ISSUE.template.md`, `../../templates/PARALLEL-WAVE.template.md`, `../../templates/PLAN-ANCHOR.template.md`, `../../templates/PLAN-CHANGE.template.md`, and `../../templates/SOLUTION.template.md` when scaffolding durable local artifacts
+- `../../templates/BRAINSTORM.template.md`, `../../templates/CURRENT-STATE.template.md`, `../../templates/CYCLE-COMPACTION.template.md`, `../../templates/HISTORY-INDEX.template.md`, `../../templates/ISSUE.template.md`, `../../templates/PARALLEL-WAVE.template.md`, `../../templates/PLAN-ANCHOR.template.md`, `../../templates/PLAN-CHANGE.template.md`, and `../../templates/SOLUTION.template.md` when scaffolding durable local artifacts
 
 ## Default behavior
 
@@ -52,13 +54,17 @@ Use a two-track router:
 
 Before loading history, apply context governance: read current pointers first, keep the active set small, search archives before opening them, and do not bulk-load completed issues, old waves, superseded brainstorms, old proof logs, or all solution notes.
 
-At the start of an autonomous cycle, read macro direction and micro direction in order: current-state pointer, plan anchor summary, current wave goal, active issue, recent proof pointer, active branch or worktree, next recommended action, then relevant solution index entries. Include current plan gaps when the repo has `docs/plan/` or another primary plan. If these pointers are missing, stale, contradictory, or too broad, perform cycle compaction before selecting or creating the next issue.
+At the start of an autonomous cycle, read macro direction and micro direction in order: current-state pointer, plan anchor summary, current wave goal, active issue, recent proof pointer, active branch or worktree, next recommended action, then relevant solution index entries. Include current plan gaps when the repo has `docs/plan/` or another primary plan. If these pointers are missing, stale, contradictory, too broad, or filled with completed issue history, perform cycle compaction before selecting or creating the next issue.
+
+Keep `PLAN_ANCHOR.md` and `CURRENT_STATE.md` bounded. They should not contain the full history of 100+ completed issues. Move completed issue, wave, and proof detail into `docs/history/` or the repo's equivalent archive, update the history index, and leave only short summaries and links in active files.
 
 If an automation cannot continue because it needs user input, approval, credentials, or a product/policy choice, pause the existing automation instead of deleting it. Record the blocker, question, active issue or wave, branch/worktree, proof pointer, resume condition, and next step in current-state or cycle compaction before asking the user.
 
-If the user arrives with only a project plan or product plan, still start with `repo-bootstrap`, establish `docs/plan/PLAN.md` or the repo's chosen primary plan, create a compact plan anchor, and generate the first issue wave from unimplemented plan gaps.
+If the user arrives with only a project plan or product plan, still start with `repo-bootstrap`, establish `docs/plan/PLAN.md` or the repo's chosen primary plan, extract the target user goal experience, create a compact plan anchor, and generate the first issue wave from unimplemented plan gaps.
 
 If a plan already exists, treat it as an active source of truth, not just bootstrap context. Keep checking new issues and waves against that plan as work progresses.
+
+When creating or revising `PLAN.md`, require a target user goal experience: user and situation, before state, primary product moment, after state, and user-visible proof. Do not accept a feature list as a complete plan unless it also explains what experience those features should create.
 
 When a user request differs from the plan, classify it before issue creation: `aligned`, `extension`, `conflict`, or `deviation`. For `extension` or `conflict`, update the plan or record a plan-change decision before dispatch. Do not let implementation silently change product truth.
 
@@ -78,7 +84,7 @@ When the user asks to finish, complete, close, or resolve an issue, treat the wo
 
 After an issue is integrated or handed to the repo's PR/merge queue, perform a forward handoff before calling it done. Update the issue note, backlog or wave board, latest proof pointer, and any automation/run memory so the completed issue cannot be selected again. If the work revealed follow-up defects, polish, or next vertical slices, create or update those issues; if there is no follow-up, say so with a concrete reason.
 
-After merge or PR handoff, run `issue-compound` when the issue produced reusable learning, a recurring prevention rule, a failed approach worth remembering, or follow-up issue triggers.
+After merge or PR handoff, run `issue-compound` when the issue produced reusable learning, a recurring prevention rule, a failed approach worth remembering, follow-up issue triggers, plan gaps, or active-context history drift. Treat history compaction as a conditional cleanup responsibility inside that compound handoff, not as a separate replacement for compound learning.
 
 If the user arrives with a concrete bug or product feedback that implies code changes, start with `issue-raise` before implementation. If the report contains multiple independent findings, create a corrective wave instead of one vague issue. If the repo already has a matching active issue, use `issue-intake` on that issue instead of creating a duplicate.
 

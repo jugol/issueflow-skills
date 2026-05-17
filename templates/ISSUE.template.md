@@ -25,6 +25,7 @@ What is wrong, who is affected, and what concrete evidence exists.
 ## Slice Shape
 
 - User-visible outcome:
+- Target goal experience advanced:
 - Domain / contract path:
 - Product surface:
 - If support-only or contract-first, downstream core slice:

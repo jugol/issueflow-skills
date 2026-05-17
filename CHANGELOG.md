@@ -4,6 +4,12 @@
 
 - No changes yet.
 
+## 0.3.1 - 2026-05-17
+
+- Add target user goal experience planning to plan governance, anchors, issue shaping, and intake.
+- Add history compaction so `PLAN_ANCHOR.md` and `CURRENT_STATE.md` stay bounded while completed issue detail moves to history.
+- Clarify `issue-compound` as the post-completion lifecycle step, with history compaction handled as conditional completion cleanup inside the compound handoff.
+
 ## 0.3.0 - 2026-05-17
 
 - Strengthen active clarification rules for imprecise, contradictory, or underspecified user requests.

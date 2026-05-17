@@ -7,6 +7,7 @@ Short description of why these issues can move together.
 ## Plan Context
 
 - Plan anchor:
+- Target user goal experience:
 - Plan gaps addressed:
 - Plan relationship: `aligned` / `extension` / `conflict` / `deviation`
 - Plan update or decision note:

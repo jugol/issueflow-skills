@@ -18,6 +18,7 @@ Issueflow can start from a single detailed product plan. As the project grows, i
 
 Issueflow keeps long-running projects manageable by reading current pointers first and searching archives only when needed.
 Autonomous cycles preserve both macro direction, such as product promise and wave goal, and micro direction, such as the active issue, proof pointer, branch/worktree, and next action.
+Completed issue history should compact into `docs/history/` or the repo's equivalent archive so `PLAN_ANCHOR.md` and `CURRENT_STATE.md` stay short.
 
 ## Package Layout
 
@@ -104,7 +105,7 @@ claude plugin update issueflow@issueflow-skills
 Use a release tag when a computer should stay pinned until you intentionally move it:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v0.2.0
+codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.1
 ```
 
 See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
@@ -131,6 +132,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - Work branches start from `develop` and use `issue/<n>-<slug>`.
 - One issue branch owns one issue scope.
 - Product work should prefer vertical slices with user-visible outcomes.
+- Product plans should name the target user goal experience, not only feature lists.
 - A durable product plan should act as source of truth: aligned work cites it, extensions update it, conflicts need a plan-change decision, and missing planned behavior becomes plan-gap issue candidates.
 - Feature requests go through interactive brainstorming when the direction is ambiguous.
 - Imprecise user requests should trigger focused clarification before implementation-critical assumptions become issue scope.
@@ -139,6 +141,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - Independent wave lanes should prefer worktrees when ownership and proof are separable.
 - User-facing UI should be experience-first, not proof-dashboard-first.
 - Active context stays small: read current-state pointers first, then search archived issues, old waves, and solution notes only when relevant.
+- Completed issue details compact into history; active files keep only recent summaries and pointers.
 - Every completed branch needs durable local proof before merge.
 - Nothing merges into `develop` without `merge-gate`.
 - A proven issue is only merge-ready until it enters `develop`.
@@ -158,7 +161,9 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - [experience-first-ui.md](./references/experience-first-ui.md)
 - [github-adoption.md](./references/github-adoption.md)
 - [greenfield-bootstrap.md](./references/greenfield-bootstrap.md)
+- [goal-experience-planning.md](./references/goal-experience-planning.md)
 - [harness-governance.md](./references/harness-governance.md)
+- [history-compaction.md](./references/history-compaction.md)
 - [interactive-brainstorming.md](./references/interactive-brainstorming.md)
 - [local-backlog-policy.md](./references/local-backlog-policy.md)
 - [local-checks-policy.md](./references/local-checks-policy.md)
@@ -177,6 +182,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - [CURRENT-STATE.template.md](./templates/CURRENT-STATE.template.md)
 - [CYCLE-COMPACTION.template.md](./templates/CYCLE-COMPACTION.template.md)
 - [GITHUB-ISSUE-FORM.example.yml](./templates/GITHUB-ISSUE-FORM.example.yml)
+- [HISTORY-INDEX.template.md](./templates/HISTORY-INDEX.template.md)
 - [ISSUE.template.md](./templates/ISSUE.template.md)
 - [PARALLEL-WAVE.template.md](./templates/PARALLEL-WAVE.template.md)
 - [PLAN-ANCHOR.template.md](./templates/PLAN-ANCHOR.template.md)

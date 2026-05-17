@@ -15,6 +15,7 @@ This skill takes the shared pack and adapts it to a real repository.
 - Avoid hard-coding one stack's commands into every project
 - Convert a product plan or rough project brief into the first executable issue wave
 - Preserve the original product direction while the repo grows
+- Preserve the target user goal experience while turning plans into issues
 - Establish plan governance so product docs stay synchronized with implementation
 - Recommend vertical slice architecture as the default shape for product work
 - Make branch lifecycle visible so agents do not keep working on stale issue branches
@@ -28,6 +29,7 @@ This skill takes the shared pack and adapts it to a real repository.
 - Local backlog board when GitHub is not attached yet
 - Current-state pointer so agents do not scan the entire backlog by default
 - Cycle compaction note template or location for long-running automation
+- History archive and history index for completed issue, wave, and proof detail
 - Automation pause policy for user-blocked runs
 - Local check entrypoints for the current stack
 - Test harness registry
@@ -36,6 +38,8 @@ This skill takes the shared pack and adapts it to a real repository.
 - Primary plan, compact plan anchor, roadmap, decision log, and optional area-plan locations
 - `docs/solutions/` or equivalent solution-note directory for compound learning
 - `docs/solutions/INDEX.md` or equivalent solution index for index-first reading
+- `docs/history/` or equivalent history archive so active files stay bounded
+- `docs/history/INDEX.md` or equivalent history index for archive-first search
 - Branch lifecycle notes or checklist for `develop`, `issue/*`, merge, and return-to-`develop`
 - Worktree ignore policy such as `.worktrees/` when the repo will use local parallelism
 - Optional GitHub Actions that call the same local commands
@@ -48,6 +52,7 @@ Use these package resources when the repo needs more than the core checklist:
 - `../../OPERATING-MODEL.md` for the complete workflow model
 - `../../references/greenfield-bootstrap.md` for plan-only or empty repos
 - `../../references/plan-governance.md` for plan-first starts, plan changes, plan gaps, and plan splitting
+- `../../references/goal-experience-planning.md` when the plan needs a clearer target user experience before issue waves
 - `../../references/github-adoption.md` for hosted issue and PR setup
 - `../../references/local-backlog-policy.md` for repos without GitHub
 - `../../references/local-checks-policy.md` for local proof entrypoints
@@ -57,6 +62,7 @@ Use these package resources when the repo needs more than the core checklist:
 - `../../references/automation-governance.md` for pause-vs-delete behavior in long-running automations
 - `../../references/compound-learning.md` for `docs/solutions/` notes
 - `../../references/context-governance.md` for active-set, archive, and compaction rules
+- `../../references/history-compaction.md` for keeping `PLAN_ANCHOR.md` and `CURRENT_STATE.md` short
 - `../../references/pr-template-policy.md` for PR proof sections
 - `../../references/stack-selection.md` for early stack decisions
 - `../../references/harness-governance.md` for durable test registry policy
@@ -94,6 +100,7 @@ If the project begins with only a plan document:
 
 - pick or create the primary plan file, preferably `docs/plan/PLAN.md` when the repo has no stronger convention
 - extract a compact plan summary or anchor note
+- extract the target user goal experience before deriving the first issue wave
 - create or identify `docs/plan/PLAN_ANCHOR.md` as the first context file agents read
 - create `docs/plan/DECISIONS.md` and `docs/plan/ROADMAP.md` when sequencing or plan-change history will matter
 - defer `docs/plan/areas/` until the plan has distinct areas or becomes expensive to scan
@@ -103,6 +110,7 @@ If the project begins with only a plan document:
 - create a durable brainstorm or strategy note when the plan leaves major product choices open
 - create a current-state note that points to the active issue, current wave, and plan anchor summary
 - create a cycle compaction location or note that records macro direction, micro direction, archive moves, and next cycle decision
+- create a history archive and index location for completed issue and wave details
 - create a local proof entrypoint before starting product code
 - record the branch lifecycle rule before the first issue branch is created
 - make the first product issue a thin vertical slice whenever possible
@@ -111,9 +119,10 @@ If the project begins with only a plan document:
 The anchor summary should capture at least:
 
 - core product promise
+- target user goal experience: before state, primary product moment, after state, and user-visible proof
 - non-negotiable UX or art targets
 - target-language copy tone and native-language naturalness requirements
-- first-viewport or primary-action experience
+- first-viewport, first-session, or primary-action experience
 - MVP boundaries
 - explicit anti-goals or "not this" constraints
 
@@ -144,6 +153,7 @@ Project-specific sections may be appended below the core. Do not let custom sect
 
 - Files to scaffold
 - Plan governance structure, primary plan file, compact summary path, roadmap or decision-log paths, if applicable
+- Target user goal experience captured or missing-question handoff
 - Existing repo commands to reuse
 - New local wrapper commands, if needed
 - Optional GitHub files to add
@@ -151,6 +161,7 @@ Project-specific sections may be appended below the core. Do not let custom sect
 - Brainstorm, wave, and solution-note locations
 - Current-state pointer and context-governance expectations
 - Cycle compaction trigger and artifact location
+- History archive and history-index location
 - Automation pause policy and resume handoff location
 - Branch lifecycle expectations for dispatch, merge, and return-to-`develop`
 - Worktree policy and default local worktree path, if parallel issue delivery is expected

@@ -6,6 +6,8 @@ Issueflow projects accumulate issues, waves, brainstorms, proof, and solution no
 
 Read current pointers first. Search archives before reading them. Never bulk-load all completed issues, old waves, or all solution notes.
 
+`PLAN_ANCHOR.md` and `CURRENT_STATE.md` are active pointers, not append-only history files. If they accumulate completed issue details, compact them and move detail to history.
+
 ## Default context set
 
 For normal work, load only:
@@ -13,28 +15,30 @@ For normal work, load only:
 - backlog board or current-state pointer
 - active issue or current wave
 - plan anchor summary, not the full long plan unless needed
+- target user goal experience from the plan anchor or current-state pointer
 - current plan gaps when they are named in the anchor or current-state pointer
 - relevant test harness registry rows
 - solution index matches for the current symptom, not every solution note
 - recent proof pointer for the active issue
 - paused automation blocker and resume condition, when a run is waiting for the user
+- history index links for completed issue details, not the details themselves
 
 ## Autonomous cycle entry
 
 At the start of every autonomous cycle, load in this order:
 
 1. current-state pointer or backlog board current context
-2. plan anchor summary and current plan gaps for macro direction
+2. plan anchor summary, target user goal experience, and current plan gaps for macro direction
 3. active issue or current wave for micro direction
 4. recent proof pointer for the active lane
 5. solution index matches only
 6. archived issue, old wave, proof log, or full solution note only if the current pointer or index requires it
 
-If the current-state pointer is missing, stale, contradictory, or too broad, do a cycle compaction before choosing the next issue.
+If the current-state pointer is missing, stale, contradictory, too broad, or filled with completed issue history, do a cycle compaction before choosing the next issue.
 
 ## Archive policy
 
-Completed issues, old brainstorm notes, old waves, and previous proof details should move out of the active set. Keep summaries and links in the board or current-state note.
+Completed issues, old brainstorm notes, old waves, and previous proof details should move out of the active set. Keep summaries and links in the board or current-state note. Use `docs/history/` or the repo's equivalent archive for detailed history.
 
 Use search to retrieve archived details only when:
 
@@ -73,6 +77,8 @@ Every few autonomous cycles, at automation resume, after merge handoff, or whene
 - close or defer stale draft issues
 - update the backlog board current-state summary
 - update the compact plan anchor if plan gaps or product direction changed
+- move completed issue, wave, and proof detail to `docs/history/` or equivalent
+- update the history index
 - update wave status and next-lane pointer
 - update `docs/solutions/INDEX.md`
 - record which active issue or wave should be picked next
@@ -80,4 +86,4 @@ Every few autonomous cycles, at automation resume, after merge handoff, or whene
 
 If no next issue should start, record a concrete no-next-work rationale.
 
-Use `CYCLE-COMPACTION.template.md` when the project keeps durable compaction notes.
+Use `CYCLE-COMPACTION.template.md` when the project keeps durable compaction notes. Use [history-compaction.md](./history-compaction.md) when active files are growing from completed issue history.

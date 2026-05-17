@@ -9,6 +9,7 @@ The plan is a living contract between product intent and implementation.
 If the repo has a plan, issueflow should:
 
 - start from it when creating the first issues
+- extract the target user goal experience, not only feature scope
 - check new work against it before implementation
 - update it when approved product direction changes
 - mine it for unimplemented plan gaps during autonomous cycles
@@ -39,7 +40,7 @@ docs/plan/
 ```
 
 - `PLAN.md`: top-level source of truth, product promise, current scope, links to detail files
-- `PLAN_ANCHOR.md`: compact macro direction and current plan gaps
+- `PLAN_ANCHOR.md`: compact macro direction, target user goal experience, and current plan gaps
 - `ROADMAP.md`: milestones, waves, sequencing, deferred work
 - `DECISIONS.md`: approved plan changes and reversals
 - `areas/<area>.md`: detailed feature, domain, UX, data, or platform plan for one area
@@ -52,12 +53,15 @@ If the repo begins with only a detailed plan:
 
 1. Put or keep the plan at `docs/plan/PLAN.md` unless the user chose another primary file.
 2. Extract `docs/plan/PLAN_ANCHOR.md` from the plan.
-3. Identify the first implementable product promise.
-4. Create the first issue or wave from unimplemented plan gaps.
-5. Ensure the first wave includes at least one `core` user-visible issue unless the plan explicitly requires stabilization first.
-6. Record stack, topology, proof entrypoint, and current-state pointers before dispatch.
+3. Extract the target user goal experience: user, situation, before state, primary product moment, after state, and proof of success.
+4. Identify the first implementable product promise.
+5. Create the first issue or wave from unimplemented plan gaps.
+6. Ensure the first wave includes at least one `core` user-visible issue unless the plan explicitly requires stabilization first.
+7. Record stack, topology, proof entrypoint, and current-state pointers before dispatch.
 
 Do not require a full backlog before starting. The plan and anchor are enough to create the first wave.
+
+Use [goal-experience-planning.md](./goal-experience-planning.md) when a plan describes features but not the user's target experience.
 
 ## User requests vs plan
 
@@ -78,7 +82,7 @@ For `deviation` work, record why it is worth doing now, what would make it gradu
 
 ## Plan gaps
 
-A plan gap is a promised behavior, UX target, domain rule, platform constraint, or proof expectation that is present in the plan but absent from the live product or durable harness.
+A plan gap is a promised behavior, target user experience, UX target, domain rule, platform constraint, or proof expectation that is present in the plan but absent from the live product or durable harness.
 
 Autonomous cycles should scan for plan gaps from:
 

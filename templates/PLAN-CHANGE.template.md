@@ -17,6 +17,7 @@
 
 - Approved change:
 - Why this change is needed:
+- Target user goal experience impact:
 - Alternatives rejected:
 - Decision owner or approval source:
 
@@ -39,6 +40,7 @@
 ## Verification
 
 - Product behavior to prove:
+- Goal experience to prove:
 - UX or copy expectations:
 - Harness or proof command:
 - Merge-gate plan update required: `yes` / `no`

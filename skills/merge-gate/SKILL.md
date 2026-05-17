@@ -25,6 +25,7 @@ This skill is the approval and integration stop for `issue/* -> develop`.
 - Follow-up work discovered during implementation or QA has a durable decision: new issue(s) created or updated, explicit defer note, or explicit `no follow-up issue` rationale
 - Compound learning decision is recorded: `issue-compound` note created or updated, or explicit no-compound rationale
 - Context governance is preserved: active pointers are updated, completed artifacts are archived or summarized, and future agents are not required to bulk-load old issues or solution notes
+- History compaction is preserved: completed issue, wave, and proof details do not remain appended in `PLAN_ANCHOR.md` or `CURRENT_STATE.md`; active files keep short summaries and archive pointers only
 - If automation will continue, current-state records macro direction, micro direction, and next cycle decision
 - If automation is blocked on user input after merge or PR handoff, the existing automation is paused with a resume condition instead of deleted
 
@@ -47,6 +48,7 @@ This skill is the approval and integration stop for `issue/* -> develop`.
 - Known follow-up work exists but no next issue, updated existing issue, defer note, or no-follow-up rationale is recorded
 - Reusable learning or recurring prevention knowledge exists but no `docs/solutions/` update or no-compound rationale is recorded
 - Completed issue, wave, brainstorm, or proof artifacts still remain in the active context set without a reason
+- `PLAN_ANCHOR.md` or `CURRENT_STATE.md` keeps accumulating completed issue detail instead of compacting to history
 - A user-blocked automation was deleted instead of paused without an explicit retirement reason
 
 ## Parallel merge rule
@@ -81,6 +83,7 @@ Use `../../references/branch-lifecycle.md` and `../../references/parallel-delive
 - Plan update decision: plan gap satisfied, plan changed, decision logged, or explicit no-plan-update rationale
 - Compound decision: solution note created or updated, or explicit no-compound rationale
 - Context governance updates: current-state pointer, archive move, summary, or solution index update
+- History compaction updates: history index, archive destination, and short active-file summaries
 - Cycle compaction performed or skipped with rationale
 - Next dispatch recommendation, or a clear statement that no next issue should start yet
 - Automation continuation decision: continue, pause existing automation with resume condition, or explicitly retire/delete with rationale
@@ -95,5 +98,6 @@ Use `../../references/branch-lifecycle.md` and `../../references/parallel-delive
 - If the completed issue changed product truth, update `docs/plan/PLAN.md`, `PLAN_ANCHOR.md`, `DECISIONS.md`, the relevant area plan, or record why no plan update is needed.
 - Run `issue-compound` when the work produced reusable implementation knowledge, a failed approach worth remembering, a prevention rule, or follow-up triggers.
 - Update current-state and archive pointers so the next agent reads the active set instead of the full history.
+- If active context files have grown from completed issue history, move details to history and leave short summaries plus pointers before recommending the next dispatch.
 - If the issue closes an automation cycle or leaves many stale pointers, perform cycle compaction before recommending the next dispatch.
 - Batched, approved work moves toward `release-gate`

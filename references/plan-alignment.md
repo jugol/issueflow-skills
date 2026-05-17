@@ -22,13 +22,15 @@ Use [plan-governance.md](./plan-governance.md) when the plan should be created, 
 Capture these four things in a compact summary:
 
 1. Core product promise
-2. Non-negotiable UX, art, or interaction targets
-3. MVP boundaries
-4. Explicit anti-goals
+2. Target user goal experience
+3. Non-negotiable UX, art, or interaction targets
+4. MVP boundaries
+5. Explicit anti-goals
 
 Example:
 
 - core promise: a usable collaboration tool for planning and tracking work
+- target user goal experience: a team lead can capture a messy decision, see who owns the next step, and trust that review will not lose context
 - non-negotiable target: fast capture, clear ownership, and low-friction review
 - MVP boundary: one complete create-to-close workflow, not every reporting view
 - anti-goal: do not spend weeks on admin analytics before the primary workflow is usable
@@ -73,6 +75,7 @@ For reference-driven visual work, preserve the reference grammar as explicit imp
 Stop and realign if:
 
 - there is no live product surface that resembles the plan
+- the plan names features but not the user experience they should create
 - multiple waves improved proof, review, or admin artifacts but not the primary product
 - the current issue cannot point to a plan promise or justified deviation
 - the visual or interaction target in the plan is still absent after many completed issues

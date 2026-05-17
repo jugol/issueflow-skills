@@ -7,6 +7,13 @@
 - Current branch or worktree:
 - Next recommended action:
 
+## Active File Policy
+
+- Keep this file bounded.
+- Do not append every completed issue here.
+- Move detailed completed issue, wave, and proof history to:
+- History index:
+
 ## Automation State
 
 - Automation status: `active` / `paused` / `none`
@@ -19,6 +26,7 @@
 
 - Macro direction:
 - Plan anchor summary:
+- Target user goal experience:
 - Current plan gaps:
 - Current wave goal:
 - Drift warning:
@@ -36,11 +44,16 @@
 - Superseded brainstorms:
 - Old proof logs:
 
+## Recent Completed Summary
+
+- Keep only the last few relevant completed outcomes:
+
 ## Last Compaction
 
 - Date:
 - Trigger:
 - Done issues archived:
 - Stale drafts closed or deferred:
+- History index updated:
 - Solution index updated:
 - Next issue or no-next-work rationale:

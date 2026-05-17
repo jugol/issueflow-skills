@@ -10,6 +10,7 @@
 
 - Plan anchor summary:
 - Current product promise:
+- Target user goal experience:
 - Current plan gaps:
 - Current wave goal:
 - Drift warning:
@@ -28,11 +29,14 @@
 - Superseded brainstorms archived:
 - Old waves archived:
 - Old proof logs summarized:
+- Detailed history destination:
+- Short summaries kept in active files:
 
 ## Index Updates
 
 - Backlog board updated:
 - Current-state pointer updated:
+- History index updated:
 - Solution index updated:
 - Test harness registry pointer updated:
 

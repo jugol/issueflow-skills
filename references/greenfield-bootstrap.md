@@ -5,6 +5,7 @@ Greenfield projects need a slightly different bootstrap than mature repos.
 ## First deliverables
 
 - plan anchor summary
+- target user goal experience summary
 - plan governance structure when the project starts from a plan
 - experience direction summary for user-facing products
 - stack decision

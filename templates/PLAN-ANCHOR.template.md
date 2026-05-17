@@ -6,10 +6,27 @@
 - Detail files:
 - Roadmap file:
 - Decision log:
+- History index:
+
+## Active File Policy
+
+- Keep this file bounded.
+- Do not append completed issue details here.
+- Keep only current macro direction, current plan gaps, and archive pointers.
 
 ## Core Promise
 
 -
+
+## Target User Goal Experience
+
+- Target user and situation:
+- Before state or pain:
+- Primary product moment:
+- After state or success feeling:
+- What the user can do, understand, decide, feel, or trust:
+- First successful session or workflow:
+- User-visible proof of the experience:
 
 ## Non-Negotiable Targets
 
@@ -41,6 +58,16 @@
 ## Current Plan Gaps
 
 - 
+
+## Recent Completed Summary
+
+- Keep only the last few relevant completed outcomes:
+
+## History Pointers
+
+- Completed issue details:
+- Completed wave details:
+- Old proof logs:
 
 ## Next Wave Must Advance
 

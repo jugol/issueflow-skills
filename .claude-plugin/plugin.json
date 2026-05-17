@@ -1,7 +1,7 @@
 {
   "name": "issueflow",
   "description": "Issue-driven Git Flow-lite workflow skills for Claude Code.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "Issueflow Skills Contributors"
   },

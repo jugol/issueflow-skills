@@ -20,6 +20,7 @@
 - Current plan gaps:
 - Current-state note:
 - Solution index:
+- History index:
 - Paused automation:
 - Resume condition:
 
@@ -34,3 +35,4 @@
 - Every merge request cites local proof
 - Every completed issue records integration status, conflict notes, integrated proof, and return-to-develop status
 - Active context stays small: read current pointers first, search archives only when needed
+- Completed issue details move to history; active files keep summaries and pointers only
