@@ -89,7 +89,7 @@ Issueflow prefers vertical slices for product work. A good product issue should 
 
 This does not mean every issue should be tiny. It means the issue should be large enough to justify branch, proof, and merge overhead while still pointing toward one real product outcome instead of drifting into isolated layer work.
 
-For autonomous waves, the main agent should act as scheduler and integrator, delegating independent implementation lanes when available and allowed.
+For autonomous waves, the main agent should act as scheduler and integrator, delegating independent implementation lanes when subagents are explicitly authorized.
 
 Layer-first work is still valid when it is needed, but it should be named honestly:
 

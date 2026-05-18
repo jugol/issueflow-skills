@@ -13,7 +13,7 @@ Default to a medium vertical slice: one meaningful user-visible or support outco
 
 ## Main agent role
 
-In autonomous wave work, the main agent is primarily the scheduler, issue creator, dispatcher, reviewer, and integrator. Its first responsibility is to actively maximize safe parallelism: find as many non-overlapping lanes as safely practical, assign them to subagents when allowed, and reserve direct implementation for single-lane work or blocking coordination.
+In autonomous wave work, the main agent is primarily the scheduler, issue creator, dispatcher, reviewer, and integrator. Its first responsibility is to actively maximize safe parallelism: find as many non-overlapping lanes as safely practical, assign them to subagents when explicitly authorized, and reserve direct implementation for explicitly recorded no-safe-delegation cases.
 
 It should:
 
@@ -60,7 +60,7 @@ Split an issue or turn it into a wave when it contains two or more user-visible 
 
 Autonomous cycles should prefer a wave when at least two independent candidate issues exist. A one-issue wave is usually a scheduling failure: either make it a single issue, scan for additional non-overlapping candidates, or record a concrete no-wave rationale.
 
-A useful wave usually has two to five active lanes. Group larger batches by dependency, package, milestone, or user goal.
+A useful wave usually has two to five active lanes. Treat that as the active-lane budget unless repo policy says otherwise; keep additional candidates as drafts until capacity and merge order are clear.
 
 If a scan finds only one tiny candidate, look once for adjacent plan gaps, proof gaps, feedback items, or compound-learning triggers that can form a meaningful medium issue or a small wave. Do not fabricate work just to fill a wave.
 
@@ -72,10 +72,10 @@ Use worktree-first scheduling when two or more lanes have disjoint ownership and
 
 During a wave, keep the root checkout on `develop` for scheduling and integration. Each implementation lane gets its own worktree and `issue/*` branch.
 
-When subagents are allowed, give each worker issue id, worktree/branch path, owned paths, out-of-scope boundaries, root-checkout prohibition, other-worker context, reasoning effort, proof command, dependency/restack notes, and expected summary format.
+When subagents are explicitly authorized, give each worker issue id, worktree/branch path, owned paths, out-of-scope boundaries, root-checkout prohibition, other-worker context, reasoning effort, proof command, dependency/restack notes, and expected summary format.
 
 The main agent should keep a scheduler board for the wave and avoid waiting on a single lane when other lanes can proceed independently.
 
-While subagents are running, the main agent should do read-only next-issue discovery: scan plan gaps, backlog, recent proof, feedback, and solution triggers for candidates that do not overlap active lanes. It may draft candidates or a next-wave proposal, but must not dispatch or edit files that conflict with active worker ownership until the current merge order is clear.
+While subagents are running, the main agent should do read-only next-issue discovery: scan plan gaps, backlog, recent proof, feedback, and solution triggers for candidates that do not overlap active lanes. It may draft candidates or a next-wave proposal, but must not dispatch more workers unless authorization, active-lane budget, non-overlap, and merge order are clear. Use `wait_agent` only after safe scheduler work is exhausted or blocked.
 
 Serialize instead of parallelizing when lanes touch the same file, root registry, shared schema, generated fixture, golden baseline, root proof wrapper, or unresolved shared contract.

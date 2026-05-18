@@ -1,7 +1,7 @@
 {
   "name": "issueflow",
-  "description": "Issue-driven Git Flow-lite workflow skills for Claude Code.",
-  "version": "0.3.5",
+  "description": "Issue-driven Git Flow-lite workflow skills for Claude Code, including autonomous cycles, parallel worktree scheduling, and compound learning.",
+  "version": "0.3.6",
   "author": {
     "name": "Issueflow Skills Contributors"
   },

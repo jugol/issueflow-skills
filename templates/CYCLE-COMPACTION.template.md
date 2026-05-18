@@ -44,6 +44,7 @@
 
 - Next issue or wave:
 - Worktree or serialization note:
+- Subagent authorization and active lane budget:
 - Automation action: `continue` / `pause-existing` / `no-automation`
 - If paused, blocker and resume condition:
 - No-next-work rationale, if none:

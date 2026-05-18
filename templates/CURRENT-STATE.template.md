@@ -22,6 +22,13 @@
 - Resume condition:
 - Next step after resume:
 
+## Delegation Policy
+
+- Subagent authorization: `explicitly-allowed` / `not-allowed` / `needs-user-approval`
+- Authorization source:
+- Active lane budget:
+- Scheduler may dispatch additional non-overlapping lanes: `yes` / `no`
+
 ## Active Context Set
 
 - Macro direction:

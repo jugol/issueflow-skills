@@ -98,7 +98,7 @@ Small compatible edits can update `PLAN.md` directly, but the change should stil
 Agents should read plan artifacts in this order:
 
 1. `PLAN_ANCHOR.md`
-2. `CURRENT-STATE.md`
+2. `CURRENT_STATE.md`
 3. relevant section of `PLAN.md`
 4. relevant `areas/<area>.md`
 5. `ROADMAP.md` or `DECISIONS.md` only when sequencing or plan-change history matters

@@ -106,7 +106,7 @@ claude plugin update issueflow@issueflow-skills
 Use a release tag when a computer should stay pinned until you intentionally move it:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.4
+codex plugin marketplace add <owner>/issueflow-skills --ref v<version>
 ```
 
 See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
@@ -139,7 +139,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - Feature requests go through interactive brainstorming when the direction is ambiguous.
 - Imprecise user requests should trigger focused clarification before implementation-critical assumptions become issue scope.
 - Automation and continuation cycles actively scan for follow-up issues and waves.
-- Autonomous waves should use the main agent as scheduler/integrator and delegate independent lanes when allowed.
+- Autonomous waves should use the main agent as scheduler/integrator and delegate independent lanes when subagents are explicitly authorized.
 - During a wave, the root checkout should stay on `develop`; issue branches should live in separate worktrees.
 - User-blocked automations should be paused with a resume condition, not deleted.
 - Independent wave lanes should prefer worktrees when ownership and proof are separable.

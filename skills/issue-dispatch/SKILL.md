@@ -1,6 +1,6 @@
 ---
 name: issue-dispatch
-description: Dispatch implementation-ready issues into Git Flow-lite work branches from develop, decide whether multiple issues can run in parallel safely, and preserve isolation through issue-scoped ownership.
+description: Dispatch implementation-ready issues into Git Flow-lite branches or worktrees from develop, decide parallel lane safety, record explicit subagent authorization, schedule worker handoffs, keep the root checkout as coordinator, and preserve issue-scoped ownership.
 ---
 
 # issue-dispatch
@@ -11,6 +11,8 @@ Dispatch only from a green `develop` baseline and an intake-ready issue.
 
 Before any code edit on an issue branch, decide whether the lane can be delegated as one bounded worker task. If yes, dispatch the worker and keep the root checkout as coordinator/integrator; if no, record the no-safe-delegation rationale before editing.
 
+After dispatch, the main agent should keep scheduling instead of waiting by default: update the scheduler board, scan read-only for non-overlapping next candidates, and prepare safe follow-up lanes. Call `wait_agent` only when all safe scheduler actions are exhausted or blocked on worker output. Additional lane dispatch needs explicit subagent authorization, active-lane budget, and non-overlap with current worker ownership.
+
 ## Preconditions
 
 - Green `develop` baseline, intake-ready issue, known repo-local proof commands.
@@ -18,6 +20,7 @@ Before any code edit on an issue branch, decide whether the lane can be delegate
 - Plan relationship is explicit; extensions/conflicts already have plan update, decision entry, or plan-change note.
 - Issue shape is a vertical slice, or support/contract-first with a downstream core slice.
 - Wave lanes name owner, proof command, dependency, and worktree or serialization decision.
+- Subagent authorization is explicit when workers will be used; if missing, ask, pause, or record no-delegation before dispatch.
 
 ## Branching and worktree rules
 
@@ -58,7 +61,7 @@ For waves, prefer `.worktrees/` or the repo's established worktree location; con
 
 When worktrees are used, keep the root checkout on `develop`. It coordinates status, proof review, queue order, merge-gate, and integration.
 
-When subagents are allowed, dispatch independent lanes with issue id, worktree path, owned paths, out-of-scope boundaries, proof command, dependency notes, and expected summary format. Use `high` reasoning effort by default for implementation, QA, review, intake, scope investigation, and scheduling-influencing workers, even when read-only; use `medium` only for trivial lanes that cannot affect issue shape or wave scheduling. Worker prompts must say the worker is not alone, must use only the assigned worktree, must not touch the root `develop` checkout, and must not revert other workers' changes.
+When subagents are explicitly authorized, dispatch independent lanes with issue id, worktree path, owned paths, out-of-scope boundaries, proof command, dependency notes, and expected summary format. Use `high` reasoning effort by default for implementation, QA, review, intake, scope investigation, and scheduling-influencing workers, even when read-only; use `medium` only for trivial lanes that cannot affect issue shape or wave scheduling. Worker prompts must say the worker is not alone, must use only the assigned worktree, must not touch the root `develop` checkout, and must not revert other workers' changes.
 
 Serialize when lanes touch shared contracts: root wrapper scripts, shared schema modules, generated fixtures/golden baselines, root proof registries, or a contract provider already consumed by downstream lanes without revalidation.
 
@@ -70,8 +73,8 @@ When live feedback produces multiple product-facing failures, create one correct
 
 - Branch/workspace: branch name, current branch, base `develop` snapshot, worktree decision, scheduler checkout path, return-to-`develop` note.
 - Scope: owner skill, expected files/areas, vertical slice or support rationale, plan classification, drift warning, and plan-change status.
-- Scheduling: parallel/serialized decision, wave id, non-overlap scan, one-issue wave rationale if any.
-- Delegation: subagent assignment or no-delegation rationale, worker effort, root-checkout and other-worker guardrails.
+- Scheduling: parallel/serialized decision, wave id, active-lane budget, non-overlap scan, one-issue wave rationale if any.
+- Delegation: subagent authorization source, assignment or no-delegation rationale, worker effort, root-checkout and other-worker guardrails.
 - Proof: required QA skill, lane proof command, UI aesthetic/native-copy owner when screens or visible text change.
 
 ## Hand-off routing

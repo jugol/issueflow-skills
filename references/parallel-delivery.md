@@ -28,7 +28,7 @@ The major speed advantage of the workflow is parallel issue execution, not unsaf
 - optional wave record that lists issue ids, owned paths, proof commands, and merge notes
 - never reuse one `issue/*` branch for later issues
 
-For autonomous waves, the main agent schedules and integrates from the root `develop` checkout rather than becoming the sole implementation lane. Delegate independent lanes when subagents are available and policy allows.
+For autonomous waves, the main agent schedules and integrates from the root `develop` checkout rather than becoming the sole implementation lane. Delegate independent lanes when subagents are explicitly authorized by user or project policy.
 
 ## Strong pattern for monorepos
 

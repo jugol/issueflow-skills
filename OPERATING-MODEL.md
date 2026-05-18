@@ -48,7 +48,7 @@ Issueflow is not only a single-issue executor. It is an issue discovery, plannin
 
 Use the Autonomous Cycle Track when automation, a user, or a completed merge asks the agent to continue. Scan the plan anchor, current plan gaps, backlog, failing tests, review findings, playtest feedback, recent proof, and `docs/solutions/`. Create follow-up issues or waves when concrete next work is visible; record a no-follow-up rationale when it is not.
 
-Autonomous cycles should avoid one tiny issue per run. Prefer medium vertical-slice issues and wave-first scheduling; the main agent should first look for non-overlapping lanes to delegate before doing implementation itself.
+Autonomous cycles should avoid one tiny issue per run. Prefer medium vertical-slice issues and wave-first scheduling; the main agent should first look for non-overlapping lanes to delegate and only implement directly with a recorded no-safe-delegation rationale.
 
 When an automation cannot continue without user input, approval, credentials, or a product/policy decision, pause the existing automation instead of deleting it. Record the blocker, question, current issue or wave, branch/worktree, proof pointer, resume condition, and next step in the current-state or cycle compaction artifact.
 
@@ -290,7 +290,7 @@ An issue branch that passed local proof but has not entered `develop` is merge-r
 
 Independent issues should be implemented in parallel whenever ownership is truly disjoint.
 
-The default autonomous wave shape is scheduling-first: the root checkout stays on `develop`, the main agent coordinates from there, and implementation lanes run in separate worktrees when the environment and project policy permit.
+The default autonomous wave shape is scheduling-first: the root checkout stays on `develop`, the main agent coordinates from there, and implementation lanes run in separate worktrees when subagents/worktrees are explicitly authorized by the user or project policy.
 
 Their merge path should still be controlled:
 

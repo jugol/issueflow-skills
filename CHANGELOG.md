@@ -4,6 +4,11 @@
 
 - No changes yet.
 
+## 0.3.6 - 2026-05-19
+
+- Clarify that the main thread keeps doing read-only scheduler work after worker dispatch and should call `wait_agent` only when blocked.
+- Tighten trigger metadata, subagent authorization records, wave direct-implementation exceptions, brainstorm handoff, current-state naming, and active-lane budget controls.
+
 ## 0.3.5 - 2026-05-18
 
 - Clarify main-thread delegation as a hard gate before issue code edits, including implementation-skill guards and serialized-vs-delegated wave wording.

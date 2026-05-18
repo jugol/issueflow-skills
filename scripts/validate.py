@@ -11,6 +11,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$")
+MARKDOWN_LINK_RE = re.compile(r"\]\(([^)]+)\)")
 TEXT_EXTENSIONS = {
     ".json",
     ".md",
@@ -245,6 +247,50 @@ def validate_claude_marketplace(errors: list[str]) -> None:
             fail(errors, f"Claude marketplace entry {name} source must be string or object")
 
 
+def validate_version_consistency(errors: list[str]) -> None:
+    manifests = [
+        ROOT / ".codex-plugin" / "plugin.json",
+        ROOT / ".claude-plugin" / "plugin.json",
+        ROOT / ".claude-plugin" / "marketplace.json",
+    ]
+    versions: dict[str, str] = {}
+
+    for path in manifests:
+        data = load_json(path, errors)
+        version = data.get("version")
+        if not version or not SEMVER_RE.match(str(version)):
+            fail(errors, f"{path.relative_to(ROOT)} must contain a semantic version")
+            continue
+        versions[str(path.relative_to(ROOT))] = str(version)
+
+    if len(set(versions.values())) > 1:
+        joined = ", ".join(f"{path}={version}" for path, version in sorted(versions.items()))
+        fail(errors, f"plugin versions must match: {joined}")
+
+
+def validate_markdown_links(errors: list[str]) -> None:
+    for path in ROOT.rglob("*.md"):
+        if ".git" in path.parts:
+            continue
+
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        for match in MARKDOWN_LINK_RE.finditer(text):
+            target = match.group(1).split("#", 1)[0].strip()
+            if not target or target.startswith(("#", "http://", "https://", "mailto:")):
+                continue
+            if "://" in target:
+                continue
+
+            resolved = (path.parent / target).resolve()
+            try:
+                resolved.relative_to(ROOT.resolve())
+            except ValueError:
+                fail(errors, f"{path.relative_to(ROOT)} links outside repo: {target}")
+                continue
+            if not resolved.exists():
+                fail(errors, f"{path.relative_to(ROOT)} has broken link: {target}")
+
+
 def validate_no_local_content(errors: list[str]) -> None:
     for path in ROOT.rglob("*"):
         if ".git" in path.parts or not path.is_file() or path.suffix not in TEXT_EXTENSIONS:
@@ -264,6 +310,8 @@ def main() -> int:
     validate_claude_plugin(errors)
     validate_marketplace(errors)
     validate_claude_marketplace(errors)
+    validate_version_consistency(errors)
+    validate_markdown_links(errors)
     validate_no_local_content(errors)
 
     if errors:

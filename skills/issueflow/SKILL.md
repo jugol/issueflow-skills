@@ -1,6 +1,6 @@
 ---
 name: issueflow
-description: Umbrella entrypoint for the issueflow pack. Use when the user wants to adopt or follow the Git Flow-lite issue-driven workflow, including plan-first starts, plan governance, vertical-slice issue delivery, two-track planning, and compound learning, but has not named the exact sub-skill yet.
+description: Umbrella entrypoint for the issueflow pack. Use when the user wants to adopt or follow Git Flow-lite issue-driven work, continue or iterate an autonomous cycle, schedule parallel subagent/worktree lanes, dispatch next issues, govern a plan-first project, or run issue discovery, proof, merge, and compound learning without naming a narrower sub-skill.
 ---
 
 # issueflow
@@ -9,7 +9,9 @@ This is the front door to the pack.
 
 ## Main-thread delegation contract
 
-In autonomous implementation cycles, the main thread is the scheduler, reviewer, integrator, and merge-gate owner. Before editing issue code, either delegate a bounded lane to a worker when subagents are allowed, or record a no-safe-delegation rationale. `Serialized` controls merge/dependency order; it is not permission for main-thread implementation.
+In autonomous implementation cycles, the main thread is the scheduler, reviewer, integrator, and merge-gate owner. Before editing issue code, either delegate a bounded lane to a worker when subagents are explicitly authorized, or record a no-safe-delegation rationale. `Serialized` controls merge/dependency order; it is not permission for main-thread implementation.
+
+After dispatching workers, do not idle by default. Keep doing read-only scheduler work: update the wave board/current-state, scan for non-overlapping next-issue candidates, and prepare follow-up lanes. Use `wait_agent` only when the next main-thread action is blocked on worker output. Do not dispatch extra lanes until subagent authorization, active-lane budget, and non-overlap with current worker ownership are explicit.
 
 ## Routing
 
@@ -30,7 +32,7 @@ In autonomous implementation cycles, the main thread is the scheduler, reviewer,
 
 Load package-level references only when the task needs deeper guidance. Paths are relative to this `SKILL.md`:
 
-- Operating model: `../../OPERATING-MODEL.md`
+- Operating model: `../../OPERATING-MODEL.md` only for full workflow design, onboarding docs, or unresolved policy conflicts
 - Plan truth: `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`
 - Track/intake: `../../references/two-track-routing.md`, `../../references/interactive-brainstorming.md`
 - Autonomous scheduling: `../../references/autonomous-wave-generation.md`, `../../references/issue-sizing-and-scheduling.md`, `../../references/parallel-delivery.md`
@@ -57,6 +59,7 @@ If the user asks broadly how to use the workflow in a repo, start with `repo-boo
 - Keep active context small. Search archives before opening them; never bulk-load completed issues, old waves, superseded brainstorms, old proof logs, or all solution notes.
 - Keep `PLAN_ANCHOR.md` and `CURRENT_STATE.md` bounded: short summaries and links only; move completed issue, wave, and proof detail to `docs/history/` or equivalent.
 - Prefer medium vertical-slice issues and wave-first scheduling. Avoid one tiny issue at a time; use `issue-sizing-and-scheduling.md` when sizing or delegation is unclear.
+- For parallel work, read the current-state or wave subagent authorization policy before dispatch; if unclear and workers are needed, ask or pause instead of assuming.
 - If automation needs user input, approval, credentials, or product/policy choice, pause the existing automation instead of deleting it. Record blocker, question, active work, branch/worktree, proof pointer, resume condition, and next step.
 
 ## Plan and product truth

@@ -21,6 +21,7 @@ Use a local backlog when GitHub issues are not attached yet.
 - gives autonomous cycles somewhere durable to place next-issue and wave candidates
 - lets agents start from current pointers instead of reading every old issue
 - lets AI agents work against durable local issue files
+- records subagent authorization so parallel work does not depend on guesswork
 
 ## Rule
 
@@ -38,7 +39,7 @@ Local issues should still carry:
 - branch, base snapshot, and merge/return-to-develop status
 - origin: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`
 
-The current-state file should name only the active issue or wave, plan anchor summary, current plan gaps, recent proof pointer, and relevant solution index entries. It should not duplicate the whole backlog or full plan.
+The current-state file should name only the active issue or wave, plan anchor summary, current plan gaps, recent proof pointer, relevant solution index entries, and subagent authorization policy. It should not duplicate the whole backlog or full plan.
 
 Keep the active issue set intentionally small enough to scan.
 

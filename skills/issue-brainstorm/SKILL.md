@@ -49,4 +49,4 @@ Use this before implementation when the user describes a feature, product behavi
 - Plan relationship and plan update decision
 - Recommended approach and rejected alternatives
 - Single-issue or wave decision
-- Handoff target: `issue-raise`, `issue-intake`, or `issue-dispatch`
+- Handoff target: `issue-raise`, with a wave draft when needed. Do not jump directly to `issue-intake` or `issue-dispatch` unless an implementation-ready issue already exists.

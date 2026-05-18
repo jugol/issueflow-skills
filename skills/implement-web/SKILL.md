@@ -1,6 +1,6 @@
 ---
 name: implement-web
-description: Implement a web issue inside approved scope while strengthening the durable test harness. Use for browser-based product work that must land with Playwright-backed evidence before merging into develop.
+description: Implement a web issue inside approved scope while strengthening the durable test harness. Use for browser-based product work that must land with Playwright-backed evidence before merging into develop, and to enforce that a main-thread autonomous cycle delegates to workers unless issue-dispatch recorded a no-safe-delegation rationale.
 ---
 
 # implement-web

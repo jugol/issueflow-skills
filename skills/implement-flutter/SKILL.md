@@ -1,6 +1,6 @@
 ---
 name: implement-flutter
-description: Implement a Flutter issue inside approved scope while growing the long-lived widget, integration, and visual harness. Use for Flutter product work that must land with deterministic test evidence before merging into develop.
+description: Implement a Flutter issue inside approved scope while growing the long-lived widget, integration, and visual harness. Use for Flutter product work that must land with deterministic test evidence before merging into develop, and to enforce that a main-thread autonomous cycle delegates to workers unless issue-dispatch recorded a no-safe-delegation rationale.
 ---
 
 # implement-flutter

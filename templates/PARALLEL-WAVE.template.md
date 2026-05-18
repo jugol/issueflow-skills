@@ -28,15 +28,16 @@ planned
 
 ## Scheduler Plan
 
-- Main agent role: scheduler / integrator / direct implementation lane
+- Main agent role: scheduler / integrator. Direct implementation only with no-safe-delegation rationale.
 - Non-overlap lane scan:
-- Main-agent direct implementation rationale, if any:
+- Main-agent direct implementation exception rationale, if any:
 - Why this is a wave instead of one serial issue:
 - One-issue wave rationale, if applicable:
 - Serialization scope: `merge-order` / `dependency-order` / `fully-serialized`
 - Tiny findings combined before dispatch:
 - Oversized candidates split before dispatch:
 - Target active lane count:
+- Active lane budget before adding more workers:
 
 ## Worktree Plan
 
@@ -48,7 +49,8 @@ planned
 - Worker prompt guardrail: assigned worktree only, no root checkout edits, no other-worker reversions
 - Worker reasoning effort: `high` default / `medium` only with trivial-lane and no-scope-impact rationale
 - `<issue-id>` -> `<worktree path or serialize>`
-- Subagent policy: `allowed` / `not allowed` / `needs user approval`
+- Subagent authorization: `explicitly-allowed` / `not-allowed` / `needs-user-approval`
+- Authorization source:
 - `<issue-id>` -> `<subagent assignment or no-delegation rationale>`
 - `<issue-id>` -> `<subagent assignment or no-delegation rationale>`
 
@@ -82,5 +84,6 @@ planned
 
 - Main-agent wait-time discovery:
 - Candidate overlap with active lanes:
+- Wait condition, if blocked on worker output:
 - Signals to re-check after merge:
 - Follow-up issue rule:

@@ -17,7 +17,7 @@ python scripts/validate.py
 4. Bump the plugin version:
 
 ```bash
-python scripts/release.py 0.3.4
+python scripts/release.py <version>
 ```
 
 The release script updates both Codex and Claude plugin manifests.
@@ -26,8 +26,8 @@ The release script updates both Codex and Claude plugin manifests.
 
 ```bash
 git add .
-git commit -m "Release issueflow 0.3.4"
-git tag v0.3.4
+git commit -m "Release issueflow <version>"
+git tag v<version>
 git push origin main --tags
 ```
 
@@ -66,7 +66,7 @@ macOS or Linux cron example:
 Use a pinned ref such as a release tag when stability matters more than immediate updates:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.4
+codex plugin marketplace add <owner>/issueflow-skills --ref v<version>
 ```
 
 Use `main` when every computer should track the latest maintained version.
@@ -95,5 +95,5 @@ claude plugin update issueflow@issueflow-skills
 To pin to a release tag, add the marketplace with a ref:
 
 ```bash
-claude plugin marketplace add jugol/issueflow-skills@v0.3.4
+claude plugin marketplace add jugol/issueflow-skills@v<version>
 ```

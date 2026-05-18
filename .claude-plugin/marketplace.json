@@ -3,8 +3,8 @@
   "owner": {
     "name": "Issueflow Skills Contributors"
   },
-  "description": "Issueflow skills and workflow plugins for Claude Code.",
-  "version": "0.3.5",
+  "description": "Issueflow skills and workflow plugins for Claude Code, including autonomous cycles and parallel worktree scheduling.",
+  "version": "0.3.6",
   "plugins": [
     {
       "name": "issueflow",
@@ -13,7 +13,7 @@
         "repo": "jugol/issueflow-skills",
         "ref": "main"
       },
-      "description": "Issue-driven Git Flow-lite workflow skills for Claude Code.",
+      "description": "Issue-driven Git Flow-lite workflow skills for Claude Code, including autonomous cycles and parallel worktree scheduling.",
       "author": {
         "name": "Issueflow Skills Contributors"
       },
