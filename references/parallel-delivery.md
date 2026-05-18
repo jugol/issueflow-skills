@@ -20,12 +20,15 @@ The major speed advantage of the workflow is parallel issue execution, not unsaf
 ## Recommended model
 
 - one issue branch per issue
-- one vertical slice per product issue when possible
+- one medium vertical slice per product issue when possible
 - worktree-first local parallelism when two or more lanes are independent
+- root checkout stays on `develop` as the scheduler/integration checkout during a wave
 - disjoint ownership when possible
 - merge queue or auto-merge with revalidation into `develop`
 - optional wave record that lists issue ids, owned paths, proof commands, and merge notes
 - never reuse one `issue/*` branch for later issues
+
+For autonomous waves, the main agent schedules and integrates from the root `develop` checkout rather than becoming the sole implementation lane. Delegate independent lanes when subagents are available and policy allows.
 
 ## Strong pattern for monorepos
 

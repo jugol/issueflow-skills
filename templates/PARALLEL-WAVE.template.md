@@ -26,12 +26,25 @@ planned
 - `<issue-id>` -> `<owned paths or package>`
 - `<issue-id>` -> `<owned paths or package>`
 
+## Scheduler Plan
+
+- Main agent role: scheduler / integrator / direct implementation lane
+- Why this is a wave instead of one serial issue:
+- Tiny findings combined before dispatch:
+- Oversized candidates split before dispatch:
+- Target active lane count:
+
 ## Worktree Plan
 
+- Scheduler checkout path:
+- Scheduler checkout remains on `develop`: `yes` / `no`
+- Base `develop` snapshot:
 - Default worktree root:
 - Worktree ignored or repo-approved: `yes` / `no`
 - `<issue-id>` -> `<worktree path or serialize>`
 - Subagent policy: `allowed` / `not allowed` / `needs user approval`
+- `<issue-id>` -> `<subagent assignment or no-delegation rationale>`
+- `<issue-id>` -> `<subagent assignment or no-delegation rationale>`
 
 ## Slice Boundaries
 

@@ -43,7 +43,7 @@ Use this sequence for a normal issue:
 5. Record the base snapshot or commit.
 6. Implement only the approved issue scope.
 
-If parallel work is needed, create separate issue branches or worktrees from `develop`. Do not multiplex unrelated issues inside one branch.
+If parallel work is needed, keep the root checkout on `develop` and create separate issue branches in worktrees from that base. Do not multiplex unrelated issues inside one branch or keep switching the root checkout between lanes.
 
 ## Finish sequence
 

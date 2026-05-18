@@ -28,7 +28,7 @@ Issueflow is not meant to add paperwork for its own sake. The goal is to keep th
 
 Issueflow uses two planning tracks.
 
-The Autonomous Cycle Track is for automation, repeated iterations, post-merge follow-up, failing tests, review findings, and batches of playtest or user feedback. The agent scans durable signals instead of waiting for the user to name every next issue. When two or more independent findings exist, it creates a wave instead of one oversized issue.
+The Autonomous Cycle Track is for automation, repeated iterations, post-merge follow-up, failing tests, review findings, and batches of playtest or user feedback. The agent scans durable signals instead of waiting for the user to name every next issue. It should combine related tiny findings into medium vertical-slice issues and create waves when independent lanes exist.
 
 When an automation needs user input, approval, credentials, or a product decision, it should pause the existing automation and record the resume condition instead of deleting it.
 
@@ -85,9 +85,11 @@ A branch that has passed proof but has not entered `develop` is merge-ready, not
 
 ## Vertical Slice Bias
 
-Issueflow prefers vertical slices for product work. A good product issue should usually deliver one thin user-visible behavior across the necessary domain, contract, runtime, UI, and proof surfaces.
+Issueflow prefers vertical slices for product work. A good product issue should usually deliver one medium user-visible behavior across the necessary domain, contract, runtime, UI, and proof surfaces.
 
-This does not mean every issue must be large. It means the issue should point toward a real product outcome instead of drifting into isolated layer work.
+This does not mean every issue should be tiny. It means the issue should be large enough to justify branch, proof, and merge overhead while still pointing toward one real product outcome instead of drifting into isolated layer work.
+
+For autonomous waves, the main agent should act as scheduler and integrator, delegating independent implementation lanes when available and allowed.
 
 Layer-first work is still valid when it is needed, but it should be named honestly:
 

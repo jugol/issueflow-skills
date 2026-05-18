@@ -26,10 +26,12 @@ Dispatch work only when the baseline is green and the issue is ready.
 - Branch from `develop`
 - Use isolated worktrees when multiple issues run in parallel
 - Use worktree-first dispatch when two or more lanes have disjoint ownership and separable proof commands
+- For wave dispatch, keep the root checkout on `develop` as the scheduler/integration checkout; create each `issue/*` branch inside its own worktree
 - If two issues touch the same files or same feature slice, serialize them
 - Prefer one branch per vertical slice for product work
 - Never dispatch a new issue from an existing `issue/*` branch
 - If already on `issue/*`, block dispatch unless that branch matches the same issue id
+- In autonomous wave work, keep the main agent in the scheduler/integrator role when independent implementation lanes can be delegated
 
 ## Branch lifecycle
 
@@ -79,9 +81,13 @@ When the repo has multiple packages or services, prefer package-lane dispatch:
 - if one lane defines a shared contract for the others, mark it as `contract-first`
 - if a support lane is dispatched before its consumer, name the downstream vertical slice and expected restack point
 
-Use `../../references/parallel-delivery.md` and `../../templates/PARALLEL-WAVE.template.md` when dispatching a multi-issue wave.
+Use `../../references/parallel-delivery.md`, `../../references/issue-sizing-and-scheduling.md`, and `../../templates/PARALLEL-WAVE.template.md` when dispatching a multi-issue wave.
 
 For wave dispatch, prefer `.worktrees/` or the repo's established worktree location. Confirm it is ignored or otherwise safe before creating local worktrees. If worktrees are not safe, serialize or use the repo-approved parallelism policy.
+
+When worktrees are used, do not switch the root checkout away from `develop` for lane implementation. The root checkout coordinates status, proof review, queue order, merge-gate, and integration.
+
+When subagents are available and policy allows them, dispatch independent wave lanes with issue id, worktree path, owned paths, out-of-scope boundaries, proof command, dependency notes, and expected summary format. The main agent tracks lane status, proof, conflicts, and merge order.
 
 Serialize instead of parallelizing when issues change shared contracts such as:
 
@@ -119,6 +125,8 @@ When a live playtest or user report produces multiple product-facing failures:
 - Current branch before dispatch
 - Base `develop` snapshot
 - Worktree-first decision and lane paths when this is a wave
+- Scheduler checkout path and confirmation that it remains on `develop`
+- Subagent delegation plan or no-delegation rationale when this is a wave
 - Post-merge return-to-`develop` note
 
 ## Hand-off routing

@@ -29,6 +29,7 @@ What is wrong, who is affected, and what concrete evidence exists.
 - Domain / contract path:
 - Product surface:
 - If support-only or contract-first, downstream core slice:
+- Size rationale: `<medium vertical slice | combined tiny findings | intentionally small because ...>`
 
 ## UX / Visual Direction
 
@@ -76,6 +77,7 @@ What is wrong, who is affected, and what concrete evidence exists.
 - Integration status: `not-started` / `merge-ready` / `merged-to-develop` / `pr-open`
 - Conflict resolution notes:
 - Integrated proof on develop:
+- Compound decision:
 - Checkout returned to develop: `yes` / `no`
 - What the next session must know:
 - Already done at:

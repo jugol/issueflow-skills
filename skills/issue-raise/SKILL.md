@@ -18,14 +18,14 @@ Turn rough problem statements into durable issues. This skill is conversational 
 7. If a project plan exists, map the issue to the relevant plan promise, requirement, or constraint.
 8. Classify the plan relationship as `aligned`, `extension`, `conflict`, or `deviation`.
 9. If the issue extends or conflicts with the plan, require a plan update, decision-log entry, or plan-change note before dispatch.
-10. Shape product work as a vertical slice by default: name the target goal experience advanced, the user-visible result, the needed domain or contract path, and the proof path.
+10. Shape product work as a medium vertical slice by default: name the target goal experience advanced, the user-visible result, the needed domain or contract path, and the proof path.
 11. For UI work, capture the experience direction: audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone or target language, and anti-dashboard or no-debug-copy constraints.
 12. If the issue is support-only or contract-first, name the nearby core slice it enables.
 13. Suggest labels, branch slug, and the likely owning implementation or QA skill.
 14. If the repo and auth context are available, prepare the issue for GitHub creation or create it directly after user confirmation.
 15. If GitHub is not available, write the issue draft into the repo's chosen backlog location without changing the structure of the issue.
 
-If the user report clearly contains multiple distinct failures, split them into separate issues that can be verified independently.
+If the user report clearly contains multiple distinct failures, split them into separate issues that can be verified independently. If the report contains several tiny findings that share the same outcome, owner, and proof command, combine them into one medium issue instead of creating atomized issue overhead.
 
 If the work came from `issue-brainstorm`, preserve the approved approach and rejected alternatives. If it came from an autonomous scan, record the origin signal such as failing test, review finding, playtest feedback, or compound-learning trigger.
 
@@ -33,7 +33,7 @@ If a direct coding session already changed files before this step was applied, b
 
 ## Fan-out check
 
-Create multiple issues instead of one when findings differ by user-visible behavior, ownership lane, proof command, dependency order, or rollout risk. Use `../../references/autonomous-wave-generation.md` and `../../templates/PARALLEL-WAVE.template.md` when two or more issues should move together.
+Create multiple issues instead of one when findings differ by user-visible behavior, ownership lane, proof command, dependency order, or rollout risk. Keep one issue when multiple edits belong to the same user outcome and proof story. Use `../../references/autonomous-wave-generation.md`, `../../references/issue-sizing-and-scheduling.md`, and `../../templates/PARALLEL-WAVE.template.md` when two or more issues should move together.
 
 ## Package resources
 
@@ -45,6 +45,7 @@ Create multiple issues instead of one when findings differ by user-visible behav
 - Use `../../templates/PLAN-CHANGE.template.md` when a plan-changing decision needs a durable note.
 - Use `../../references/two-track-routing.md` when deciding whether this came from interactive intake or autonomous cycle work.
 - Use `../../references/autonomous-wave-generation.md` when a report should split into a wave.
+- Use `../../references/issue-sizing-and-scheduling.md` when deciding whether candidates are too small, too large, or should be delegated as a wave.
 - Use `../../references/vertical-slice-architecture.md` when deciding whether the issue is `core`, `support`, `internal`, or `deviation`.
 - Use `../../references/experience-first-ui.md` when UI, visuals, copy tone, or first-viewport behavior matters.
 

@@ -5,7 +5,7 @@ Issueflow is a Codex plugin and Agent Skills pack for issue-driven development w
 It helps an agent follow a durable loop:
 
 1. Discover or clarify the next issue through autonomous scan, plan-gap scan, or interactive brainstorming.
-2. Shape one issue or a multi-issue wave.
+2. Shape medium-sized issues or a multi-issue wave.
 3. Validate that the issue is implementation-ready.
 4. Dispatch work from `develop` into isolated `issue/<n>-<slug>` branches or worktrees.
 5. Implement inside issue scope only.
@@ -19,6 +19,7 @@ Issueflow can start from a single detailed product plan. As the project grows, i
 Issueflow keeps long-running projects manageable by reading current pointers first and searching archives only when needed.
 Autonomous cycles preserve both macro direction, such as product promise and wave goal, and micro direction, such as the active issue, proof pointer, branch/worktree, and next action.
 Completed issue history should compact into `docs/history/` or the repo's equivalent archive so `PLAN_ANCHOR.md` and `CURRENT_STATE.md` stay short.
+Autonomous cycles should combine related tiny findings into medium vertical slices, form waves when independent lanes exist, and keep the main agent focused on scheduling and integration.
 
 ## Package Layout
 
@@ -105,7 +106,7 @@ claude plugin update issueflow@issueflow-skills
 Use a release tag when a computer should stay pinned until you intentionally move it:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.1
+codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.2
 ```
 
 See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
@@ -132,11 +133,14 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - Work branches start from `develop` and use `issue/<n>-<slug>`.
 - One issue branch owns one issue scope.
 - Product work should prefer vertical slices with user-visible outcomes.
+- Issues should be medium-sized by default: neither atomized nor hiding independent outcomes.
 - Product plans should name the target user goal experience, not only feature lists.
 - A durable product plan should act as source of truth: aligned work cites it, extensions update it, conflicts need a plan-change decision, and missing planned behavior becomes plan-gap issue candidates.
 - Feature requests go through interactive brainstorming when the direction is ambiguous.
 - Imprecise user requests should trigger focused clarification before implementation-critical assumptions become issue scope.
 - Automation and continuation cycles actively scan for follow-up issues and waves.
+- Autonomous waves should use the main agent as scheduler/integrator and delegate independent lanes when allowed.
+- During a wave, the root checkout should stay on `develop`; issue branches should live in separate worktrees.
 - User-blocked automations should be paused with a resume condition, not deleted.
 - Independent wave lanes should prefer worktrees when ownership and proof are separable.
 - User-facing UI should be experience-first, not proof-dashboard-first.
@@ -165,6 +169,7 @@ See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.
 - [harness-governance.md](./references/harness-governance.md)
 - [history-compaction.md](./references/history-compaction.md)
 - [interactive-brainstorming.md](./references/interactive-brainstorming.md)
+- [issue-sizing-and-scheduling.md](./references/issue-sizing-and-scheduling.md)
 - [local-backlog-policy.md](./references/local-backlog-policy.md)
 - [local-checks-policy.md](./references/local-checks-policy.md)
 - [parallel-delivery.md](./references/parallel-delivery.md)

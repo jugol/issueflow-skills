@@ -28,7 +28,7 @@ Issueflow는 그런 흐름을 막기 위한 최소한의 구조입니다. 문서
 
 Issueflow에는 두 가지 planning track이 있습니다.
 
-Autonomous Cycle Track은 자동화, 반복 실행, post-merge 후속 작업, 실패한 테스트, 리뷰 finding, 플레이테스트나 사용자 피드백 묶음을 처리할 때 사용합니다. 에이전트는 사용자가 다음 이슈를 하나하나 말해줄 때까지 기다리지 않고, durable signal을 스캔해서 follow-up issue나 wave를 만듭니다. 독립적인 finding이 2개 이상이면 하나의 큰 이슈가 아니라 wave로 나눕니다.
+Autonomous Cycle Track은 자동화, 반복 실행, post-merge 후속 작업, 실패한 테스트, 리뷰 finding, 플레이테스트나 사용자 피드백 묶음을 처리할 때 사용합니다. 에이전트는 사용자가 다음 이슈를 하나하나 말해줄 때까지 기다리지 않고, durable signal을 스캔해서 follow-up issue나 wave를 만듭니다. 같은 결과, 같은 owner, 같은 proof command를 공유하는 작은 finding들은 중간 크기의 vertical-slice issue로 묶고, 독립적인 finding이 2개 이상이면 wave로 나눕니다.
 
 자동화가 사용자 입력, 승인, credential, 제품 결정 때문에 더 진행할 수 없으면 기존 자동화를 삭제하지 않고 일시정지해야 합니다. 이때 blocker와 resume condition을 current-state에 남깁니다.
 
@@ -85,9 +85,11 @@ Issueflow는 Git Flow-lite 모델을 사용합니다.
 
 ## Vertical Slice 우선
 
-Issueflow는 제품 작업에서 vertical slice를 우선합니다. 좋은 제품 이슈는 보통 하나의 얇은 사용자-visible 동작을 도메인, 계약, 런타임, UI, 검증 경로까지 관통해서 전달해야 합니다.
+Issueflow는 제품 작업에서 vertical slice를 우선합니다. 좋은 제품 이슈는 보통 하나의 중간 크기 사용자-visible 동작을 도메인, 계약, 런타임, UI, 검증 경로까지 관통해서 전달해야 합니다.
 
-이 말은 이슈가 커야 한다는 뜻이 아닙니다. 오히려 작게 자르되, 실제 사용자 결과와 연결되어 있어야 한다는 뜻입니다.
+이 말은 이슈를 지나치게 작게 쪼개라는 뜻이 아닙니다. 이슈 하나는 브랜치, 검증, 머지 비용을 감당할 만큼 의미 있어야 하고, 동시에 하나의 실제 사용자 결과와 연결되어 있어야 합니다.
+
+자동화 wave에서는 메인 에이전트가 scheduler와 integrator 역할을 맡고, subagent 사용이 가능하고 정책상 허용될 때 독립 구현 lane을 위임합니다.
 
 레이어 중심 작업도 필요할 수 있습니다. 다만 그럴 때는 정직하게 분류해야 합니다.
 

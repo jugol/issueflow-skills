@@ -4,6 +4,11 @@
 
 - No changes yet.
 
+## 0.3.2 - 2026-05-18
+
+- Add issue sizing and scheduler guidance so autonomous cycles prefer medium vertical-slice issues, wave-first worktree dispatch, and subagent delegation when independent lanes exist.
+- Add compound decision fields to issue and PR handoff templates.
+
 ## 0.3.1 - 2026-05-17
 
 - Add target user goal experience planning to plan governance, anchors, issue shaping, and intake.

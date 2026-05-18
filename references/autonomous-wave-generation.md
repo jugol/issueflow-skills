@@ -27,6 +27,8 @@ Do not create an issue for vague discomfort unless it can be turned into:
 - a durable proof improvement
 - a named investigation with a success criterion
 
+Avoid atomized candidates. Combine tiny findings that share the same user outcome, ownership lane, and proof command into one medium issue.
+
 ## Fan-out rule
 
 Make multiple issues when findings differ by:
@@ -41,7 +43,11 @@ Make one issue when the work is one inseparable vertical slice.
 
 ## Wave rule
 
-Use a wave when two or more issues can be planned together. A wave should record:
+Use a wave when two or more issues can be planned together. In autonomous cycles, this is the preferred path when independent lanes exist; do not default to a single serial issue if a small wave is available.
+
+A useful wave usually has two to five active lanes. Larger candidate batches should be grouped by dependency, package, milestone, or user goal.
+
+A wave should record:
 
 - goal
 - issue list and origin
@@ -53,3 +59,9 @@ Use a wave when two or more issues can be planned together. A wave should record
 - follow-up scan expectations
 
 Default to at least one `core` issue. Allow internal-only waves only with an explicit stabilization reason.
+
+## Scheduler rule
+
+For a wave, the main agent should schedule and integrate instead of serially implementing one lane while other independent lanes remain undispatched.
+
+Use [issue-sizing-and-scheduling.md](./issue-sizing-and-scheduling.md) when deciding whether to combine tiny candidates, split oversized work, or delegate multiple lanes.

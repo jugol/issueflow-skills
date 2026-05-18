@@ -20,6 +20,7 @@ This skill decides whether an issue is ready to branch from `develop`.
 - The issue origin is named: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`.
 - The plan relationship is named when a plan exists: `aligned`, `extension`, `conflict`, or `deviation`.
 - The vertical slice shape is clear, or a support-only reason and downstream core slice are named.
+- The issue is not atomized: it is large enough to justify branch, proof, and merge overhead unless it is high-risk, blocking, or independently revertible.
 - Product issues name the target user goal experience they advance.
 - If the issue belongs to a wave, ownership lane, dependency order, proof command, and worktree or serialization decision are named.
 - UI issues include audience, primary action, first-viewport priority, and desired visual direction.
@@ -50,17 +51,21 @@ For greenfield projects, allow the baseline proof to be scaffold-level validatio
 - Issue implements a plan extension without updating the plan or recording why the plan stays unchanged
 - Internal tooling work that does not justify why it should come before missing core product work
 - Single oversized issue that contains independent defects, packages, or user-visible outcomes that should be a corrective wave
+- Atomized issue that could be safely combined with nearby work sharing the same outcome, owner, and proof command
+- Autonomous cycle producing only one issue when two or more independent lanes are ready for a wave
 - Feature request that skipped `issue-brainstorm` even though success criteria, UX, data behavior, or proof are still ambiguous
 
 ## Package resources
 
-Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` when readiness depends on track, wave shape, product direction, plan truth, target experience, slice shape, or UI quality.
+Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/issue-sizing-and-scheduling.md`, `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` when readiness depends on track, wave shape, issue size, scheduler role, product direction, plan truth, target experience, slice shape, or UI quality.
 
 ## Decision states
 
 - `ready`: can dispatch now
 - `needs-clarification`: ask for missing issue details
 - `needs-split`: break into smaller issues
+- `needs-combine`: combine with nearby tiny candidates before dispatch
+- `needs-wave`: group independent ready issues into a scheduled wave
 - `blocked`: external dependency or red baseline blocks implementation
 
 ## Output
@@ -68,6 +73,7 @@ Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-g
 - Decision state
 - Missing fields, if any
 - Suggested split, if any
+- Suggested combine or wave grouping, if any
 - Suggested labels and branch slug
 - Required harness update category
 - Origin and wave membership, if any

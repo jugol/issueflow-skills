@@ -48,6 +48,7 @@ What changed and why.
 - README:
 - CHANGELOG:
 - Other docs:
+- Compound decision: solution note created/updated or no-compound rationale:
 
 ## Project-Specific Extensions
 

@@ -48,6 +48,8 @@ Issueflow is not only a single-issue executor. It is an issue discovery, plannin
 
 Use the Autonomous Cycle Track when automation, a user, or a completed merge asks the agent to continue. Scan the plan anchor, current plan gaps, backlog, failing tests, review findings, playtest feedback, recent proof, and `docs/solutions/`. Create follow-up issues or waves when concrete next work is visible; record a no-follow-up rationale when it is not.
 
+Autonomous cycles should avoid one tiny issue per run. Prefer medium vertical-slice issues and wave-first scheduling when independent lanes exist; use [issue-sizing-and-scheduling.md](./references/issue-sizing-and-scheduling.md) for scheduler and delegation details.
+
 When an automation cannot continue without user input, approval, credentials, or a product/policy decision, pause the existing automation instead of deleting it. Record the blocker, question, current issue or wave, branch/worktree, proof pointer, resume condition, and next step in the current-state or cycle compaction artifact.
 
 Use the Interactive Feature Intake Track when a user describes a feature, product behavior, UI change, or ambiguous improvement. Ground in the repo first, ask focused questions, resolve imprecise or contradictory wording before it becomes issue scope, present two or three approaches when tradeoffs matter, and turn the approved direction into one issue or a wave before implementation.
@@ -125,7 +127,7 @@ Block dispatch when the current checkout is an unrelated `issue/*` branch. Do no
 
 Use [branch-lifecycle.md](./references/branch-lifecycle.md) when a repo has stale issue branches, unclear branch ownership, or repeated work landing on the wrong branch.
 
-When multiple independent issues exist, group them into an explicit parallel wave record so ownership, proof commands, and merge order are visible before implementation starts.
+When multiple independent issues exist, group them into an explicit parallel wave record so ownership, proof commands, scheduler role, delegation plan, and merge order are visible.
 
 If one feedback pass reveals several separate failures, do not hide them inside one oversized issue.
 
@@ -169,6 +171,8 @@ When a support or shared-contract issue unblocks a ready core user-facing issue 
 Use vertical slice architecture as the default product-delivery shape.
 
 For `core` work, prefer issues that carry one thin user-visible behavior through the required domain, contract, runtime, UI, and proof surfaces. The goal is not to finish every layer completely; the goal is to make one real outcome visible, executable, and regression-protected.
+
+Do not make issues microscopic by splitting every layer into its own branch. A single issue may include multiple files and layers when they all serve the same user-visible result and proof story. Combine nearby tiny findings when they share one outcome, owner, and proof command.
 
 Layer-first work is allowed when it is genuinely needed, but it should be classified as `support`, `internal`, or `contract-first` and should name the nearby core slice it enables. Avoid broad data-only, API-only, UI-shell-only, or QA-paperwork waves unless each lane points back to a concrete vertical slice.
 
@@ -285,6 +289,8 @@ An issue branch that passed local proof but has not entered `develop` is merge-r
 ## Parallel delivery rule
 
 Independent issues should be implemented in parallel whenever ownership is truly disjoint.
+
+The default autonomous wave shape is scheduling-first: the root checkout stays on `develop`, the main agent coordinates from there, and implementation lanes run in separate worktrees when the environment and project policy permit.
 
 Their merge path should still be controlled:
 

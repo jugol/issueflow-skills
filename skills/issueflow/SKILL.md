@@ -33,6 +33,7 @@ Load package-level references only when the task needs deeper guidance. Paths ar
 - `../../references/two-track-routing.md` when choosing autonomous cycle vs interactive feature intake
 - `../../references/interactive-brainstorming.md` when feature requests need clarification
 - `../../references/autonomous-wave-generation.md` when a cycle should create follow-up issues or waves
+- `../../references/issue-sizing-and-scheduling.md` when autonomous cycles are creating issues that are too small, too serial, or not delegated across lanes
 - `../../references/automation-governance.md` when an automation must stop for user input, approval, credentials, or policy choice
 - `../../references/compound-learning.md` when completed work should leave reusable memory
 - `../../references/context-governance.md` when deciding what not to load or when active context feels noisy
@@ -51,6 +52,8 @@ Use a two-track router:
 
 - Autonomous Cycle Track: use when a user or automation says to continue, iterate, resume, process failures, process review or playtest feedback, or choose the next useful issue. Scan durable signals and create or update follow-up issues or waves instead of waiting for the user to name every task.
 - Interactive Feature Intake Track: use when the user describes a feature, product behavior, UI change, or ambiguous improvement. Route through `issue-brainstorm` before `issue-raise` unless the request is already concrete and low-risk. Actively ask when the user's wording is vague, contradictory, missing success criteria, or using undefined product terms that could change implementation.
+
+During autonomous cycles, avoid defaulting to one tiny issue at a time. Prefer medium vertical-slice issues and wave-first scheduling; use `../../references/issue-sizing-and-scheduling.md` for scheduler and delegation rules.
 
 Before loading history, apply context governance: read current pointers first, keep the active set small, search archives before opening them, and do not bulk-load completed issues, old waves, superseded brainstorms, old proof logs, or all solution notes.
 
@@ -71,6 +74,8 @@ When a user request differs from the plan, classify it before issue creation: `a
 When a user request is imprecise, do not silently fill in implementation-critical details. Ask focused questions tied to decisions such as actor, target screen, state, data ownership, proof, rollout, and plan relationship. Infer only low-risk details from repo context and record the assumption.
 
 For product work, recommend vertical slice architecture as the default shape: one core issue should carry a thin user-visible behavior through the needed domain, contract, UI, and proof surfaces. If a support or contract-first issue is needed, name the downstream core slice it enables.
+
+Do not over-split a coherent vertical slice. A single issue may touch multiple layers when they serve one user-visible outcome and one proof story. Split or form a wave when outcomes, owners, proof commands, dependency order, or rollout risks are independent.
 
 For user-facing UI, recommend experience-first design: the default screen should look and feel like the intended product, not a dashboard made to display proof. Keep diagnostics hidden, collapsed, test-only, or in stable attributes unless the product is actually an operational dashboard.
 
