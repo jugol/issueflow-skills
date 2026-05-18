@@ -7,6 +7,8 @@ description: Implement a Flutter issue inside approved scope while growing the l
 
 Implement the approved Flutter issue and leave behind stronger durable coverage.
 
+If the caller is the main thread in an autonomous cycle, do not implement directly unless `issue-dispatch` recorded a no-safe-delegation rationale. Prefer worker implementation, then review and integrate.
+
 ## Core rules
 
 - Work from `issue/<n>-<slug>` branched off `develop`

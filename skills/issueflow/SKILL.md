@@ -7,6 +7,10 @@ description: Umbrella entrypoint for the issueflow pack. Use when the user wants
 
 This is the front door to the pack.
 
+## Main-thread delegation contract
+
+In autonomous implementation cycles, the main thread is the scheduler, reviewer, integrator, and merge-gate owner. Before editing issue code, either delegate a bounded lane to a worker when subagents are allowed, or record a no-safe-delegation rationale. `Serialized` controls merge/dependency order; it is not permission for main-thread implementation.
+
 ## Routing
 
 - New repo or adopting the workflow in an existing repo -> `repo-bootstrap`
@@ -26,73 +30,54 @@ This is the front door to the pack.
 
 Load package-level references only when the task needs deeper guidance. Paths are relative to this `SKILL.md`:
 
-- `../../OPERATING-MODEL.md` for the full Git Flow-lite operating model
-- `../../references/plan-alignment.md` when work must be checked against a product plan
-- `../../references/plan-governance.md` when a plan should be updated, split, or used as the source of truth for next work
-- `../../references/goal-experience-planning.md` when creating or reviewing a plan should start from the user's target experience
-- `../../references/two-track-routing.md` when choosing autonomous cycle vs interactive feature intake
-- `../../references/interactive-brainstorming.md` when feature requests need clarification
-- `../../references/autonomous-wave-generation.md` when a cycle should create follow-up issues or waves
-- `../../references/issue-sizing-and-scheduling.md` when autonomous cycles are creating issues that are too small, too serial, or not delegated across lanes
-- `../../references/automation-governance.md` when an automation must stop for user input, approval, credentials, or policy choice
-- `../../references/compound-learning.md` when completed work should leave reusable memory
-- `../../references/context-governance.md` when deciding what not to load or when active context feels noisy
-- `../../references/history-compaction.md` when `PLAN_ANCHOR.md`, `CURRENT_STATE.md`, backlog boards, or wave notes are growing with completed issue history
-- `../../references/vertical-slice-architecture.md` when shaping product issues
-- `../../references/experience-first-ui.md` when UI work drifts toward proof dashboards
-- `../../references/branch-lifecycle.md` when stale issue branches or worktrees are involved
-- `../../references/parallel-delivery.md` when multiple issue branches can move together
-- `../../templates/BRAINSTORM.template.md`, `../../templates/CURRENT-STATE.template.md`, `../../templates/CYCLE-COMPACTION.template.md`, `../../templates/HISTORY-INDEX.template.md`, `../../templates/ISSUE.template.md`, `../../templates/PARALLEL-WAVE.template.md`, `../../templates/PLAN-ANCHOR.template.md`, `../../templates/PLAN-CHANGE.template.md`, and `../../templates/SOLUTION.template.md` when scaffolding durable local artifacts
+- Operating model: `../../OPERATING-MODEL.md`
+- Plan truth: `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`
+- Track/intake: `../../references/two-track-routing.md`, `../../references/interactive-brainstorming.md`
+- Autonomous scheduling: `../../references/autonomous-wave-generation.md`, `../../references/issue-sizing-and-scheduling.md`, `../../references/parallel-delivery.md`
+- Lifecycle safety: `../../references/automation-governance.md`, `../../references/branch-lifecycle.md`, `../../references/compound-learning.md`
+- Context control: `../../references/context-governance.md`, `../../references/history-compaction.md`
+- Product shape: `../../references/vertical-slice-architecture.md`, `../../references/experience-first-ui.md`
+- Durable artifacts: `../../templates/`
 
 ## Default behavior
 
 If the user asks broadly how to use the workflow in a repo, start with `repo-bootstrap`.
 
-Use a two-track router:
+## Track routing
 
-- Autonomous Cycle Track: use when a user or automation says to continue, iterate, resume, process failures, process review or playtest feedback, or choose the next useful issue. Scan durable signals and create or update follow-up issues or waves instead of waiting for the user to name every task.
-- Interactive Feature Intake Track: use when the user describes a feature, product behavior, UI change, or ambiguous improvement. Route through `issue-brainstorm` before `issue-raise` unless the request is already concrete and low-risk. Actively ask when the user's wording is vague, contradictory, missing success criteria, or using undefined product terms that could change implementation.
+- Autonomous Cycle: continue, iterate, resume, process failures, process review/playtest feedback, or choose next work. Scan durable signals and create issues or waves; do not wait for the user to name every task.
+- Interactive Feature Intake: feature, product behavior, UI change, or ambiguous improvement. Use `issue-brainstorm` before `issue-raise` unless the request is already concrete and low-risk.
+- Concrete bug or product feedback: use `issue-raise`; split independent findings into a corrective wave.
+- Existing issue link/body: use `issue-intake`.
+- If code was already changed before routing, backfill the issue/wave/proof trail honestly before final handoff.
 
-During autonomous cycles, avoid defaulting to one tiny issue at a time. Prefer medium vertical-slice issues and wave-first scheduling; use `../../references/issue-sizing-and-scheduling.md` for scheduler and delegation rules.
+## Autonomous cycle rules
 
-Before loading history, apply context governance: read current pointers first, keep the active set small, search archives before opening them, and do not bulk-load completed issues, old waves, superseded brainstorms, old proof logs, or all solution notes.
+- Read macro then micro context: current-state pointer, plan anchor summary, current wave/issue, recent proof, active branch/worktree, next action, then matching solution-index entries.
+- Keep active context small. Search archives before opening them; never bulk-load completed issues, old waves, superseded brainstorms, old proof logs, or all solution notes.
+- Keep `PLAN_ANCHOR.md` and `CURRENT_STATE.md` bounded: short summaries and links only; move completed issue, wave, and proof detail to `docs/history/` or equivalent.
+- Prefer medium vertical-slice issues and wave-first scheduling. Avoid one tiny issue at a time; use `issue-sizing-and-scheduling.md` when sizing or delegation is unclear.
+- If automation needs user input, approval, credentials, or product/policy choice, pause the existing automation instead of deleting it. Record blocker, question, active work, branch/worktree, proof pointer, resume condition, and next step.
 
-At the start of an autonomous cycle, read macro direction and micro direction in order: current-state pointer, plan anchor summary, current wave goal, active issue, recent proof pointer, active branch or worktree, next recommended action, then relevant solution index entries. Include current plan gaps when the repo has `docs/plan/` or another primary plan. If these pointers are missing, stale, contradictory, too broad, or filled with completed issue history, perform cycle compaction before selecting or creating the next issue.
+## Plan and product truth
 
-Keep `PLAN_ANCHOR.md` and `CURRENT_STATE.md` bounded. They should not contain the full history of 100+ completed issues. Move completed issue, wave, and proof detail into `docs/history/` or the repo's equivalent archive, update the history index, and leave only short summaries and links in active files.
+- A plan-only project can start: bootstrap `docs/plan/PLAN.md` or the repo's chosen plan, extract the target user goal experience, create a compact plan anchor, and generate the first issue wave from unimplemented gaps.
+- Treat an existing plan as active truth. New issues and waves must cite or classify their relationship to it: `aligned`, `extension`, `conflict`, or `deviation`.
+- Require a target user goal experience in plan work: user/situation, before state, primary product moment, after state, and user-visible proof.
+- For `extension` or `conflict`, update the plan or record a plan-change decision before dispatch. Do not let implementation silently change product truth.
 
-If an automation cannot continue because it needs user input, approval, credentials, or a product/policy choice, pause the existing automation instead of deleting it. Record the blocker, question, active issue or wave, branch/worktree, proof pointer, resume condition, and next step in current-state or cycle compaction before asking the user.
+## Issue shape and UI quality
 
-If the user arrives with only a project plan or product plan, still start with `repo-bootstrap`, establish `docs/plan/PLAN.md` or the repo's chosen primary plan, extract the target user goal experience, create a compact plan anchor, and generate the first issue wave from unimplemented plan gaps.
+- Ask focused questions when implementation-critical details are vague: actor, target screen, state, data ownership, proof, rollout, or plan relationship. Infer only low-risk details and record the assumption.
+- Default product work to a vertical slice: one user-visible outcome through the needed domain, contract, UI, and proof path. Split or form a wave only when outcomes, owners, proof commands, dependencies, or rollout risks are independent.
+- For support or contract-first work, name the downstream core slice it enables.
+- For UI, build the intended product experience, not proof dashboards by default. Screens must look aesthetically intentional, visible copy must sound natural to a fluent native speaker, and diagnostics should stay hidden/test-only unless the product is operational tooling.
+- For non-icon scene or product assets, use generated or captured JPG/PNG raster imagery; keep SVG/CSS/canvas drawing for icons and controls.
 
-If a plan already exists, treat it as an active source of truth, not just bootstrap context. Keep checking new issues and waves against that plan as work progresses.
+## Branch, finish, and compound
 
-When creating or revising `PLAN.md`, require a target user goal experience: user and situation, before state, primary product moment, after state, and user-visible proof. Do not accept a feature list as a complete plan unless it also explains what experience those features should create.
-
-When a user request differs from the plan, classify it before issue creation: `aligned`, `extension`, `conflict`, or `deviation`. For `extension` or `conflict`, update the plan or record a plan-change decision before dispatch. Do not let implementation silently change product truth.
-
-When a user request is imprecise, do not silently fill in implementation-critical details. Ask focused questions tied to decisions such as actor, target screen, state, data ownership, proof, rollout, and plan relationship. Infer only low-risk details from repo context and record the assumption.
-
-For product work, recommend vertical slice architecture as the default shape: one core issue should carry a thin user-visible behavior through the needed domain, contract, UI, and proof surfaces. If a support or contract-first issue is needed, name the downstream core slice it enables.
-
-Do not over-split a coherent vertical slice. A single issue may touch multiple layers when they serve one user-visible outcome and one proof story. Split or form a wave when outcomes, owners, proof commands, dependency order, or rollout risks are independent.
-
-For user-facing UI, recommend experience-first design: the default screen should look and feel like the intended product, not a dashboard made to display proof. Keep diagnostics hidden, collapsed, test-only, or in stable attributes unless the product is actually an operational dashboard.
-
-For screen judgment, explicitly check more than implementation correctness. The in-app surface should look aesthetically intentional to a human viewer, and all user-facing copy should sound natural to a fluent native speaker in the target language. If screenshots look ugly, broken, generic, or visually confusing, or if visible text sounds stiff, translated, or uncommon, treat the issue as unfinished even when automated checks pass.
-
-For non-icon scene or product assets, require real raster imagery: generated or captured JPG/PNG files. SVG, CSS/canvas drawing, or hand-built vector-looking composites are acceptable for icons and controls only; do not pass them off as main scene assets, even when exported to JPG/PNG.
-
-Before starting a new concrete change, check branch state. If the checkout is already on `issue/*`, continue only when the request belongs to that same issue. Otherwise route the stale branch through QA and `merge-gate`, or explicitly park it and dispatch the new issue from `develop`.
-
-When the user asks to finish, complete, close, or resolve an issue, treat the work as unfinished until it is integrated into `develop` and the checkout has returned to `develop`. If repo policy requires PR-only integration, open or update the PR/merge queue path, return the local checkout to `develop`, and state that final integration is pending review.
-
-After an issue is integrated or handed to the repo's PR/merge queue, perform a forward handoff before calling it done. Update the issue note, backlog or wave board, latest proof pointer, and any automation/run memory so the completed issue cannot be selected again. If the work revealed follow-up defects, polish, or next vertical slices, create or update those issues; if there is no follow-up, say so with a concrete reason.
-
-After merge or PR handoff, run `issue-compound` when the issue produced reusable learning, a recurring prevention rule, a failed approach worth remembering, follow-up issue triggers, plan gaps, or active-context history drift. Treat history compaction as a conditional cleanup responsibility inside that compound handoff, not as a separate replacement for compound learning.
-
-If the user arrives with a concrete bug or product feedback that implies code changes, start with `issue-raise` before implementation. If the report contains multiple independent findings, create a corrective wave instead of one vague issue. If the repo already has a matching active issue, use `issue-intake` on that issue instead of creating a duplicate.
-
-If the user arrives with an existing issue link or issue body, start with `issue-intake`.
-
-If an agent discovers it already implemented before routing through issueflow, it must repair the workflow trace before final handoff: create or update the issue, wave note, harness registry entry, and QA proof summary.
+- Before concrete changes, check branch state. If on `issue/*`, continue only for that issue; otherwise merge, park, or dispatch fresh from `develop`.
+- An issue is not complete until integrated into `develop` or handed to the repo's PR/merge queue, and the checkout has returned to `develop`.
+- After integration or PR handoff, update the issue note, backlog/wave board, latest proof pointer, and automation/run memory so completed work is not selected again.
+- Create/update follow-up issues when defects, polish, or next slices are discovered; otherwise record a concrete no-follow-up rationale.
+- Run `issue-compound` when work produced reusable learning, prevention rules, failed approaches, follow-up triggers, plan gaps, or active-context drift. History compaction is part of that conditional handoff.

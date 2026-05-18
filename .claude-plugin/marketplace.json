@@ -4,7 +4,7 @@
     "name": "Issueflow Skills Contributors"
   },
   "description": "Issueflow skills and workflow plugins for Claude Code.",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "plugins": [
     {
       "name": "issueflow",

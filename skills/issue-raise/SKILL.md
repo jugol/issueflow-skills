@@ -9,21 +9,14 @@ Turn rough problem statements into durable issues. This skill is conversational 
 
 ## Workflow
 
-1. Start from the user's natural language description.
-2. Extract the likely problem, impact, desired outcome, and missing information.
-3. Run a fan-out check before drafting a single issue.
-4. Run a precision check for vague referents, undefined product terms, missing actors or states, contradictory requirements, hidden multi-issue scope, and unclear proof.
-5. Ask the smallest number of focused questions needed to make the issue or wave implementation-ready. Ask enough to remove implementation-blocking ambiguity; do not stop at one question when more than one answer can materially change the issue.
-6. Draft the issue using the shared template.
-7. If a project plan exists, map the issue to the relevant plan promise, requirement, or constraint.
-8. Classify the plan relationship as `aligned`, `extension`, `conflict`, or `deviation`.
-9. If the issue extends or conflicts with the plan, require a plan update, decision-log entry, or plan-change note before dispatch.
-10. Shape product work as a medium vertical slice by default: name the target goal experience advanced, the user-visible result, the needed domain or contract path, and the proof path.
-11. For UI work, capture the experience direction: audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone or target language, and anti-dashboard or no-debug-copy constraints.
-12. If the issue is support-only or contract-first, name the nearby core slice it enables.
-13. Suggest labels, branch slug, and the likely owning implementation or QA skill.
-14. If the repo and auth context are available, prepare the issue for GitHub creation or create it directly after user confirmation.
-15. If GitHub is not available, write the issue draft into the repo's chosen backlog location without changing the structure of the issue.
+1. Extract problem, impact, desired outcome, missing information, and evidence from the user's wording.
+2. Run fan-out and precision checks before drafting: vague referents, undefined product terms, missing actors/states, contradictions, hidden multi-issue scope, and unclear proof.
+3. Ask the fewest focused questions needed to remove implementation-blocking ambiguity; ask more than one when answers can materially change scope, UX, data, proof, or plan truth.
+4. Map to the active plan when present and classify: `aligned`, `extension`, `conflict`, or `deviation`. For `extension`/`conflict`, require plan update, decision entry, or plan-change note before dispatch.
+5. Shape product work as a medium vertical slice: target goal experience, user-visible result, domain/contract path, and proof path. For support/contract-first work, name the downstream core slice.
+6. For UI work, capture audience, primary action, first-viewport priority, desired feel, aesthetic bar, copy tone/target language, and anti-dashboard or no-debug-copy constraints.
+7. Draft with the shared template, suggest labels, branch slug, owner skill, and QA skill.
+8. Create the GitHub issue after confirmation when available; otherwise write the same structure into the repo's local backlog.
 
 If the user report clearly contains multiple distinct failures, split them into separate issues that can be verified independently. If the report contains several tiny findings that share the same outcome, owner, and proof command, combine them into one medium issue instead of creating atomized issue overhead.
 
@@ -37,36 +30,17 @@ Create multiple issues instead of one when findings differ by user-visible behav
 
 ## Package resources
 
-- Use `../../templates/ISSUE.template.md` when drafting local issue files.
-- Use `../../templates/BRAINSTORM.template.md` when preserving approved approaches and rejected alternatives.
-- Use `../../references/plan-alignment.md` when the repo has a project plan or product brief.
-- Use `../../references/plan-governance.md` when an issue should update, extend, split, or contradict the plan.
-- Use `../../references/goal-experience-planning.md` when product work lacks a clear target user goal experience.
-- Use `../../templates/PLAN-CHANGE.template.md` when a plan-changing decision needs a durable note.
-- Use `../../references/two-track-routing.md` when deciding whether this came from interactive intake or autonomous cycle work.
-- Use `../../references/autonomous-wave-generation.md` when a report should split into a wave.
-- Use `../../references/issue-sizing-and-scheduling.md` when deciding whether candidates are too small, too large, or should be delegated as a wave.
-- Use `../../references/vertical-slice-architecture.md` when deciding whether the issue is `core`, `support`, `internal`, or `deviation`.
-- Use `../../references/experience-first-ui.md` when UI, visuals, copy tone, or first-viewport behavior matters.
+- Templates: `../../templates/ISSUE.template.md`, `../../templates/BRAINSTORM.template.md`, `../../templates/PLAN-CHANGE.template.md`
+- Plan and experience: `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`
+- Track and wave shape: `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/issue-sizing-and-scheduling.md`
+- Product shape and UI quality: `../../references/vertical-slice-architecture.md`, `../../references/experience-first-ui.md`
 
 ## Required output
 
-- A concise issue title
-- Origin: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`
-- Problem statement with evidence
-- Plan alignment note, if a plan exists
-- Plan relationship: `aligned`, `extension`, `conflict`, or `deviation`
-- Required plan update or no-plan-update rationale
-- Slice shape or support reason
-- Target goal experience advanced
-- UX or visual direction, if UI is involved
-- Aesthetic and native-language copy expectations, if UI or user-facing text is involved
-- Acceptance criteria
-- Test plan
-- Spec file impact, if applicable
-- Scope and out-of-scope
-- Docs plan
-- Handoff notes
+- Title, origin, problem/evidence, acceptance criteria, test plan, scope/out-of-scope, docs plan, and handoff notes.
+- Plan alignment, relationship, required update or no-plan-update rationale.
+- Slice shape, support reason, target goal experience, and likely owner/QA skill.
+- UI direction, aesthetic bar, and native-language copy expectations when relevant.
 
 GitHub is recommended because it gives durable issue IDs, PR linkage, branch protection, and review history, but the issue structure should still work without GitHub.
 
@@ -74,22 +48,20 @@ For greenfield repos, default to a local numbered issue file until hosted issue 
 
 ## Questioning rules
 
-- Prefer one or two sharp questions at a time over a large questionnaire.
-- Ask actively when the user's wording is imprecise, self-contradictory, missing success criteria, or uses repo-undefined product terms.
-- If a detail is low-risk and safely inferable, state the assumption and continue. If it changes implementation scope, proof, UX, data, or plan truth, ask before drafting a ready issue.
-- If the user's intent is already concrete and low-risk, skip questions and draft immediately.
-- If the user requested a broad feature or product behavior and no approved approach exists yet, route to `issue-brainstorm`.
-- If evidence is weak, explicitly mark the issue as needing validation before dispatch.
-- If the issue does not clearly advance the plan, classify whether it is an extension, conflict, or deviation instead of pretending it is aligned.
+- Prefer one or two sharp questions at a time.
+- Ask actively when wording is imprecise, contradictory, missing success criteria, or uses repo-undefined product terms.
+- Infer only low-risk details; ask before deciding scope, proof, UX, data, rollout, or plan truth.
+- Skip questions only when intent is concrete and low-risk.
+- Route broad feature/product behavior to `issue-brainstorm` when no approved approach exists.
+- Mark weak evidence as needing validation before dispatch.
+- Classify plan extension/conflict/deviation instead of pretending alignment.
 
 ## Good defaults
 
-- Use imperative issue titles.
-- Keep issue titles short enough to become branch names cleanly.
-- If the issue changes behavior, require a test plan before calling it ready.
-- Prefer acceptance criteria that describe an end-to-end user path rather than only a technical layer.
-- For UI issues, include a first-read or primary-action acceptance criterion before proof-only criteria.
-- For UI or copy issues, include an acceptance criterion that the rendered screen looks aesthetically intentional and the visible copy sounds natural to a native speaker in the target language.
+- Use short imperative titles that become clean branch names.
+- Behavior changes need a test plan before readiness.
+- Acceptance criteria should describe an end-to-end user path, not only a technical layer.
+- UI/copy issues need first-read or primary-action criteria plus aesthetic and native-copy criteria.
 
 ## Hand-off
 

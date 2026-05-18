@@ -4,6 +4,12 @@
 
 - No changes yet.
 
+## 0.3.5 - 2026-05-18
+
+- Clarify main-thread delegation as a hard gate before issue code edits, including implementation-skill guards and serialized-vs-delegated wave wording.
+- Keep `high` as the default worker effort for scheduling-influencing lanes and add wait-time discovery for next non-overlapping issue candidates.
+- Compact high-traffic skill and reference documents so critical routing, planning, dispatch, and merge rules are harder to miss.
+
 ## 0.3.4 - 2026-05-18
 
 - Add worker prompt guardrails, default delegated implementation workers to high reasoning effort, and discourage one-issue waves unless explicitly justified.

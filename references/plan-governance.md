@@ -8,11 +8,10 @@ The plan is a living contract between product intent and implementation.
 
 If the repo has a plan, issueflow should:
 
-- start from it when creating the first issues
-- extract the target user goal experience, not only feature scope
+- start from it for first issues and autonomous gap scans
+- extract target user goal experience, not only feature scope
 - check new work against it before implementation
-- update it when approved product direction changes
-- mine it for unimplemented plan gaps during autonomous cycles
+- update it when approved direction changes
 - keep a compact anchor so agents do not reload the full plan by default
 
 ## Recommended structure
@@ -39,11 +38,11 @@ docs/plan/
     <area>.md
 ```
 
-- `PLAN.md`: top-level source of truth, product promise, current scope, links to detail files
-- `PLAN_ANCHOR.md`: compact macro direction, target user goal experience, and current plan gaps
+- `PLAN.md`: top-level truth, product promise, current scope, links
+- `PLAN_ANCHOR.md`: macro direction, target goal experience, current gaps
 - `ROADMAP.md`: milestones, waves, sequencing, deferred work
-- `DECISIONS.md`: approved plan changes and reversals
-- `areas/<area>.md`: detailed feature, domain, UX, data, or platform plan for one area
+- `DECISIONS.md`: approved changes and reversals
+- `areas/<area>.md`: detailed feature/domain/UX/data/platform plan for one area
 
 Split a single plan when it becomes too expensive to scan, usually when it exceeds a few hundred lines, contains independent product areas, or agents repeatedly need only one section.
 
@@ -74,24 +73,13 @@ Before turning a user-requested feature into implementation work, classify its r
 
 For `aligned` work, cite the plan section and proceed through normal issue shaping.
 
-For `extension` work, update the plan or add a plan-change note before dispatch so future agents do not treat the feature as accidental scope.
-
-For `conflict` work, do not implement first. Run interactive brainstorming, state the conflict plainly, get an approved direction, then update `PLAN.md`, an area file, or `DECISIONS.md` before creating implementation issues.
-
-For `deviation` work, record why it is worth doing now, what would make it graduate into the plan, and how it will be contained.
+For `extension`, update the plan or add a plan-change note before dispatch. For `conflict`, do not implement first; run interactive brainstorming, approve direction, then update `PLAN.md`, an area file, or `DECISIONS.md`. For `deviation`, record why it is worth doing now, how it is contained, and what would make it graduate into the plan.
 
 ## Plan gaps
 
 A plan gap is a promised behavior, target user experience, UX target, domain rule, platform constraint, or proof expectation that is present in the plan but absent from the live product or durable harness.
 
-Autonomous cycles should scan for plan gaps from:
-
-- `PLAN_ANCHOR.md`
-- current wave goal
-- active area plan
-- backlog board
-- recent proof
-- failing tests or review findings
+Autonomous cycles should scan for plan gaps from `PLAN_ANCHOR.md`, current wave goal, active area plan, backlog board, recent proof, failing tests, and review findings.
 
 When one gap is clear, raise one issue.
 
@@ -101,11 +89,7 @@ When two or more gaps are independent by user outcome, ownership lane, or proof 
 
 Use a plan-change note when:
 
-- a user request conflicts with the current plan
-- implementation proves a planned approach is wrong
-- a milestone or scope boundary changes
-- an area plan is split out of the top-level plan
-- a deviation becomes official product direction
+a user request conflicts with the plan, implementation disproves a planned approach, milestone/scope changes, an area plan is split out, or a deviation becomes official direction.
 
 Small compatible edits can update `PLAN.md` directly, but the change should still be visible in `DECISIONS.md` or the issue/wave note when it affects sequencing or scope.
 
@@ -127,9 +111,9 @@ If `PLAN_ANCHOR.md` is stale, update it before creating the next issue or wave.
 
 At merge or PR handoff, check whether the completed work changed product truth:
 
-- If it implemented a planned item, mark the plan gap as satisfied or update the current-state pointer.
-- If it changed scope, update the plan or record a decision.
-- If it revealed future plan work, raise follow-up issues or wave candidates.
-- If it produced reusable implementation knowledge, capture that through `issue-compound`.
+- planned item implemented -> mark the gap satisfied or update current-state
+- scope changed -> update the plan or record a decision
+- future plan work revealed -> raise follow-up issues or wave candidates
+- reusable implementation knowledge produced -> capture through `issue-compound`
 
 Implementation that silently diverges from the plan is not complete.

@@ -33,6 +33,7 @@ planned
 - Main-agent direct implementation rationale, if any:
 - Why this is a wave instead of one serial issue:
 - One-issue wave rationale, if applicable:
+- Serialization scope: `merge-order` / `dependency-order` / `fully-serialized`
 - Tiny findings combined before dispatch:
 - Oversized candidates split before dispatch:
 - Target active lane count:
@@ -45,7 +46,7 @@ planned
 - Default worktree root:
 - Worktree ignored or repo-approved: `yes` / `no`
 - Worker prompt guardrail: assigned worktree only, no root checkout edits, no other-worker reversions
-- Worker reasoning effort: `high` default / `medium` only with trivial-lane rationale
+- Worker reasoning effort: `high` default / `medium` only with trivial-lane and no-scope-impact rationale
 - `<issue-id>` -> `<worktree path or serialize>`
 - Subagent policy: `allowed` / `not allowed` / `needs user approval`
 - `<issue-id>` -> `<subagent assignment or no-delegation rationale>`
@@ -79,5 +80,7 @@ planned
 
 ## Follow-up Scan
 
+- Main-agent wait-time discovery:
+- Candidate overlap with active lanes:
 - Signals to re-check after merge:
 - Follow-up issue rule:

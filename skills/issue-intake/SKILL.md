@@ -9,55 +9,35 @@ This skill decides whether an issue is ready to branch from `develop`.
 
 ## Ready-to-start checklist
 
-- The problem is concrete.
-- Evidence exists or the missing evidence is explicitly acknowledged.
-- Acceptance criteria are testable.
-- Ambiguous wording has been resolved or explicitly marked as an assumption.
-- A test plan exists.
-- Spec or harness targets are named when the issue changes user-visible behavior.
-- Scope and out-of-scope are explicit.
-- The likely affected area is named.
-- The issue origin is named: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`.
-- The plan relationship is named when a plan exists: `aligned`, `extension`, `conflict`, or `deviation`.
-- The vertical slice shape is clear, or a support-only reason and downstream core slice are named.
-- The issue is not atomized: it is large enough to justify branch, proof, and merge overhead unless it is high-risk, blocking, or independently revertible.
-- Product issues name the target user goal experience they advance.
-- If the issue belongs to a wave, ownership lane, dependency order, proof command, and worktree or serialization decision are named.
-- UI issues include audience, primary action, first-viewport priority, and desired visual direction.
-- UI issues include the expected aesthetic bar and copy tone or target-language naturalness criteria.
-- The issue can be linked to a durable harness update.
-- If a project plan exists, the issue can point to the plan promise or constraint it advances, or it is explicitly marked as an extension, conflict, or deviation.
-- If the issue extends or conflicts with the plan, the required plan update, decision entry, or plan-change note already exists or is a blocker before dispatch.
+- Problem, evidence or evidence gap, acceptance criteria, test plan, affected area, scope, and out-of-scope are concrete.
+- Ambiguity is resolved or explicitly marked as an assumption.
+- Origin is named: `brainstorm`, `autonomous-scan`, `review-finding`, `compound-learning`, or `user-request`.
+- Plan relationship is named when a plan exists: `aligned`, `extension`, `conflict`, or `deviation`; required plan updates/decisions are done or blocking.
+- Product issues name target user goal experience and vertical slice shape; support-only work names downstream core slice.
+- Issue is not atomized unless high-risk, blocking, or independently revertible.
+- Wave issues name ownership lane, dependency order, proof command, and worktree or serialization decision.
+- UI issues name audience, primary action, first-viewport priority, visual direction, aesthetic bar, and copy tone/target-language naturalness.
+- Durable harness target exists for user-visible behavior changes.
 
 For greenfield projects, allow the baseline proof to be scaffold-level validation first, then tighten the definition of green as the app grows.
 
 ## Red flags
 
-- "Clean this up" with no target
-- "Fix the UI" with no expected result
-- Vague referents like "this", "that thing", or "the flow" with no target surface
-- Undefined product terms that do not appear in the plan, issue, domain model, or UI copy
-- Hidden assumption that changes user-visible behavior, data ownership, proof, rollout, or plan truth
-- No reproduction steps for a bug
-- No proof idea for a user-visible change
-- Scope that spans unrelated systems without being split
-- Layer-only work with no named consumer slice
-- Product work that lists features but cannot name the user's before state, primary product moment, or after state
-- UI acceptance criteria that only describe proof panels, diagnostics, or admin shells when the product promise is user-facing
-- UI acceptance criteria that prove function but never require the screen to look good to a human viewer
-- User-facing copy changes with no natural-language review target, especially for localized, narrative, onboarding, or choice-heavy surfaces
-- No clear link back to the active product plan
-- User request conflicts with the active plan but no plan-change decision is recorded
-- Issue implements a plan extension without updating the plan or recording why the plan stays unchanged
-- Internal tooling work that does not justify why it should come before missing core product work
-- Single oversized issue that contains independent defects, packages, or user-visible outcomes that should be a corrective wave
-- Atomized issue that could be safely combined with nearby work sharing the same outcome, owner, and proof command
-- Autonomous cycle producing only one issue when two or more independent lanes are ready for a wave
-- Feature request that skipped `issue-brainstorm` even though success criteria, UX, data behavior, or proof are still ambiguous
+- Vague target: "clean this up", "fix the UI", "this/that/the flow", or undefined product terms.
+- Hidden assumption changes behavior, data ownership, proof, rollout, UX, or plan truth.
+- Bug lacks reproduction; user-visible change lacks proof idea.
+- Scope spans unrelated systems, or layer-only work has no consumer slice.
+- Product work lists features but not before state, primary product moment, or after state.
+- UI criteria only prove diagnostics/admin/proof panels, or omit aesthetic/native-copy review.
+- Plan link, plan-change decision, or extension/conflict handling is missing.
+- Internal work outranks missing core product work without justification.
+- Oversized issue should be a corrective wave; atomized issue should be combined.
+- Autonomous cycle creates one issue while independent wave lanes are ready.
+- Broad feature skipped `issue-brainstorm` despite unclear success criteria, UX, data behavior, or proof.
 
 ## Package resources
 
-Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/issue-sizing-and-scheduling.md`, `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` when readiness depends on track, wave shape, issue size, scheduler role, product direction, plan truth, target experience, slice shape, or UI quality.
+Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-generation.md`, `../../references/issue-sizing-and-scheduling.md`, `../../references/plan-alignment.md`, `../../references/plan-governance.md`, `../../references/goal-experience-planning.md`, `../../references/vertical-slice-architecture.md`, and `../../references/experience-first-ui.md` only when readiness depends on track, wave shape, issue size, scheduler role, plan truth, target experience, slice shape, or UI quality.
 
 ## Decision states
 
@@ -72,16 +52,12 @@ Use `../../references/two-track-routing.md`, `../../references/autonomous-wave-g
 
 - Decision state
 - Missing fields, if any
-- Suggested split, if any
-- Suggested combine or wave grouping, if any
+- Suggested split, combine, or wave grouping
 - Suggested labels and branch slug
 - Required harness update category
 - Origin and wave membership, if any
-- Plan alignment note or realignment warning
-- Plan relationship and plan-change readiness
-- Vertical slice readiness or support-only justification
-- Target goal experience readiness
-- Experience-first readiness for UI work
+- Plan alignment, relationship, and plan-change readiness
+- Vertical slice/support readiness, target goal experience readiness, and UI experience-first readiness
 
 ## Hand-off
 
