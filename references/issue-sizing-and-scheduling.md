@@ -13,7 +13,9 @@ The default target is a medium vertical slice: one meaningful user-visible outco
 
 ## Main agent role
 
-In autonomous wave work, the main agent is primarily the scheduler, issue creator, dispatcher, reviewer, and integrator. It should:
+In autonomous wave work, the main agent is primarily the scheduler, issue creator, dispatcher, reviewer, and integrator. Its first responsibility is to maximize safe parallelism: find non-overlapping lanes, assign them to subagents when allowed, and reserve direct implementation for single-lane work or blocking coordination.
+
+It should:
 
 - scan the plan anchor, current state, backlog, feedback, failing proof, and solution triggers
 - group related tiny findings into medium issues when they share one outcome, ownership lane, and proof command
@@ -24,6 +26,8 @@ In autonomous wave work, the main agent is primarily the scheduler, issue creato
 - track lane summaries, review proofs, manage restacks, run merge-gate, and run compound handoff
 
 The main agent may implement directly when there is only one real lane, no subagent support, or a blocking coordination contract. It should not serially implement one lane while other independent lanes remain undispatched.
+
+Subagents implement assigned lanes. A subagent should receive one issue, one worktree or branch, owned paths, out-of-scope boundaries, proof command, and expected summary; it should not reshape the wave.
 
 ## Good issue size
 

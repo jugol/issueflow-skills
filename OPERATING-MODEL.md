@@ -48,7 +48,7 @@ Issueflow is not only a single-issue executor. It is an issue discovery, plannin
 
 Use the Autonomous Cycle Track when automation, a user, or a completed merge asks the agent to continue. Scan the plan anchor, current plan gaps, backlog, failing tests, review findings, playtest feedback, recent proof, and `docs/solutions/`. Create follow-up issues or waves when concrete next work is visible; record a no-follow-up rationale when it is not.
 
-Autonomous cycles should avoid one tiny issue per run. Prefer medium vertical-slice issues and wave-first scheduling when independent lanes exist; use [issue-sizing-and-scheduling.md](./references/issue-sizing-and-scheduling.md) for scheduler and delegation details.
+Autonomous cycles should avoid one tiny issue per run. Prefer medium vertical-slice issues and wave-first scheduling; the main agent should first look for non-overlapping lanes to delegate before doing implementation itself.
 
 When an automation cannot continue without user input, approval, credentials, or a product/policy decision, pause the existing automation instead of deleting it. Record the blocker, question, current issue or wave, branch/worktree, proof pointer, resume condition, and next step in the current-state or cycle compaction artifact.
 

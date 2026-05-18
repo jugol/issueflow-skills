@@ -31,7 +31,7 @@ Dispatch work only when the baseline is green and the issue is ready.
 - Prefer one branch per vertical slice for product work
 - Never dispatch a new issue from an existing `issue/*` branch
 - If already on `issue/*`, block dispatch unless that branch matches the same issue id
-- In autonomous wave work, keep the main agent in the scheduler/integrator role when independent implementation lanes can be delegated
+- In autonomous wave work, the main agent must first scan for non-overlapping lanes and delegate them when allowed; direct implementation by the main agent needs a no-safe-delegation rationale
 
 ## Branch lifecycle
 
@@ -126,6 +126,7 @@ When a live playtest or user report produces multiple product-facing failures:
 - Base `develop` snapshot
 - Worktree-first decision and lane paths when this is a wave
 - Scheduler checkout path and confirmation that it remains on `develop`
+- Non-overlap lane scan and main-agent-direct-work rationale, if any
 - Subagent delegation plan or no-delegation rationale when this is a wave
 - Post-merge return-to-`develop` note
 

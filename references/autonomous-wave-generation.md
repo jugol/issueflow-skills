@@ -62,6 +62,6 @@ Default to at least one `core` issue. Allow internal-only waves only with an exp
 
 ## Scheduler rule
 
-For a wave, the main agent should schedule and integrate instead of serially implementing one lane while other independent lanes remain undispatched.
+For a wave, the main agent should first ask which issues can run without overlap, then schedule and integrate those lanes instead of serially implementing one lane while other independent lanes remain undispatched.
 
 Use [issue-sizing-and-scheduling.md](./issue-sizing-and-scheduling.md) when deciding whether to combine tiny candidates, split oversized work, or delegate multiple lanes.

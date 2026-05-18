@@ -4,6 +4,10 @@
 
 - No changes yet.
 
+## 0.3.3 - 2026-05-18
+
+- Clarify that the main agent must scan for non-overlapping lanes and delegate implementation to subagents before doing direct work in autonomous waves.
+
 ## 0.3.2 - 2026-05-18
 
 - Add issue sizing and scheduler guidance so autonomous cycles prefer medium vertical-slice issues, wave-first worktree dispatch, and subagent delegation when independent lanes exist.

@@ -106,7 +106,7 @@ claude plugin update issueflow@issueflow-skills
 Use a release tag when a computer should stay pinned until you intentionally move it:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.2
+codex plugin marketplace add <owner>/issueflow-skills --ref v0.3.3
 ```
 
 See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.

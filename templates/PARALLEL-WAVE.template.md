@@ -29,6 +29,8 @@ planned
 ## Scheduler Plan
 
 - Main agent role: scheduler / integrator / direct implementation lane
+- Non-overlap lane scan:
+- Main-agent direct implementation rationale, if any:
 - Why this is a wave instead of one serial issue:
 - Tiny findings combined before dispatch:
 - Oversized candidates split before dispatch:
