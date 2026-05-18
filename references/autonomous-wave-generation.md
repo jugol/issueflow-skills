@@ -45,6 +45,8 @@ Make one issue when the work is one inseparable vertical slice.
 
 Use a wave when two or more issues can be planned together. In autonomous cycles, this is the preferred path when independent lanes exist; do not default to a single serial issue if a small wave is available.
 
+Do not create a one-issue wave by default. If only one candidate exists after scanning, treat it as a single issue or record why no additional safe lane exists.
+
 A useful wave usually has two to five active lanes. Larger candidate batches should be grouped by dependency, package, milestone, or user goal.
 
 A wave should record:
@@ -62,6 +64,6 @@ Default to at least one `core` issue. Allow internal-only waves only with an exp
 
 ## Scheduler rule
 
-For a wave, the main agent should first ask which issues can run without overlap, then schedule and integrate those lanes instead of serially implementing one lane while other independent lanes remain undispatched.
+For a wave, the main agent should first ask which issues can run without overlap, then create as many safe lanes as practical and schedule them instead of serially implementing one lane while other independent lanes remain undispatched.
 
 Use [issue-sizing-and-scheduling.md](./issue-sizing-and-scheduling.md) when deciding whether to combine tiny candidates, split oversized work, or delegate multiple lanes.

@@ -13,7 +13,7 @@ The default target is a medium vertical slice: one meaningful user-visible outco
 
 ## Main agent role
 
-In autonomous wave work, the main agent is primarily the scheduler, issue creator, dispatcher, reviewer, and integrator. Its first responsibility is to maximize safe parallelism: find non-overlapping lanes, assign them to subagents when allowed, and reserve direct implementation for single-lane work or blocking coordination.
+In autonomous wave work, the main agent is primarily the scheduler, issue creator, dispatcher, reviewer, and integrator. Its first responsibility is to actively maximize safe parallelism: find as many non-overlapping lanes as safely practical, assign them to subagents when allowed, and reserve direct implementation for single-lane work or blocking coordination.
 
 It should:
 
@@ -28,6 +28,10 @@ It should:
 The main agent may implement directly when there is only one real lane, no subagent support, or a blocking coordination contract. It should not serially implement one lane while other independent lanes remain undispatched.
 
 Subagents implement assigned lanes. A subagent should receive one issue, one worktree or branch, owned paths, out-of-scope boundaries, proof command, and expected summary; it should not reshape the wave.
+
+Every worker prompt must state that the worker is not alone in the codebase, must work only in the assigned worktree, must not touch the root `develop` checkout, and must not revert or overwrite other workers' changes. If the lane needs a root checkout, shared registry, shared schema, fixture, or baseline change outside its ownership, the worker should stop and report the coordination need.
+
+Default worker reasoning effort to `high` for implementation, QA, review, or merge-risk lanes. Use `medium` only for trivial documentation, mechanical edits, or narrowly scoped low-risk lanes.
 
 ## Good issue size
 
@@ -67,7 +71,7 @@ Split an issue or turn it into a wave when it contains:
 
 ## Wave sizing
 
-Autonomous cycles should prefer a wave when at least two independent candidate issues exist.
+Autonomous cycles should prefer a wave when at least two independent candidate issues exist. A one-issue wave is usually a scheduling failure: either make it a single issue, scan for additional non-overlapping candidates, or record a concrete no-wave rationale.
 
 A useful wave usually has two to five active lanes. Group larger batches by dependency, package, milestone, or user goal.
 
@@ -86,6 +90,9 @@ When subagents are available and policy allows them, give each implementation su
 - issue id and branch or worktree path
 - owned paths or owned area
 - out-of-scope boundaries
+- root checkout prohibition
+- other-worker context
+- reasoning effort: `high` by default, or `medium` with trivial-lane rationale
 - required proof command
 - dependency and restack notes
 - expected summary format with files changed, proof run, risks, and follow-up candidates

@@ -4,6 +4,10 @@
 
 - No changes yet.
 
+## 0.3.4 - 2026-05-18
+
+- Add worker prompt guardrails, default delegated implementation workers to high reasoning effort, and discourage one-issue waves unless explicitly justified.
+
 ## 0.3.3 - 2026-05-18
 
 - Clarify that the main agent must scan for non-overlapping lanes and delegate implementation to subagents before doing direct work in autonomous waves.

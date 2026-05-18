@@ -32,6 +32,7 @@ Dispatch work only when the baseline is green and the issue is ready.
 - Never dispatch a new issue from an existing `issue/*` branch
 - If already on `issue/*`, block dispatch unless that branch matches the same issue id
 - In autonomous wave work, the main agent must first scan for non-overlapping lanes and delegate them when allowed; direct implementation by the main agent needs a no-safe-delegation rationale
+- Block one-issue waves unless there is a concrete reason it must still be tracked as a wave
 
 ## Branch lifecycle
 
@@ -87,7 +88,7 @@ For wave dispatch, prefer `.worktrees/` or the repo's established worktree locat
 
 When worktrees are used, do not switch the root checkout away from `develop` for lane implementation. The root checkout coordinates status, proof review, queue order, merge-gate, and integration.
 
-When subagents are available and policy allows them, dispatch independent wave lanes with issue id, worktree path, owned paths, out-of-scope boundaries, proof command, dependency notes, and expected summary format. The main agent tracks lane status, proof, conflicts, and merge order.
+When subagents are available and policy allows them, dispatch independent wave lanes with issue id, worktree path, owned paths, out-of-scope boundaries, proof command, dependency notes, and expected summary format. Use `high` reasoning effort by default for implementation workers; use `medium` only for trivial low-risk lanes. The worker prompt must explicitly say the worker is not alone, must use only its assigned worktree, must not touch the root `develop` checkout, and must not revert other workers' changes. The main agent tracks lane status, proof, conflicts, and merge order.
 
 Serialize instead of parallelizing when issues change shared contracts such as:
 
@@ -127,7 +128,10 @@ When a live playtest or user report produces multiple product-facing failures:
 - Worktree-first decision and lane paths when this is a wave
 - Scheduler checkout path and confirmation that it remains on `develop`
 - Non-overlap lane scan and main-agent-direct-work rationale, if any
+- One-issue wave rationale, if applicable
 - Subagent delegation plan or no-delegation rationale when this is a wave
+- Worker reasoning effort, default `high`, or `medium` with trivial-lane rationale
+- Worker prompt root-checkout and other-worker guardrails
 - Post-merge return-to-`develop` note
 
 ## Hand-off routing
