@@ -74,12 +74,12 @@ Brainstorm notes are temporary decision records. After an issue or wave is creat
 Every few autonomous cycles, at automation resume, after merge handoff, or whenever the active set feels noisy:
 
 - move done issues out of active
-- close or defer stale draft issues
+- close, defer, or delete stale draft issues and obsolete follow-up candidates
 - update the backlog board current-state summary
-- update the compact plan anchor if plan gaps or product direction changed
+- update the compact plan anchor if plan gaps or product direction changed; remove plan gaps that are done, superseded, or no longer relevant
 - move completed issue, wave, and proof detail to `docs/history/` or equivalent
 - update the history index
-- update wave status and next-lane pointer
+- update wave status and next-lane pointer; remove closed lanes and outdated next-action pointers from active files
 - update `docs/solutions/INDEX.md`
 - record which active issue or wave should be picked next
 - preserve paused automation identity and resume conditions when the next cycle is waiting for user input

@@ -45,9 +45,12 @@ Do not make future agents read every solution note. Keep `docs/solutions/INDEX.m
 
 During `issue-compound`, check whether completion handoff left completed issue, wave, or proof details in active context files.
 
-If `PLAN_ANCHOR.md`, `CURRENT_STATE.md`, backlog boards, or wave notes are carrying historical detail, run history compaction:
+Also check whether active future-work files are carrying obsolete planning noise: stale plan gaps, superseded draft issues, closed wave lanes, outdated next-action pointers, old automation notes, or follow-up candidates that are no longer useful.
+
+If `PLAN_ANCHOR.md`, `CURRENT_STATE.md`, backlog boards, or wave notes are carrying historical detail or obsolete future-work content, run cleanup:
 
 - move detailed history to `docs/history/` or equivalent
+- remove dead planning noise instead of archiving it when it has no future value
 - update the history index
 - keep only short summaries and archive pointers in active files
 - preserve the next issue, next wave, or no-next-work rationale

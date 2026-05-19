@@ -23,7 +23,7 @@ This skill takes the shared pack and adapts it to a real repository.
 - Plan governance: primary plan, compact anchor, roadmap, decisions, and optional area plans.
 - Brainstorm, wave, and solution-note locations plus `docs/solutions/INDEX.md`.
 - Branch lifecycle checklist for `develop`, `issue/*`, merge, and return-to-`develop`.
-- Worktree ignore/policy such as `.worktrees/` and explicit subagent authorization policy when parallel delivery is expected.
+- Worktree ignore/policy such as `.worktrees/`, explicit subagent authorization policy, and `issueflow parallel` as the automation-prompt authorization trigger when parallel delivery is expected.
 - Greenfield stack and repo-topology decision record when needed.
 
 ## Package resources
@@ -60,7 +60,7 @@ If the project begins with only a plan document, create or identify:
 - `DECISIONS.md`, `ROADMAP.md`, and `areas/` only when sequencing, plan-change history, or scan cost justifies them
 - first stack/topology decision, local proof entrypoint, branch lifecycle rule, and current-state pointer
 - cycle compaction, history archive/index, brainstorm/wave, and solution-note locations
-- subagent authorization policy: explicitly allowed, not allowed, or approval required
+- subagent authorization policy: explicitly allowed, not allowed, or approval required; if allowed for automations, record `issueflow parallel` in the automation prompt and current-state pointer
 - first issue or wave from unimplemented plan gaps, preferably with at least one thin user-visible vertical slice
 
 The anchor summary should capture core product promise, target user goal experience, non-negotiable UX/art targets, copy tone, first-session or primary-action experience, MVP boundaries, and explicit anti-goals.

@@ -20,6 +20,7 @@ It should:
 - scan plan anchor, current state, backlog, feedback, failing proof, and solution triggers
 - combine related tiny findings; split independent outcomes
 - create waves when two or more issues can move together
+- attempt parallel shaping for complex work before accepting a single serialized lane
 - assign lanes, worktrees, proof commands, merge order, and worker handoffs
 - track lane summaries, review proofs, manage restacks, run merge-gate, and run compound handoff
 - while workers run, scan for next non-overlapping candidates without editing root checkout or active worker-owned paths
@@ -72,10 +73,10 @@ Use worktree-first scheduling when two or more lanes have disjoint ownership and
 
 During a wave, keep the root checkout on `develop` for scheduling and integration. Each implementation lane gets its own worktree and `issue/*` branch.
 
-When subagents are explicitly authorized, give each worker issue id, worktree/branch path, owned paths, out-of-scope boundaries, root-checkout prohibition, other-worker context, reasoning effort, proof command, dependency/restack notes, and expected summary format.
+When subagents are explicitly authorized by `issueflow parallel` in the user request, automation prompt, or current-state handoff, give each worker issue id, worktree/branch path, owned paths, out-of-scope boundaries, root-checkout prohibition, other-worker context, reasoning effort, proof command, dependency/restack notes, and expected summary format. If independent lanes exist but that authorization is missing, request `issueflow parallel`; do not use permission absence as the serialization rationale.
 
 The main agent should keep a scheduler board for the wave and avoid waiting on a single lane when other lanes can proceed independently.
 
-While subagents are running, the main agent should do read-only next-issue discovery: scan plan gaps, backlog, recent proof, feedback, and solution triggers for candidates that do not overlap active lanes. It may draft candidates or a next-wave proposal, but must not dispatch more workers unless authorization, active-lane budget, non-overlap, and merge order are clear. Use `wait_agent` only after safe scheduler work is exhausted or blocked.
+While subagents are running, the main agent should do read-only next-issue discovery: scan plan gaps, backlog, recent proof, feedback, and solution triggers for candidates that do not overlap active lanes. It may draft candidates or a next-wave proposal, but must not dispatch more workers unless authorization, active-lane budget, non-overlap, and merge order are clear. Before `wait_agent`, record the scan result and the no-dispatch reason: `no-candidate`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`.
 
 Serialize instead of parallelizing when lanes touch the same file, root registry, shared schema, generated fixture, golden baseline, root proof wrapper, or unresolved shared contract.

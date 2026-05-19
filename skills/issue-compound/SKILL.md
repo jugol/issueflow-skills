@@ -23,7 +23,8 @@ Use this after `merge-gate`, PR handoff, or a significant debugging/review cycle
 6. If the learning implies future product, QA, cleanup, or prevention work, hand off to `issue-raise`.
 7. If the learning changes product direction, hand off to plan governance or record the required plan update.
 8. If the completed issue changed next-cycle context or left completed issue details in `PLAN_ANCHOR.md`, `CURRENT_STATE.md`, backlog boards, or wave notes, run or require cycle/history compaction as part of this compound handoff.
-9. If no solution note, follow-up, plan update, or completion cleanup is needed, state the concrete no-compound rationale.
+9. Prune obsolete future-work management content from active files: stale plan gaps, superseded draft issues, closed wave lanes, dead follow-up candidates, outdated next-action pointers, and old automation notes. Archive only useful detail; delete or mark stale noise instead of preserving it forever.
+10. If no solution note, follow-up, plan update, or completion cleanup is needed, state the concrete no-compound rationale.
 
 ## Rules
 
@@ -34,6 +35,7 @@ Use this after `merge-gate`, PR handoff, or a significant debugging/review cycle
 - Never bulk-load every solution note just to decide whether one applies.
 - Never call an issue complete while known follow-up work is only mentioned in chat.
 - Never leave completed issue details appended to active context files after completion handoff; compact them to history and keep pointers.
+- Treat active planning files as working memory with a token budget: remove or archive obsolete future-work content during compound instead of making future agents reread it.
 
 ## Package resources
 
@@ -52,6 +54,7 @@ Use this after `merge-gate`, PR handoff, or a significant debugging/review cycle
 - Solution note created, updated, or skipped with rationale
 - Solution index updated or no-index rationale
 - Current-state or cycle compaction update, when the next issue selection changed
+- Active planning cleanup: obsolete plan gaps, stale drafts, closed lanes, and dead follow-up candidates removed, archived, or explicitly retained
 - History compaction update, when completed detail moved out of active files
 - Plan update or plan-gap handoff, when product truth changed
 - Follow-up issue ids or explicit no-follow-up rationale

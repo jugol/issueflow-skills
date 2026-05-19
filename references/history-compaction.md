@@ -5,6 +5,7 @@ Use this when `PLAN_ANCHOR.md`, `CURRENT_STATE.md`, backlog boards, or wave note
 ## Core rule
 
 Active context files are bounded pointers, not full history logs.
+They are also not permanent parking lots for obsolete future-work candidates.
 
 `PLAN_ANCHOR.md` and `CURRENT_STATE.md` should contain only:
 
@@ -58,6 +59,7 @@ Compact when:
 - every `5-10` completed issues
 - automation resumes and active context feels noisy
 - `PLAN_ANCHOR.md` or `CURRENT_STATE.md` contains many completed issue details
+- active files contain stale plan gaps, dead drafts, closed lanes, outdated next actions, or obsolete follow-up candidates
 - an agent needs to read old issue history just to find the current task
 - merge-gate or release-gate notices stale completed work in active pointers
 
@@ -65,15 +67,16 @@ Compact when:
 
 1. Identify active facts that must remain visible.
 2. Move completed issue, wave, proof, and old decision details to `docs/history/` or the repo's equivalent archive.
-3. Preserve a short summary for each completed item:
+3. Remove obsolete future-work content that has no current decision value; archive only when the stale item explains an important decision.
+4. Preserve a short summary for each completed item:
    - issue id or wave id
    - one-line outcome
    - proof pointer
    - merge or PR status
    - follow-up decision
-4. Update `docs/history/INDEX.md`.
-5. Update `PLAN_ANCHOR.md` and `CURRENT_STATE.md` with only current direction, current gaps, active work, recent summaries, and archive pointers.
-6. Record the compaction in `CYCLE-COMPACTION`.
+5. Update `docs/history/INDEX.md`.
+6. Update `PLAN_ANCHOR.md` and `CURRENT_STATE.md` with only current direction, current gaps, active work, recent summaries, and archive pointers.
+7. Record the compaction in `CYCLE-COMPACTION`.
 
 ## Reading policy
 

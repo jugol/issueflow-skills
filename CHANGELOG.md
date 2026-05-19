@@ -4,6 +4,12 @@
 
 - No changes yet.
 
+## 0.3.7 - 2026-05-19
+
+- Add a before-wait scheduler scan gate so main agents must look for non-overlapping next work before waiting on active workers.
+- Require compound cleanup to prune obsolete plan gaps, stale drafts, closed lanes, outdated next actions, and dead follow-up candidates from active context files.
+- Add `issueflow parallel` as the short explicit trigger for worker/worktree authorization, while still requiring complex work to attempt parallel shaping before asking for that trigger.
+
 ## 0.3.6 - 2026-05-19
 
 - Clarify that the main thread keeps doing read-only scheduler work after worker dispatch and should call `wait_agent` only when blocked.

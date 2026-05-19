@@ -26,6 +26,7 @@
 ## Archived or Summarized
 
 - Done issues moved out of active:
+- Obsolete plan gaps/follow-up candidates removed:
 - Superseded brainstorms archived:
 - Old waves archived:
 - Old proof logs summarized:

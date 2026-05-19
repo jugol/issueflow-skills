@@ -26,8 +26,19 @@
 
 - Subagent authorization: `explicitly-allowed` / `not-allowed` / `needs-user-approval`
 - Authorization source:
+- Parallel trigger present: `issueflow parallel` / `none`
+- Automation prompt includes authorization: `yes` / `no`
 - Active lane budget:
 - Scheduler may dispatch additional non-overlapping lanes: `yes` / `no`
+
+## Last Before-Wait Scheduler Scan
+
+- Checked before `wait_agent`: `yes` / `no`
+- Active workers:
+- Non-overlapping candidates found:
+- Dispatch decision:
+- No-dispatch reason: `no-candidate` / `overlaps-active-lane` / `active-lane-budget-full` / `blocked-on-worker-output`
+- Next scheduler action:
 
 ## Active Context Set
 

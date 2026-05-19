@@ -8,6 +8,18 @@ Pause automations that are waiting for the user. Do not delete them.
 
 Deleting an automation loses its identity, schedule, workspace association, and resume trail. A user-blocked automation should keep those intact so it can continue after the user answers.
 
+## Durable Subagent Authorization
+
+When an automation is expected to use workers, its prompt or current-state handoff must carry explicit user authorization. Do not rely on a generic repo preference.
+
+Use the short trigger:
+
+```text
+issueflow parallel
+```
+
+That phrase explicitly authorizes subagents and worktrees for independent non-overlapping lanes, within the active-lane budget and merge-order rules. Copy it into `CURRENT_STATE.md` or the repo's equivalent current-state pointer. For complex automation work, still perform the read-only non-overlap scan and wave/lane shaping first. If lanes are technically independent but the automation lacks `issueflow parallel`, pause and ask the user to rerun or confirm with that phrase instead of falling back to main-thread implementation by habit.
+
 ## Pause when user input is required
 
 Set the existing automation to `PAUSED` or the platform's equivalent when the run cannot continue without user input, approval, credentials, policy choice, or product direction.

@@ -50,7 +50,8 @@ planned
 - Worker reasoning effort: `high` default / `medium` only with trivial-lane and no-scope-impact rationale
 - `<issue-id>` -> `<worktree path or serialize>`
 - Subagent authorization: `explicitly-allowed` / `not-allowed` / `needs-user-approval`
-- Authorization source:
+- Authorization source: `issueflow parallel in user request` / `issueflow parallel in automation prompt` / `current-state handoff quoting issueflow parallel`
+- Parallel trigger present: `issueflow parallel` / `none`
 - `<issue-id>` -> `<subagent assignment or no-delegation rationale>`
 - `<issue-id>` -> `<subagent assignment or no-delegation rationale>`
 
@@ -84,6 +85,8 @@ planned
 
 - Main-agent wait-time discovery:
 - Candidate overlap with active lanes:
+- Before-wait scheduler scan recorded: `yes` / `no`
+- No-dispatch reason: `no-candidate` / `overlaps-active-lane` / `active-lane-budget-full` / `blocked-on-worker-output`
 - Wait condition, if blocked on worker output:
 - Signals to re-check after merge:
 - Follow-up issue rule:

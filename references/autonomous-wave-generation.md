@@ -66,6 +66,6 @@ Default to at least one `core` issue. Allow internal-only waves only with an exp
 
 For a wave, the main agent should first ask which issues can run without overlap, then create as many safe lanes as practical and schedule them instead of serially implementing one lane while other independent lanes remain undispatched.
 
-While scheduled workers are running, use the wait time for read-only discovery of the next non-overlapping issue candidates. Do not dispatch or edit overlapping work until active lane results and merge order are clear, and do not add workers past the active-lane budget. Use `wait_agent` only after safe scheduler work is exhausted or blocked.
+While scheduled workers are running, use the wait time for read-only discovery of the next non-overlapping issue candidates. Do not dispatch or edit overlapping work until active lane results and merge order are clear, and do not add workers past the active-lane budget. Before `wait_agent`, record the scheduler scan result and whether waiting is due to `no-candidate`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`.
 
 Use [issue-sizing-and-scheduling.md](./issue-sizing-and-scheduling.md) when deciding whether to combine tiny candidates, split oversized work, or delegate multiple lanes.

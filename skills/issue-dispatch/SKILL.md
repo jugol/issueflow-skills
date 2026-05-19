@@ -13,6 +13,8 @@ Before any code edit on an issue branch, decide whether the lane can be delegate
 
 After dispatch, the main agent should keep scheduling instead of waiting by default: update the scheduler board, scan read-only for non-overlapping next candidates, and prepare safe follow-up lanes. Call `wait_agent` only when all safe scheduler actions are exhausted or blocked on worker output. Additional lane dispatch needs explicit subagent authorization, active-lane budget, and non-overlap with current worker ownership.
 
+Before calling `wait_agent` while workers are active, perform and record a before-wait scheduler scan. Dispatch another worker if authorization, active-lane budget, non-overlap, and merge order are clear. If not dispatching, record exactly why: `no-candidate`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`.
+
 ## Preconditions
 
 - Green `develop` baseline, intake-ready issue, known repo-local proof commands.
@@ -20,7 +22,7 @@ After dispatch, the main agent should keep scheduling instead of waiting by defa
 - Plan relationship is explicit; extensions/conflicts already have plan update, decision entry, or plan-change note.
 - Issue shape is a vertical slice, or support/contract-first with a downstream core slice.
 - Wave lanes name owner, proof command, dependency, and worktree or serialization decision.
-- Subagent authorization is explicit when workers will be used; if missing, ask, pause, or record no-delegation before dispatch.
+- Subagent authorization is explicit when workers will be used; valid sources are `issueflow parallel` in the current user request or automation prompt, or a current-state handoff quoting that approval. For complex work, run the non-overlap scan first. If lanes are safe but authorization is missing, ask the user to run or confirm `issueflow parallel`; do not serialize or implement in the main thread solely because permission is missing.
 
 ## Branching and worktree rules
 
@@ -73,8 +75,8 @@ When live feedback produces multiple product-facing failures, create one correct
 
 - Branch/workspace: branch name, current branch, base `develop` snapshot, worktree decision, scheduler checkout path, return-to-`develop` note.
 - Scope: owner skill, expected files/areas, vertical slice or support rationale, plan classification, drift warning, and plan-change status.
-- Scheduling: parallel/serialized decision, wave id, active-lane budget, non-overlap scan, one-issue wave rationale if any.
-- Delegation: subagent authorization source, assignment or no-delegation rationale, worker effort, root-checkout and other-worker guardrails.
+- Scheduling: parallel/serialized decision, wave id, active-lane budget, non-overlap scan, before-wait scheduler scan, one-issue wave rationale if any.
+- Delegation: subagent authorization source, `issueflow parallel` confirmation or no-parallel rationale, assignment or no-delegation rationale, worker effort, root-checkout and other-worker guardrails.
 - Proof: required QA skill, lane proof command, UI aesthetic/native-copy owner when screens or visible text change.
 
 ## Hand-off routing
