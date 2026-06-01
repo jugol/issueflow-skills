@@ -84,9 +84,10 @@ planned
 ## Follow-up Scan
 
 - Main-agent wait-time discovery:
+- Before-wait sources checked:
 - Candidate overlap with active lanes:
 - Before-wait scheduler scan recorded: `yes` / `no`
-- No-dispatch reason: `no-candidate` / `overlaps-active-lane` / `active-lane-budget-full` / `blocked-on-worker-output`
+- No-dispatch reason: `no-candidate-after-minimum-scan` / `overlaps-active-lane` / `active-lane-budget-full` / `blocked-on-worker-output`
 - Wait condition, if blocked on worker output:
 - Signals to re-check after merge:
 - Follow-up issue rule:

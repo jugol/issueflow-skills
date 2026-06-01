@@ -1,6 +1,6 @@
 {
   "name": "issueflow",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Issue-driven Git Flow-lite workflow skills for Codex, including autonomous cycles, parallel worktree scheduling, and compound learning.",
   "author": {
     "name": "Issueflow Skills Contributors"

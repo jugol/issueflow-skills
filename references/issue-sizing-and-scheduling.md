@@ -77,6 +77,6 @@ When subagents are explicitly authorized by `issueflow parallel` in the user req
 
 The main agent should keep a scheduler board for the wave and avoid waiting on a single lane when other lanes can proceed independently.
 
-While subagents are running, the main agent should do read-only next-issue discovery: scan plan gaps, backlog, recent proof, feedback, and solution triggers for candidates that do not overlap active lanes. It may draft candidates or a next-wave proposal, but must not dispatch more workers unless authorization, active-lane budget, non-overlap, and merge order are clear. Before `wait_agent`, record the scan result and the no-dispatch reason: `no-candidate`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`.
+While subagents are running, the main agent should do read-only next-issue discovery: scan plan gaps, backlog, recent proof, feedback, and solution triggers for candidates that do not overlap active lanes. It may draft candidates or a next-wave proposal, but must not dispatch more workers unless authorization, active-lane budget, non-overlap, and merge order are clear. Before `wait_agent`, record sources checked and the no-dispatch reason: `no-candidate-after-minimum-scan`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`. Ready/Active board only is not a valid no-candidate scan.
 
 Serialize instead of parallelizing when lanes touch the same file, root registry, shared schema, generated fixture, golden baseline, root proof wrapper, or unresolved shared contract.

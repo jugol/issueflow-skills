@@ -13,7 +13,7 @@ Before any code edit on an issue branch, decide whether the lane can be delegate
 
 After dispatch, the main agent should keep scheduling instead of waiting by default: update the scheduler board, scan read-only for non-overlapping next candidates, and prepare safe follow-up lanes. Call `wait_agent` only when all safe scheduler actions are exhausted or blocked on worker output. Additional lane dispatch needs explicit subagent authorization, active-lane budget, and non-overlap with current worker ownership.
 
-Before calling `wait_agent` while workers are active, perform and record a before-wait scheduler scan. Dispatch another worker if authorization, active-lane budget, non-overlap, and merge order are clear. If not dispatching, record exactly why: `no-candidate`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`.
+Before calling `wait_agent` while workers are active, perform and record a before-wait scheduler scan. Check at least Ready/Active board, draft/backlog candidates, plan gaps, recent proof/test failures, review/feedback findings, solution follow-up triggers, and stale drafts/deferred candidates. Dispatch another worker if authorization, active-lane budget, non-overlap, and merge order are clear. Ready/Active board only is not enough for `no-candidate-after-minimum-scan`. If not dispatching, record exactly why: `no-candidate-after-minimum-scan`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`.
 
 ## Preconditions
 
@@ -75,7 +75,7 @@ When live feedback produces multiple product-facing failures, create one correct
 
 - Branch/workspace: branch name, current branch, base `develop` snapshot, worktree decision, scheduler checkout path, return-to-`develop` note.
 - Scope: owner skill, expected files/areas, vertical slice or support rationale, plan classification, drift warning, and plan-change status.
-- Scheduling: parallel/serialized decision, wave id, active-lane budget, non-overlap scan, before-wait scheduler scan, one-issue wave rationale if any.
+- Scheduling: parallel/serialized decision, wave id, active-lane budget, non-overlap scan, before-wait sources checked, before-wait scheduler scan, one-issue wave rationale if any.
 - Delegation: subagent authorization source, `issueflow parallel` confirmation or no-parallel rationale, assignment or no-delegation rationale, worker effort, root-checkout and other-worker guardrails.
 - Proof: required QA skill, lane proof command, UI aesthetic/native-copy owner when screens or visible text change.
 

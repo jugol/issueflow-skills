@@ -35,9 +35,10 @@
 
 - Checked before `wait_agent`: `yes` / `no`
 - Active workers:
+- Sources checked: `ready-active` / `draft-backlog` / `plan-gaps` / `recent-proof-failures` / `review-feedback` / `solution-triggers` / `stale-deferred`
 - Non-overlapping candidates found:
 - Dispatch decision:
-- No-dispatch reason: `no-candidate` / `overlaps-active-lane` / `active-lane-budget-full` / `blocked-on-worker-output`
+- No-dispatch reason: `no-candidate-after-minimum-scan` / `overlaps-active-lane` / `active-lane-budget-full` / `blocked-on-worker-output`
 - Next scheduler action:
 
 ## Active Context Set

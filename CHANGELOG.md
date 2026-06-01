@@ -4,6 +4,10 @@
 
 - No changes yet.
 
+## 0.3.8 - 2026-06-01
+
+- Tighten before-wait `no-candidate` handling so Ready/Active-only scans are invalid and minimum scan sources must be recorded.
+
 ## 0.3.7 - 2026-05-19
 
 - Add a before-wait scheduler scan gate so main agents must look for non-overlapping next work before waiting on active workers.

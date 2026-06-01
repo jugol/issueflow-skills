@@ -15,7 +15,7 @@ In autonomous implementation cycles, the main thread is the scheduler, reviewer,
 
 After dispatching workers, do not idle by default. Keep doing read-only scheduler work: update the wave board/current-state, scan for non-overlapping next-issue candidates, and prepare follow-up lanes. Use `wait_agent` only when the next main-thread action is blocked on worker output. Do not dispatch extra lanes until subagent authorization, active-lane budget, and non-overlap with current worker ownership are explicit.
 
-Before calling `wait_agent` while any worker is running, record a before-wait scheduler scan: non-overlapping candidates found, dispatch decision, and one reason if no dispatch happened: `no-candidate`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`.
+Before calling `wait_agent` while any worker is running, record a before-wait scheduler scan: sources checked, non-overlapping candidates found, dispatch decision, and one reason if no dispatch happened: `no-candidate-after-minimum-scan`, `overlaps-active-lane`, `active-lane-budget-full`, or `blocked-on-worker-output`. Ready/Active board only is not a valid no-candidate scan.
 
 ## Routing
 
@@ -64,7 +64,7 @@ If the user asks broadly how to use the workflow in a repo, start with `repo-boo
 - Keep `PLAN_ANCHOR.md` and `CURRENT_STATE.md` bounded: short summaries and links only; move completed issue, wave, and proof detail to `docs/history/` or equivalent.
 - Prefer medium vertical-slice issues and wave-first scheduling. Avoid one tiny issue at a time; use `issue-sizing-and-scheduling.md` when sizing or delegation is unclear.
 - For complex work, attempt read-only parallel shaping before settling for one lane. In automations, worker authorization must come from `issueflow parallel` in the user/automation prompt or a current-state handoff quoting that approval. If lanes are technically independent but authorization is missing, ask or pause for `issueflow parallel`; if lanes overlap, serialize with overlap rationale.
-- Before waiting on active workers, update the current-state or wave board with the latest before-wait scheduler scan.
+- Before waiting on active workers, update the current-state or wave board with the latest before-wait scheduler scan. Minimum sources: Ready/Active board, draft/backlog candidates, plan gaps, recent proof/test failures, review/feedback findings, solution follow-up triggers, stale drafts/deferred candidates.
 - If automation needs user input, approval, credentials, or product/policy choice, pause the existing automation instead of deleting it. Record blocker, question, active work, branch/worktree, proof pointer, resume condition, and next step.
 
 ## Plan and product truth
