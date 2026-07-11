@@ -36,7 +36,7 @@ git push origin main --tags
 On each computer that should receive updates, add the marketplace once:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref main
+codex plugin marketplace add jugol/issueflow-skills --ref main
 ```
 
 Then refresh installed marketplace plugins whenever you want the latest version:
@@ -66,7 +66,7 @@ macOS or Linux cron example:
 Use a pinned ref such as a release tag when stability matters more than immediate updates:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v<version>
+codex plugin marketplace add jugol/issueflow-skills --ref v<version>
 ```
 
 Use `main` when every computer should track the latest maintained version.

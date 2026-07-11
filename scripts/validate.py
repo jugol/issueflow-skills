@@ -29,6 +29,11 @@ LOCAL_PATTERNS = [
     re.compile(r"\bAppData\b", re.IGNORECASE),
     re.compile(r"\bHOME[/\\]", re.IGNORECASE),
 ]
+MAX_SKILL_WORDS = 700
+MAX_TOTAL_SKILL_WORDS = 4500
+MAX_DESCRIPTION_WORDS = 45
+MAX_DEFAULT_PROMPTS = 3
+MAX_DEFAULT_PROMPT_CHARS = 128
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -81,6 +86,8 @@ def validate_skills(errors: list[str]) -> None:
         fail(errors, "skills/ contains no skill directories")
         return
 
+    total_words = 0
+
     for skill_dir in skill_dirs:
         skill_md = skill_dir / "SKILL.md"
         if not skill_md.is_file():
@@ -100,6 +107,28 @@ def validate_skills(errors: list[str]) -> None:
 
         if not description:
             fail(errors, f"{skill_md.relative_to(ROOT)} is missing description")
+        elif len(description.split()) > MAX_DESCRIPTION_WORDS:
+            fail(
+                errors,
+                f"{skill_md.relative_to(ROOT)} description exceeds "
+                f"{MAX_DESCRIPTION_WORDS} words",
+            )
+
+        word_count = len(skill_md.read_text(encoding="utf-8").split())
+        total_words += word_count
+        if word_count > MAX_SKILL_WORDS:
+            fail(
+                errors,
+                f"{skill_md.relative_to(ROOT)} exceeds the {MAX_SKILL_WORDS}-word prompt budget "
+                f"({word_count} words)",
+            )
+
+    if total_words > MAX_TOTAL_SKILL_WORDS:
+        fail(
+            errors,
+            f"skills/*/SKILL.md exceeds the {MAX_TOTAL_SKILL_WORDS}-word aggregate prompt budget "
+            f"({total_words} words)",
+        )
 
 
 def validate_plugin(errors: list[str]) -> None:
@@ -129,6 +158,43 @@ def validate_plugin(errors: list[str]) -> None:
             fail(errors, ".codex-plugin/plugin.json skills path does not exist")
     else:
         fail(errors, ".codex-plugin/plugin.json must point to ./skills/")
+
+    interface = manifest.get("interface", {})
+    default_prompts = interface.get("defaultPrompt", [])
+    if not isinstance(default_prompts, list):
+        fail(errors, ".codex-plugin/plugin.json interface.defaultPrompt must be an array")
+    else:
+        if len(default_prompts) > MAX_DEFAULT_PROMPTS:
+            fail(
+                errors,
+                f".codex-plugin/plugin.json interface.defaultPrompt supports at most "
+                f"{MAX_DEFAULT_PROMPTS} entries",
+            )
+        for index, prompt in enumerate(default_prompts):
+            if not isinstance(prompt, str) or not prompt.strip():
+                fail(errors, f".codex-plugin/plugin.json defaultPrompt[{index}] must be text")
+            elif len(prompt) > MAX_DEFAULT_PROMPT_CHARS:
+                fail(
+                    errors,
+                    f".codex-plugin/plugin.json defaultPrompt[{index}] exceeds "
+                    f"{MAX_DEFAULT_PROMPT_CHARS} characters",
+                )
+
+    for field in ("composerIcon", "logo", "logoDark"):
+        asset_path = interface.get(field)
+        if not asset_path:
+            continue
+        if not isinstance(asset_path, str) or not asset_path.startswith("./"):
+            fail(errors, f".codex-plugin/plugin.json interface.{field} must be a ./ relative path")
+            continue
+        resolved = (ROOT / asset_path).resolve()
+        try:
+            resolved.relative_to(ROOT.resolve())
+        except ValueError:
+            fail(errors, f".codex-plugin/plugin.json interface.{field} must stay inside the repo")
+            continue
+        if not resolved.is_file():
+            fail(errors, f".codex-plugin/plugin.json interface.{field} does not exist")
 
 
 def validate_claude_plugin(errors: list[str]) -> None:

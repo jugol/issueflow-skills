@@ -4,6 +4,12 @@
 
 - No changes yet.
 
+## 0.3.9 - 2026-07-12
+
+- Compact all skill prompts while preserving delegation, scheduling, planning, proof, merge, and compound hard gates.
+- Add prompt-budget validation to prevent skill context from growing past 700 words per skill or 4,500 words across the pack.
+- Tighten Codex marketplace metadata with repository links, a composer icon, and schema-compliant starter prompts.
+
 ## 0.3.8 - 2026-06-01
 
 - Tighten before-wait `no-candidate` handling so Ready/Active-only scans are invalid and minimum scan sources must be recorded.

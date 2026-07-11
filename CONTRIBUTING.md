@@ -10,7 +10,7 @@ Run the validator before opening a pull request:
 python scripts/validate.py
 ```
 
-The validator checks skill frontmatter, plugin metadata, marketplace metadata, and accidental machine-local references.
+The validator checks skill frontmatter and prompt budgets, plugin/marketplace metadata, referenced assets, and accidental machine-local references.
 
 ## Skill Changes
 
@@ -20,6 +20,7 @@ The validator checks skill frontmatter, plugin metadata, marketplace metadata, a
 - Move detailed guidance into `references/` when the skill body starts getting long.
 - Keep reusable scaffold files in `templates/`.
 - Avoid personal paths, hostnames, user names, and repo-specific assumptions.
+- Keep each `SKILL.md` at or below 700 words and the pack at or below 4,500 words. Put conditional detail in `references/` without duplicating core rules.
 
 ## Plugin Changes
 

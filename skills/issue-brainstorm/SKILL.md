@@ -1,52 +1,28 @@
 ---
 name: issue-brainstorm
-description: Clarify user-requested features, product changes, UI changes, and ambiguous improvements before issue creation. Use for the interactive feature intake track when Codex should explore repo context, compare the request with the active plan, ask focused questions, propose 2-3 approaches with tradeoffs, and then hand off to issue-raise or a multi-issue wave.
+description: Clarify ambiguous feature, product, and UI requests before issue creation. Use to inspect repo/plan context, ask focused questions, compare 2-3 approaches, approve a direction, and hand it to issue-raise or a wave.
 ---
 
 # issue-brainstorm
 
-Use this before implementation when the user describes a feature, product behavior, UI change, or broad improvement.
+Clarify product direction before implementation.
 
 ## Workflow
 
-1. Ground in the repo first: inspect the plan anchor, backlog, current product surface, related tests, and nearby code or docs.
-2. Classify the request against the active plan as `aligned`, `extension`, `conflict`, or `deviation`.
-3. Restate the likely goal, audience, success signal, plan relationship, and major constraints.
-4. Run a precision check: identify wording that is vague, contradictory, undefined, or missing an actor, screen, state, success criterion, data rule, proof path, or plan relationship.
-5. Ask focused questions when the answer materially changes scope, UX, data shape, proof, rollout, or plan direction. Ask one or two at a time by default, but ask enough to remove implementation-blocking ambiguity.
-6. Present two or three viable approaches with tradeoffs and a recommendation.
-7. If the approved direction extends or conflicts with the plan, update the plan or record a plan-change note before implementation dispatch.
-8. Decide whether the approved direction is one issue or a wave:
-   - one issue when the work has one vertical slice and one ownership lane
-   - a wave when independent slices, packages, UI/backend lanes, or corrective findings can move separately
-9. Hand off the approved direction to `issue-raise`; if a wave is needed, use `../../templates/PARALLEL-WAVE.template.md`.
+1. Inspect the plan anchor, current product surface, backlog, related tests, and nearby code/docs.
+2. Restate audience, goal, success signal, constraints, and plan relationship: `aligned`, `extension`, `conflict`, or `deviation`.
+3. Identify ambiguity in actor, screen/state, UX, data ownership, proof, rollout, or plan truth.
+4. Ask one or two high-leverage questions at a time, tied to the decision each answer unlocks.
+5. Present 2-3 viable approaches with tradeoffs and a recommendation.
+6. Obtain direction; resolve or record plan extensions/conflicts before dispatch.
+7. Choose one medium vertical-slice issue or a wave of independent outcomes/owners/proof paths, then hand off to `issue-raise`.
 
-## Rules
+For a concrete low-risk request, use a compact brainstorm: confirm direction and proof, then proceed. Do not use a generic questionnaire, implement before direction is clear, or silently reopen rejected approaches without new evidence.
 
-- Do not dispatch implementation before the direction is clear enough for `issue-intake`.
-- Keep questions small and high leverage. Avoid generic questionnaires.
-- Do not under-ask when a vague phrase would change files, data ownership, user-visible behavior, proof, or plan truth.
-- Tie every question to the decision it unlocks. Prefer option-shaped questions over open-ended requests to "clarify everything."
-- If the request is already concrete and low-risk, run a compact brainstorm: restate the direction, name the proof, and proceed to `issue-raise`.
-- Do not implement a plan conflict first and update docs later. Resolve or record the plan change before dispatch.
-- Include UX direction, copy tone, first user-visible action, and anti-goals for UI work.
-- Record rejected approaches briefly so later agents do not reopen the same decision without new evidence.
-
-## Package resources
-
-- `../../references/interactive-brainstorming.md` for the brainstorming procedure
-- `../../references/plan-governance.md` for user requests that extend, conflict with, or split the product plan
-- `../../references/two-track-routing.md` for deciding whether this track applies
-- `../../references/autonomous-wave-generation.md` for deciding single issue vs wave
-- `../../templates/BRAINSTORM.template.md` for durable local notes when the repo keeps planning artifacts
-- `../../templates/PLAN-CHANGE.template.md` when the approved direction changes product truth
+UI direction should cover first user-visible action, primary object, aesthetic bar, copy tone/language, and anti-goals.
 
 ## Output
 
-- Clarified goal and success criteria
-- Blocking ambiguities resolved or explicitly deferred
-- Key answers or assumptions
-- Plan relationship and plan update decision
-- Recommended approach and rejected alternatives
-- Single-issue or wave decision
-- Handoff target: `issue-raise`, with a wave draft when needed. Do not jump directly to `issue-intake` or `issue-dispatch` unless an implementation-ready issue already exists.
+Record clarified goal/success, answers or assumptions, plan decision, recommended and rejected approaches, issue/wave decision, and `issue-raise` handoff.
+
+Load `../../references/interactive-brainstorming.md` for the detailed method, `../../references/plan-governance.md` for product-truth changes, and `../../references/autonomous-wave-generation.md` plus `../../templates/PARALLEL-WAVE.template.md` for wave shaping. Use `../../templates/BRAINSTORM.template.md` or `../../templates/PLAN-CHANGE.template.md` only when a durable note is needed.

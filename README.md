@@ -50,7 +50,7 @@ Codex loads the skills from `./skills/`. The shared references and templates are
 After publishing this repo to GitHub, add it as a Codex plugin marketplace:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref main
+codex plugin marketplace add jugol/issueflow-skills --ref main
 codex plugin marketplace upgrade issueflow-skills
 ```
 
@@ -90,7 +90,7 @@ claude --plugin-dir .
 Use `main` as the marketplace ref when your computers should track the latest maintained version:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref main
+codex plugin marketplace add jugol/issueflow-skills --ref main
 codex plugin marketplace upgrade issueflow-skills
 ```
 
@@ -106,7 +106,7 @@ claude plugin update issueflow@issueflow-skills
 Use a release tag when a computer should stay pinned until you intentionally move it:
 
 ```bash
-codex plugin marketplace add <owner>/issueflow-skills --ref v<version>
+codex plugin marketplace add jugol/issueflow-skills --ref v<version>
 ```
 
 See [UPDATE.md](./UPDATE.md) for publisher and consumer update workflows.

@@ -4,7 +4,7 @@
     "name": "Issueflow Skills Contributors"
   },
   "description": "Issueflow skills and workflow plugins for Claude Code, including autonomous cycles and parallel worktree scheduling.",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "plugins": [
     {
       "name": "issueflow",

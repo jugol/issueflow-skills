@@ -1,10 +1,13 @@
 {
   "name": "issueflow",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Issue-driven Git Flow-lite workflow skills for Codex, including autonomous cycles, parallel worktree scheduling, and compound learning.",
   "author": {
-    "name": "Issueflow Skills Contributors"
+    "name": "Issueflow Skills Contributors",
+    "url": "https://github.com/jugol"
   },
+  "homepage": "https://github.com/jugol/issueflow-skills",
+  "repository": "https://github.com/jugol/issueflow-skills",
   "license": "MIT",
   "keywords": [
     "codex",
@@ -34,10 +37,10 @@
     "defaultPrompt": [
       "Use issueflow to brainstorm this feature into issues.",
       "Use issueflow to plan the next autonomous wave.",
-      "Use issueflow parallel to schedule independent worktree worker lanes.",
-      "Use issueflow to continue the next iteration without waiting idly.",
-      "Use issueflow to compound what this merge taught us."
+      "Use issueflow parallel to schedule independent worktree worker lanes."
     ],
-    "brandColor": "#2563EB"
+    "brandColor": "#2563EB",
+    "websiteURL": "https://github.com/jugol/issueflow-skills",
+    "composerIcon": "./assets/icon.svg"
   }
 }
